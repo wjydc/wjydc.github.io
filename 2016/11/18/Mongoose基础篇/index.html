@@ -1,0 +1,932 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-hexo-theme-next-0.4.0">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.0"/>
+
+
+
+
+
+    <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
+
+
+
+
+  <title> Mongoose基础篇 // 薇娇 </title>
+</head>
+
+<body>
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">薇娇</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+            
+          
+
+          <div id="posts" class="posts-expand">
+            
+  
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              Mongoose基础篇
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            Posted on 2016-11-18
+          
+        </span>
+
+        
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          <h2 id="Mongoose基础篇"><a href="#Mongoose基础篇" class="headerlink" title="Mongoose基础篇"></a>Mongoose基础篇</h2><p>MongoDB 是由C++语言编写的，是一个基于分布式文件存储的开源数据库系统</p>
+<p>MongoDB 旨在为WEB应用提供可扩展的高性能数据存储解决方案。<br>MongoDB 将数据存储为一个文档，数据结构由键值(key=&gt;value)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。</p>
+<h4 id="MongoDB-下载"><a href="#MongoDB-下载" class="headerlink" title="MongoDB 下载"></a>MongoDB 下载</h4><p>你可以在mongodb官网下载该安装包，地址为 <a href="http://www.mongodb.org/downloads" target="_blank" rel="noopener"> http://www.mongodb.org/downloads</a></p>
+<p><code>Schema</code> 一种以文件形式存储的数据库模型骨架，不具备数据库的操作能力</p>
+<p><code>Model</code>  由<code>Schema</code>发布生成的模型，具有抽象属性和行为的数据库操作对</p>
+<p><code>Entity</code> 由<code>Model</code>创建的实体，他的操作也会影响数据库</p>
+<p><code>Schema</code>、<code>Model</code>、<code>Entity</code>的关系 :<br>    <code></code>Schema<code>生成</code>Mode<code>，</code>Model<code>创造</code>Entity<code>，</code>Model<code>和</code>Entity<code>都可对数据库操作造成影响，但</code>Model<code>比</code>Entity`更具操作性。</p>
+<h4 id="MongoDB-使用"><a href="#MongoDB-使用" class="headerlink" title="MongoDB 使用"></a>MongoDB 使用</h4><p>1.首先你必须安装MongoDB和NodeJS</p>
+<p>2.在项目只能够创建一个数据库连接，如下:</p>
+<pre><code>var mongoose = require(&apos;mongoose&apos;);    //引用mongoose模块
+var db = mongoose.createConnection(&apos;localhost&apos;,&apos;test&apos;); //    创建一个数据库连接
+</code></pre><p>3.打开本机localhost的test数据库时，我们可以监测</p>
+<p>4.在工作文档中定义一个Schema</p>
+<pre><code>var userSchema=new mongoose.Schema({
+username:String,
+password:String,
+email:String,
+});
+</code></pre><p>schemas中的数据类型有以下几种：</p>
+<ul>
+<li><p>String</p>
+</li>
+<li><p>Number</p>
+</li>
+<li><p>Date</p>
+</li>
+<li><p>Boolean</p>
+</li>
+<li><p>Buffer</p>
+</li>
+<li><p>ObjectId</p>
+</li>
+<li><p>Mixed</p>
+</li>
+<li><p>Array</p>
+</li>
+</ul>
+<p>特别需要说明一下ObjectId类型和Mixed类型以及Array类型，在schemas中声明这几</p>
+<p>种类型的方式如下：</p>
+<p>ObjectId就类似于唯一键值</p>
+<p>  projectSchema.add({</p>
+<p>  owner: mongoose.Schema.Types.ObjectId<br>  })</p>
+<p> //混合类型，顾名思义，就是说里面可以放置任意类型的数据，有两种方式创建该类型数据</p>
+<p> //方式一：直接赋予一个空的字面量对象<br> vardjSchema= new mongoose.Schema({<br>      mixedUp: {}<br>  });</p>
+<p> //方式二：根据Schemas.Types中值来赋予<br> vardjSchema= new mongoose.Schema({<br>     mixedUp: Schema.Types.Mixed<br> });</p>
+<p> //Array类型数据有两种创建方式，一种是简单数组创建：<br> var userSchema = new mongoose.Schema({<br>     name: String,<br>     emailAddresses: [String]<br> });</p>
+<p> //第二种方式就是复杂类型数据数组，例如我们可以再数组中添加不同类型的schemas:</p>
+<pre><code> var emailSchema = new mongoose.Schema({
+ email: String,
+ verified: Boolean
+});
+ var userSchema = new mongoose.Schema({
+ name: String,
+ emailAddresses: [emailSchema]
+ });
+ //注意：如果定义一个空的数据的话，则会创建为一个混合类型数据的数组：
+ var emailSchema = new mongoose.Schema({
+ email: String,
+ verified: Boolean
+ });
+ var userSchema = new mongoose.Schema({
+ name: String,
+ emailAddresses: [emailSchema]
+ });
+</code></pre><p>5 将Schema发布为Model,并且输出</p>
+<pre><code>module.exports={
+users:mongoose.model(&apos;users&apos;,userSchema,&apos;users&apos;)
+}
+
+// model后的参数 第一个users是模型model的名字，可以随便取名
+
+// 参数二是产出model的Schema名，和上面的要对应，
+
+// 参数3是数据库下的集合名称，可以随意取
+</code></pre><p>6.我们甚至可以为此Schema创建方法</p>
+<pre><code>//为Schema模型追加speak方法
+PersonSchema.methos.speak = function(){
+ console.log(&apos;我的名字叫&apos;+this.name);
+}
+var PersonModel = db.model(&apos;Person&apos;,PersonSchema);
+var personEntity = new PersonModel({name:&apos;Krouky&apos;});
+personEntity.speak();//我的名字叫Krouky
+</code></pre><p>7 如果要执行查询，需要依赖Model，当然Entity也是可以做到的</p>
+<pre><code> PersonModel.find(function(err,persons){
+  //查询到的所有person
+});
+</code></pre><h4 id="查找数据和读取数据的方法"><a href="#查找数据和读取数据的方法" class="headerlink" title="查找数据和读取数据的方法"></a>查找数据和读取数据的方法</h4><h5 id="查询的方式"><a href="#查询的方式" class="headerlink" title="查询的方式"></a>查询的方式</h5><p>通常有2种查询方式，一种是<code>直接查询</code>，一种是<code>链式查询</code>（2种查询都是自己命名的）<br><code>直接查询</code> 在查询时带有回调函数的，称之为直接查询，查询的条件往往通过API来设定，例如：</p>
+<pre><code>PersonModel.findOne({&apos;name.last&apos;:&apos;dragon&apos;},&apos;some     select&apos;,function(err,person){
+  //如果err==null，则person就能取到数据
+});
+</code></pre><p><code>链式查询</code> 在查询时候，不带回调，而查询条件通过API函数来制定，例如：</p>
+<pre><code>var query = PersonModel.findOne({&apos;name.last&apos;:&apos;dragon&apos;});
+query.select(&apos;some select&apos;);
+query.exec(function(err,pserson){
+//如果err==null，则person就能取到数据
+  });
+  这种方式相对直接查询，分的比较明细，如果不带callback，则返回query，query    没有执行的预编译查询语句，该query对象执行的方法都将返回自己，只有在执行    exec方法时才执行查询，而且必须有回调。    
+</code></pre><h5 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h5><p>有三种方式来更新数据：</p>
+<p>(1)update(conditions,update,options,callback); </p>
+<p>该方法会匹配到所查找的内容进行更新，不会返回数据；</p>
+<p>(2)findOneAndUpdate(conditions,update,options,callback);</p>
+<p>该方法会根据查找去更新数据库，另外也会返回查找到的并未改变的数据；</p>
+<p>(3)findByIdAndUpdate(conditions,update,options,callback);</p>
+<p>该方法跟上面的findOneAndUpdate方法功能一样，不过他是根据ID来查找文档并更新的。</p>
+<p>三个方法都包含四个参数，一下稍微说明一下几个参数的意思：</p>
+<p>conditions:查询条件</p>
+<p>update:更新的数据对象，是一个包含键值对的对象</p>
+<p>options:是一个声明操作类型的选项，这个参数在下面再详细介绍</p>
+<p>callback:回调函数</p>
+<p>对于options参数，在update方法中和findOneAndUpdate、findByIdAndUpdate</p>
+<p>两个方法中的可选设置是不同的；</p>
+<p> //在update方法中，options的可选设置为：</p>
+<p> {</p>
+<p>  safe:true|false,  //声明是否返回错误信息，默认true</p>
+<p>  upsert:false|true, //声明如果查询不到需要更新的数据项，是否需要新插入一</p>
+<p> 条记录，默认false</p>
+<p> multi:false|true,  //声明是否可以同时更新多条记录，默认false</p>
+<p> strict:true|false  //声明更新的数据中是否可以包含在schema定义之外的字段</p>
+<p>  数据，默认true</p>
+<p> }</p>
+<p> //对于findOneAndUpdate、findByIdAndUpdate这两个方法，他们的options可</p>
+<p> 选设置项为：</p>
+<p> {</p>
+<p> new:true|false, //声明返回的数据时更新后的该是更新前的，如果为true则返回</p>
+<p> 更新后的，默认true</p>
+<p>upsert:false|trure, </p>
+<p> sort:javascriptObject, //如果查询返回多个文档记录，则可以进行排序，在这</p>
+<p> 里是根据传入的javascript object对象进行排序</p>
+<p> select:String //这里声明要返回的字段，值是一个字符串</p>
+<p> }</p>
+<h5 id="数据删除"><a href="#数据删除" class="headerlink" title="数据删除"></a>数据删除</h5><p>跟更新数据一样，也有三种方法给我们删除数据：</p>
+<p>remove();</p>
+<p>findOneAndRemove();</p>
+<p>findByIdAndRemove();</p>
+<h5 id="数据验证"><a href="#数据验证" class="headerlink" title="数据验证"></a>数据验证</h5><p>mongoose内置数据验证</p>
+<p>在mongoose中，数据验证这一层是放在schema中的，mongoose已经帮我们做了很多内</p>
+<p>置的数据验证，有一些验证是针对某些数据类型的，也有一些是针对所有数据类型的。</p>
+<p>能够作用在所有数据类型上的验证有require，意思就是该字段是否是必须的，例如：</p>
+<p>email: { type: String, unique: true, required: true }</p>
+<p>上面的代码就定义了一个email是必须的schema.</p>
+
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+          <div class="post-nav">
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/11/28/React-Native学习指南/">React-Native学习指南</a>
+              
+            </div>
+
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2016/11/16/NodeJs常用核心模块简介/">NodeJs常用核心模块简介</a>
+              
+            </div>
+          </div>
+        
+
+        
+        
+      </div>
+    
+  </div>
+
+
+
+  
+    <div class="comments" id="comments">
+      
+    </div>
+  
+
+          </div>
+
+          
+        </div>
+
+        
+<div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          Table Of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          Overview
+        </li>
+      </ul>
+    
+
+    <div class="site-overview">
+      <div class="site-author motion-element">
+        <img class="site-author-image" src="/images/default_avatar.jpg" alt="魏姣" />
+        <p class="site-author-name">魏姣</p>
+      </div>
+      <p class="site-description motion-element"></p>
+      <div class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">posts</span>
+        </div>
+        <div class="site-state-item site-state-tags">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">tags</span>
+        </div>
+        <div class="site-state-item site-state-pages">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">pages</span>
+        </div>
+      </div>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+      </div>
+
+      
+      
+
+    </div>
+
+    
+      <div class="post-toc-wrap sidebar-panel-active">
+        <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <div class="post-toc">
+          
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mongoose基础篇"><span class="nav-number">1.</span> <span class="nav-text">Mongoose基础篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MongoDB-下载"><span class="nav-number">1.0.1.</span> <span class="nav-text">MongoDB 下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MongoDB-使用"><span class="nav-number">1.0.2.</span> <span class="nav-text">MongoDB 使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找数据和读取数据的方法"><span class="nav-number">1.0.3.</span> <span class="nav-text">查找数据和读取数据的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查询的方式"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">查询的方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新数据"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">更新数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据删除"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">数据删除</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据验证"><span class="nav-number">1.0.3.4.</span> <span class="nav-text">数据验证</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          
+        </div>
+        <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+      </div>
+    
+
+  </div>
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2021
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">魏姣</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebatToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebatToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0 && isDesktop()) {
+        setTimeout(function () {
+          $('.sidebar-toggle').trigger('click');
+        }, 800);
+      }
+    });
+  </script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+  
+</body>
+</html>

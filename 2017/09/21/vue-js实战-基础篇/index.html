@@ -1,0 +1,982 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-hexo-theme-next-0.4.0">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.0"/>
+
+
+
+
+
+    <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
+
+
+
+
+  <title> vue.js实战-基础篇 // 薇娇 </title>
+</head>
+
+<body>
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">薇娇</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+            
+          
+
+          <div id="posts" class="posts-expand">
+            
+  
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              vue.js实战-基础篇
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            Posted on 2017-09-21
+          
+        </span>
+
+        
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          <h2 id="vue-js实战-基础篇"><a href="#vue-js实战-基础篇" class="headerlink" title="vue.js实战-基础篇"></a>vue.js实战-基础篇</h2><p>之前曾看过vue.js的官方文档， 看了一些理论知识， 前段时间，自己拿以前的项目来做实践，毕竟纸上得来终觉浅嘛， 不过，由于由于时间关系，做的实例不多，刚学习vue的同学可以看看。后续自己还会深入的去学习，陆续补上。欢迎大神们来指正以及给予辅导。</p>
+<h3 id="项目目录"><a href="#项目目录" class="headerlink" title="项目目录"></a>项目目录</h3><p><img src="http://a1.qpic.cn/psb?/V12MFQbM1FNN0M/LPLLIF39*wXEq5WBtpGbZ7KNVe4LIvkXAfXzvzcD0WM!/b/dOcAAAAAAAAA&amp;bo=JQFQAgAAAAADAFM!&amp;rf=viewer_4" alt="Alt text"></p>
+<h3 id="注意知识点："><a href="#注意知识点：" class="headerlink" title="注意知识点："></a>注意知识点：</h3><ol>
+<li><p>vue 做移动端 ， meta 直接写在index.html 的head 里</p>
+<h5 id="Index-html"><a href="#Index-html" class="headerlink" title="Index.html"></a>Index.html</h5><pre><code>&lt;meta name=viewport content=&quot;width=device-width,initial-scale=1,user-scalable=no&quot;&gt;
+</code></pre></li>
+<li><p>v-for 的使用</p>
+<p> #####VUE1.0：</p>
+<pre><code>li v-for=&quot;(index,item) in items&quot; v-on:click=&quot;onclick($index)&quot;&gt;&lt;/li&gt;
+</code></pre><p> #####VUE2.0 $index 已弃用：</p>
+<pre><code>&lt;p v-for=&quot;(item,index) in tabs&quot; v-on:click=&quot;tabsShow(index)&quot;&gt;{{item.tabname}}&lt;/p&gt;
+</code></pre><p> （参数一为key值 ， 参数二为索引值）</p>
+</li>
+</ol>
+<p>3．组件命名时，不要用html元素如 head footer nav …..等命名。  </p>
+<ol start="4">
+<li><p>每个页面公用的头部和尾部直接写在app.vue 中：<br><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/F1PBtSsZL..IyQl07a7PQ5mxBgKLff6yR4JP8wGwiyo!/b/dG0BAAAAAAAA&amp;bo=IQEaAQAAAAADAB4!&amp;rf=viewer_4" alt="Alt text"></p>
+<p><em>注意：其他的组件页面最外层的容器不要设置高度。</em></p>
+</li>
+</ol>
+<h3 id="一-less-安装使用"><a href="#一-less-安装使用" class="headerlink" title="一  less 安装使用"></a>一  less 安装使用</h3><p>安装less依赖</p>
+<pre><code>npm install less less-loader –save
+</code></pre><p>修改 <em>webpack.base.conf.js</em> 文件，配置loader加载依赖，让其支持外部的less,在原来的代码上添加</p>
+<pre><code>{
+    test: /\.less$/,
+    loader: &apos;style-loader!css-loader!less-loader&apos;
+  },
+</code></pre><p>引入：</p>
+<pre><code>&lt;style lang=&quot;sass&quot;&gt;
+ @import &quot;/style/base.scss&quot;;(此处分号不可省)
+&lt;/style&gt;
+</code></pre><h3 id="二-swiper-使用"><a href="#二-swiper-使用" class="headerlink" title="二 swiper 使用"></a>二 swiper 使用</h3><p>在static 中引入 swiper [<br>Swiper.min.css<br>Swiper.min.js<br>]</p>
+<p>在 .eslintrc.js 中 配置swiper    :  </p>
+<pre><code>&apos;globals&apos;: {
+  &apos;Swiper&apos;: true
+}
+</code></pre><p>组件：</p>
+<pre><code>&lt;template&gt;
+       &lt;div class=&quot;swiper-container&quot;&gt;
+          &lt;div class=&quot;swiper-wrapper&quot;&gt;
+
+            &lt;div class=&quot;swiper-slide&quot; v-for=&quot;item in listImg&quot;&gt;
+              &lt;img class=&quot;imgload&quot; :src=&apos;item.url&apos; alt=&quot;首页banner图片01&quot;&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;!-- 如果需要分页器 --&gt;
+          &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+
+          &lt;!-- 如果需要导航按钮 --&gt;
+
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import &apos;../../../static/swiper/swiper.min.css&apos;
+import &apos;../../../static/swiper/swiper.min.js&apos;
+export default {
+  props: [&apos;listImg&apos;],
+  name: &apos;swiper&apos;,
+  data () {
+    return {
+      msg: &apos;Welcome to Your Vue.js App&apos;
+    }
+  },
+  mounted () {
+    var swiper = new Swiper(&apos;.swiper-container&apos;, {
+      pagination: &apos;.swiper-pagination&apos;,
+      paginationClickable: true,
+      loop: true,
+      speed: 600,
+      autoplay: 1000,
+      onTouchEnd: function () {
+        swiper.startAutoplay()
+      }
+    })
+  }
+}
+&lt;/script&gt;
+
+&lt;style scoped lang=&quot;less&quot;&gt;
+.swiper-container {
+    width: 100%;
+    height:208px;
+    background-color:red;
+    .swiper-wrapper {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .swiper-pagination-bullet {
+        width:20px;
+        height:20px;
+        background-color:blue;
+        display: inline-block;
+        background: #7c5e53;
+    }
+}
+
+&lt;/style&gt;
+</code></pre><h3 id="三-vue-router-router-link-实现页面跳转"><a href="#三-vue-router-router-link-实现页面跳转" class="headerlink" title="三 vue-router + router-link 实现页面跳转"></a>三 vue-router + router-link 实现页面跳转</h3><p>构建项目时安装vue-router（会自动在项目中创建router文件，推荐使用） ，  或者 在项目中通过 cnpm install vue-touter –save 来安装。</p>
+<ol>
+<li><p>使用第一种方法自动安装时 router下的 xx.js 配置：</p>
+<pre><code>import Vue from &apos;vue&apos;
+import Router from &apos;vue-router&apos;
+// 引入路由对应的组件
+import Index from &apos;@/components/index&apos;
+import Detail from &apos;@/components/detail&apos;
+// 全局使用路由
+Vue.use(Router)
+// 实例化路由并且暴露
+export default new Router({
+  routes: [
+    {
+      path: &apos;/&apos;,
+      name: &apos;Index&apos;,
+      component: Index
+    },
+    {
+      path: &apos;/detail&apos;,
+      name: &apos;Detail&apos;,
+      component: Detail
+    }
+  ]
+})  
+</code></pre></li>
+<li>在main.js 中将路由 挂载在 入口上，供全局使用<br><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/qTFCnHYaaXKzpldPTiEUaHUX68y6hqlhtGUmD6f1e08!/b/dD0BAAAAAAAA&amp;bo=tQFtAQAAAAADAP0!&amp;rf=viewer_4" alt="Alt text"></li>
+</ol>
+<p>3 组件中使用router-link to=”xxxx” 实现跳转（等同于a href=”xxx”）<br><img src="http://a2.qpic.cn/psb?/V12MFQbM1FNN0M/Mu.2S.BVRiD*iBRLuMtoVjAfi*ydwyeCwBtHwXpGtr4!/b/dDwBAAAAAAAA&amp;bo=DQLYAAAAAAADAPI!&amp;rf=viewer_4" alt="Alt text"></p>
+<p><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/moFDyBPAvZmPmUSlexvbe1W.XIGKHarxNoHYOgndsac!/b/dG0BAAAAAAAA&amp;bo=qQEoAgAAAAADAKc!&amp;rf=viewer_4" alt="Alt text"></p>
+<h3 id="四-tab选项卡"><a href="#四-tab选项卡" class="headerlink" title="四 tab选项卡"></a>四 tab选项卡</h3><p>html:</p>
+<pre><code>&lt;div  class=&quot;tabs&quot; &gt;
+  &lt;p v-for=&quot;(item,index) in tabs&quot; v-on:click=&quot;tabsShow(index)&quot; :class=&quot;{active:item.iscur}&quot;&gt;{{item.tabname}}&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tabItems&quot;&gt;   
+ // 挂载当前显示的默认项
+  &lt;component :is=&apos;currentView&apos; keep-alive&gt;&lt;/component&gt;
+&lt;/div&gt;
+</code></pre><p>Js :</p>
+<pre><code>export default {
+      name: &apos;Index&apos;,
+      data () {
+        return {
+          tabs: [
+            {tabname: &apos;男生&apos;, iscur: true, nowShow: &apos;list&apos;},
+            {tabname: &apos;女生&apos;, iscur: false, nowShow: &apos;detail&apos;}
+          ],
+          currentView: &apos;list&apos;
+        }
+      },
+      components: {
+        &apos;banner&apos;: Banner,
+        &apos;detail&apos;: Detail,
+        &apos;list&apos;: List
+      },
+      methods: {
+        tabsShow: function (indexs) {
+          var x = this
+          this.tabs.map(function (v, i) {
+            if (i === indexs) {
+              v.iscur = true
+              x.currentView = v.nowShow
+            } else {
+              v.iscur = false
+            }
+          })
+       }
+     }
+}
+</code></pre><h3 id="五-相同组件绑定不同数据"><a href="#五-相同组件绑定不同数据" class="headerlink" title="五 相同组件绑定不同数据"></a>五 相同组件绑定不同数据</h3><p>例如：同一个swiper组件 ，在不同的父级组件下展示不同的图片源<br><img src="http://a2.qpic.cn/psb?/V12MFQbM1FNN0M/VvBJT6YCuyh3kzzBqidNa0fj7rL5SB9*t9FigNEazg4!/b/dDwBAAAAAAAA&amp;bo=.gBhAQAAAAADAL8!&amp;rf=viewer_4" alt="Alt text"><br><img src="http://a2.qpic.cn/psb?/V12MFQbM1FNN0M/qm79wjSJiTw0QB*GJ..8jaVOq6bBtCLb9S53xvJaa0U!/b/dDwBAAAAAAAA&amp;bo=FQFoAQAAAAADAFg!&amp;rf=viewer_4" alt="Alt text"></p>
+<p>主页 三组数据：<br><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/vW8FmVfHrAtVPZnrjJCC.RRP0VG4Ydf1i4F5MZWuLnw!/b/dD0BAAAAAAAA&amp;bo=XAHzAAAAAAADAIs!&amp;rf=viewer_4" alt="Alt text"></p>
+<p>在子组件上绑定数据，供子组件直接使用， 需要用什么数据就绑定什么数据（实际具体数据通过请求接口，此处为示例）<br><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/xLvmMRwcWQIk6mrVD2gJB4bNYukgMDdsoOY8wiBh4cU!/b/dG0BAAAAAAAA&amp;bo=LgLCAAAAAAADAMs!&amp;rf=viewer_4" alt="Alt text"></p>
+<p>在子组件中通过prop 继承父级Data<br><img src="http://a2.qpic.cn/psb?/V12MFQbM1FNN0M/bnA68OGA5cTCGwYkWSbO3hudXoBzuhSd1PcFLr34gWc!/b/dDwBAAAAAAAA&amp;bo=LgIPAQAAAAADAAc!&amp;rf=viewer_4" alt="Alt text"></p>
+<p>在公共组件swiper 中 使用逻辑运算符即可：<br><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/u*g9gOW.W8gkDliyoQPnVjoBdvgYhTO1tlU9r1aTreg!/b/dIUBAAAAAAAA&amp;bo=LgLmAAAAAAADAO8!&amp;rf=viewer_4" alt="Alt text"></p>
+<h3 id="六-使用vuex-来存储数据-供全局使用"><a href="#六-使用vuex-来存储数据-供全局使用" class="headerlink" title="六 使用vuex 来存储数据 供全局使用"></a>六 使用vuex 来存储数据 供全局使用</h3><p>1 安装 npm install vuex –save<br>2 在 src 下 建一个store.js 文件<br>3 引入 vue vuex<br><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/2V6WIvp6lFAtPOl7Pu4VLLdEg2gGM0H5PUNvM9QBonQ!/b/dD0BAAAAAAAA&amp;bo=LgJ2AQAAAAADAH4!&amp;rf=viewer_4" alt="Alt text"></p>
+<p>4 在需要使用数据的 .vue 中 data取出<br><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/FfK3U0yX0joe1H23H.gfxkZbgzOYO4VAe6D2vz55K34!/b/dD0BAAAAAAAA&amp;bo=jwFgAQAAAAADAMo!&amp;rf=viewer_4" alt="Alt text"></p>
+<p><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/BJES12jJSeNJH2SdOyU319KmHL.0GtG2lwvUrlyvGcQ!/b/dIUBAAAAAAAA&amp;bo=vgHYAAAAAAADAEI!&amp;rf=viewer_4" alt="Alt text"></p>
+<h3 id="七-使用公用的js-内的方法"><a href="#七-使用公用的js-内的方法" class="headerlink" title="七 使用公用的js 内的方法"></a>七 使用公用的js 内的方法</h3><p>例如在index.vue 中使用common.js中的init方法  ：<br><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/jAXYswYpZwwxsLB6ZeBs0A9wmLgZqLty80wigJYLshY!/b/dD0BAAAAAAAA&amp;bo=ywCtAQAAAAADAEI!&amp;rf=viewer_4" alt="Alt text"></p>
+<p>1    写入的方法 用 export暴露出来否则会报错（需要注意）<br><img src="http://a3.qpic.cn/psb?/V12MFQbM1FNN0M/eOg*ecZXgLYBlq6RmGrQ09.yo0HQ7BR4P2gCNvNtgb8!/b/dIUBAAAAAAAA&amp;bo=rwFvAQAAAAADAOU!&amp;rf=viewer_4" alt="Alt text"></p>
+<p>2 在需要的文件中引入 { 方法 } 并且在method 中注入</p>
+<p><img src="http://a2.qpic.cn/psb?/V12MFQbM1FNN0M/GOwCr*V6FB4IuZnz4ZyljQ9.GVuPdRi79qdQ4BiO5UQ!/b/dDwBAAAAAAAA&amp;bo=HAJ6AQAAAAADAEA!&amp;rf=viewer_4" alt="Alt text"></p>
+<h3 id="八-img-图片绑定路径问题"><a href="#八-img-图片绑定路径问题" class="headerlink" title="八 img 图片绑定路径问题"></a>八 img 图片绑定路径问题</h3><p>1 本地图片直接使用相对路径。<br>2    动态图片 v-bind：src=””<br>3    固定的图片属于静态文件。放置于static . 直接./static/…png 就可获取  </p>
+<h3 id="今天的分享就到此了，-下次再继续深入。"><a href="#今天的分享就到此了，-下次再继续深入。" class="headerlink" title="今天的分享就到此了， 下次再继续深入。"></a>今天的分享就到此了， 下次再继续深入。</h3><p><strong>版权声明： 本博客内容由本人自己所著。转载请注明出处！</strong></p>
+
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+          <div class="post-nav">
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/04/11/JAVAScript中DOM与BOM的差异分析/">JAVAScript中DOM与BOM的差异分析</a>
+              
+            </div>
+
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2016/11/28/React-Native学习指南/">React-Native学习指南</a>
+              
+            </div>
+          </div>
+        
+
+        
+        
+      </div>
+    
+  </div>
+
+
+
+  
+    <div class="comments" id="comments">
+      
+    </div>
+  
+
+          </div>
+
+          
+        </div>
+
+        
+<div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          Table Of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          Overview
+        </li>
+      </ul>
+    
+
+    <div class="site-overview">
+      <div class="site-author motion-element">
+        <img class="site-author-image" src="/images/default_avatar.jpg" alt="魏姣" />
+        <p class="site-author-name">魏姣</p>
+      </div>
+      <p class="site-description motion-element"></p>
+      <div class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">posts</span>
+        </div>
+        <div class="site-state-item site-state-tags">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">tags</span>
+        </div>
+        <div class="site-state-item site-state-pages">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">pages</span>
+        </div>
+      </div>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+      </div>
+
+      
+      
+
+    </div>
+
+    
+      <div class="post-toc-wrap sidebar-panel-active">
+        <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <div class="post-toc">
+          
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-js实战-基础篇"><span class="nav-number">1.</span> <span class="nav-text">vue.js实战-基础篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目目录"><span class="nav-number">1.1.</span> <span class="nav-text">项目目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意知识点："><span class="nav-number">1.2.</span> <span class="nav-text">注意知识点：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Index-html"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">Index.html</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一-less-安装使用"><span class="nav-number">1.3.</span> <span class="nav-text">一  less 安装使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-swiper-使用"><span class="nav-number">1.4.</span> <span class="nav-text">二 swiper 使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-vue-router-router-link-实现页面跳转"><span class="nav-number">1.5.</span> <span class="nav-text">三 vue-router + router-link 实现页面跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-tab选项卡"><span class="nav-number">1.6.</span> <span class="nav-text">四 tab选项卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五-相同组件绑定不同数据"><span class="nav-number">1.7.</span> <span class="nav-text">五 相同组件绑定不同数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六-使用vuex-来存储数据-供全局使用"><span class="nav-number">1.8.</span> <span class="nav-text">六 使用vuex 来存储数据 供全局使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七-使用公用的js-内的方法"><span class="nav-number">1.9.</span> <span class="nav-text">七 使用公用的js 内的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八-img-图片绑定路径问题"><span class="nav-number">1.10.</span> <span class="nav-text">八 img 图片绑定路径问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#今天的分享就到此了，-下次再继续深入。"><span class="nav-number">1.11.</span> <span class="nav-text">今天的分享就到此了， 下次再继续深入。</span></a></li></ol></li></ol></div>
+          
+        </div>
+        <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+      </div>
+    
+
+  </div>
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2021
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">魏姣</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebatToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebatToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0 && isDesktop()) {
+        setTimeout(function () {
+          $('.sidebar-toggle').trigger('click');
+        }, 800);
+      }
+    });
+  </script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+  
+</body>
+</html>

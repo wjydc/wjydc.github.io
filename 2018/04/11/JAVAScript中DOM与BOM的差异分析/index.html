@@ -1,0 +1,844 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-hexo-theme-next-0.4.0">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.0"/>
+
+
+
+
+
+    <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
+
+
+
+
+  <title> JAVAScript中DOM与BOM的差异分析 // 薇娇 </title>
+</head>
+
+<body>
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">薇娇</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+            
+          
+
+          <div id="posts" class="posts-expand">
+            
+  
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              JAVAScript中DOM与BOM的差异分析
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            Posted on 2018-04-11
+          
+        </span>
+
+        
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          <h1 id="JAVAScript中DOM与BOM的差异分析"><a href="#JAVAScript中DOM与BOM的差异分析" class="headerlink" title="JAVAScript中DOM与BOM的差异分析"></a>JAVAScript中DOM与BOM的差异分析</h1><p>JAVAScript 有三部分构成，ECMAScript，DOM和BOM，根据浏览器的不同，具体的表现形式也不尽相同。我们今天来谈一谈DOM和BOM这俩者之间的差异。</p>
+<p>用百科上的来说：</p>
+<ol>
+<li><p>DOM是 W3C 的标准; [所有浏览器公共遵守的标准]</p>
+</li>
+<li><p>BOM 是 各个浏览器厂商根据 DOM在各自浏览器上的实现;[表现为不同浏览器定义有差别,实现方式不同]</p>
+</li>
+<li><p>window 是 BOM 对象，而非 js 对象；</p>
+</li>
+</ol>
+<p>DOM（文档对象模型）是 HTML 和 XML 的应用程序接口（API）。</p>
+<p>BOM 主要处理浏览器窗口和框架，不过通常浏览器特定的 JavaScript 扩展都被看做 BOM 的一部分。而这些扩展则包括：</p>
+<pre><code>&lt;1&gt;弹出新的浏览器窗口
+&lt;2&gt;移动、关闭浏览器窗口以及调整窗口大小
+&lt;3&gt;提供 Web 浏览器详细信息的定位对象
+&lt;4&gt;提供用户屏幕分辨率详细信息的屏幕对象
+&lt;5&gt;对 cookie 的支持
+&lt;6&gt;IE 扩展了 BOM，加入了 ActiveXObject 类，可以通过 JavaScript 实例化 ActiveX 对象
+</code></pre><p>javacsript是通过访问BOM（Browser Object Model）对象来访问、控制、修改客户端(浏览器)，由于BOM的window包含了document，window对象的属性和方法是直接可以使用而且被感知的，因此可以直接使用window对象的document属性，通过document属性就可以访问、</p>
+<p>检索、修改XHTML文档内容与结构。因为document对象又是DOM（Document Object Model）模型的根节点。可以说，BOM包含了DOM(对象)，浏览器提供出来给予访问的是BOM对象，从BOM对象再访问到DOM对象，从而js可以操作浏览器以及浏览器读取到的文档。其中</p>
+<p>DOM包含：window</p>
+<pre><code>1 Window对象包含属性：document、location、navigator、screen、history、frames
+
+2 Document根节点包含子节点：forms、location、anchors、images、links
+</code></pre><p>从window.document已然可以看出，DOM的最根本的对象是BOM的window对象的子对象。而他们之前的最大区别：DOM描述了处理网页内容的方法和接口，BOM描述了与浏览器进行交互的方法和接口。</p>
+<p>首先我们来仔细了解一下DOM：</p>
+<p>在HTML中DOM的节点层次为：</p>
+<p><img src="https://a3.qpic.cn/psb?/V12MFQbM13bQsJ/XXN25GWdVPmy.uUCD5ouqfQn2Dt6DcvWevv3Q8BvcZs!/m/dEIBAAAAAAAAnull&amp;bo=4wEXAQAAAAADB9Y!&amp;rf=photolist&amp;t=5" alt=""></p>
+<p>DOM操作creatElement(element)创建一个新的元素节点creatTextNode()创建一个包含给定文本的新文本节点appendChild()指定节点的最后一个节点列表后添加一个新的子节insertBefore()将一个给定节点插入到一个给定元素节点的给定子节点的前面removeChild()从一</p>
+<p>个给定元素中删除子节点replaceChild()把一个给定父元素里的一个子节点替换为另外一个节点，DOM通过创建树来表示文档，描述了处理网页内容的方法和接口，从而使开发者对文档的内容和结构具有空前的控制力，用DOM API可以轻松地删除、添加和替换节点。</p>
+<p>访问节点的方法如下：</p>
+<pre><code>var oHtml = document.documentElement;//返回存在于 XML 以及 HTML 文档中的文档根节点oHtml包含了一个表示&lt;html /&gt;的HTMLElement对象
+document.body //是对 HTML 页面的特殊扩展，提供了对 &lt;body&gt; 标签的直接访问
+document.getElementById(&quot;ID&quot;) //通过指定的 ID 来返回元素，getElementById() 无法工作在 XML 中，IE6还会返回name为指定ID的元素
+document.getElementByName(&quot;name&quot;)//获取所有name特性等于指定值的元素，不过在IE6和Opera7.5上还会返回id为给定名称的元素且仅检查&lt;input/&gt;和&lt;img/&gt;
+var x=document.getElementsByTagName(&quot;p&quot;); //使用指定的标签名返回所有的元素列表NodeList，索引号从0开始。当参数是一个星号的时候，IE6并不返回所有的元素，必须用document.all来替代
+</code></pre><p>获取到节点之后就要对它进行操作，操作的方法我们用事件来实现，事件类型有：</p>
+<pre><code>鼠标事件：click、dbclick、mousedown、mouseup、mouseover、mouseout、mousemove 
+键盘事件：keydown、keypress、keyup 
+HTML事件：load、unload、abort、error、select、change、submit、reset、resize、scroll、focus、blur
+</code></pre><p>下面我们来了解一下BOM：</p>
+<p>BOM的核心是window，而window对象又具有双重角色，它既是通过js访问浏览器窗口的一个接口，又是一个Global（全局）对象。这意味着在网页中定义的任何对象，变量和函数，都以window作为其global对象。</p>
+<h3 id="window-对象"><a href="#window-对象" class="headerlink" title="window 对象"></a>window 对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.close(); <span class="comment">//关闭窗口 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">window</span>.alert(<span class="string">"message"</span>); <span class="comment">//弹出一个具有OK按钮的系统消息框，显示指定的文本 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">window</span>.confirm(<span class="string">"Are you sure?"</span>); <span class="comment">//弹出一个具有OK和Cancel按钮的询问对话框，返回一个布尔值 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">window</span>.prompt(<span class="string">"What's your name?"</span>, <span class="string">"Default"</span>); <span class="comment">//提示用户输入信息，接受两个参数，即要显示给用户的文本和文本框中的默认值，将文本框中的值作为函数值返回 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">window</span>.status <span class="comment">//可以使状态栏的文本暂时改变 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">window</span>.defaultStatus <span class="comment">//默认的状态栏信息，可在用户离开当前页面前一直改变文本 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">window</span>.setTimeout(<span class="string">"alert('xxx')"</span>, <span class="number">1000</span>); <span class="comment">//设置在指定的毫秒数后执行指定的代码，接受2个参数，要执行的代码和等待的毫秒数 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">window</span>.clearTimeout(<span class="string">"ID"</span>); <span class="comment">//取消还未执行的暂停，将暂停ID传递给它 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">window</span>.setInterval(<span class="function"><span class="keyword">function</span>, 1000); //无限次地每隔指定的时间段重复一次指定的代码，参数同<span class="title">setTimeout</span>(<span class="params"></span>)一样 </span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">window</span>.<span class="title">clearInterval</span>(<span class="params"><span class="string">"ID"</span></span>); //取消时间间隔，将间隔<span class="title">ID</span>传递给它 </span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">window</span>.<span class="title">history</span>.<span class="title">go</span>(<span class="params"><span class="number">-1</span></span>); //访问浏览器窗口的历史，负数为后退，正数为前进 </span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">window</span>.<span class="title">history</span>.<span class="title">back</span>(<span class="params"></span>); //同上 </span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">window</span>.<span class="title">history</span>.<span class="title">forward</span>(<span class="params"></span>); //同上 </span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="title">window</span>.<span class="title">history</span>.<span class="title">length</span> //可以查看历史中的页面数</span></span><br></pre></td></tr></table></figure>
+<h3 id="document对象"><a href="#document对象" class="headerlink" title="document对象"></a>document对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>对象：实际上是<span class="built_in">window</span>对象的属性，<span class="built_in">document</span> == <span class="built_in">window</span>.document为<span class="literal">true</span>，是唯一一个既属于BOM又属于DOM的对象 </span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.lastModified <span class="comment">//获取最后一次修改页面的日期的字符串表示 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.referrer <span class="comment">//用于跟踪用户从哪里链接过来的 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.title <span class="comment">//获取当前页面的标题，可读写 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.URL <span class="comment">//获取当前页面的URL，可读写 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.anchors[<span class="number">0</span>]或<span class="built_in">document</span>.anchors[<span class="string">"anchName"</span>] <span class="comment">//访问页面中所有的锚 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.forms[<span class="number">0</span>]或<span class="built_in">document</span>.forms[<span class="string">"formName"</span>] <span class="comment">//访问页面中所有的表单 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.images[<span class="number">0</span>]或<span class="built_in">document</span>.images[<span class="string">"imgName"</span>] <span class="comment">// 访问页面中所有的图像 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.links [<span class="number">0</span>]或<span class="built_in">document</span>.links[<span class="string">"linkName"</span>] <span class="comment">//访问页面中所有的链接 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.applets [<span class="number">0</span>]或<span class="built_in">document</span>.applets[<span class="string">"appletName"</span>] <span class="comment">//访问页面中所有的Applet </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.embeds [<span class="number">0</span>]或<span class="built_in">document</span>.embeds[<span class="string">"embedName"</span>] <span class="comment">//访问页面中所有的嵌入式对象 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">document</span>.write(); 或<span class="built_in">document</span>.writeln(); <span class="comment">//将字符串插入到调用它们的位置</span></span><br></pre></td></tr></table></figure>
+<h3 id="location对象"><a href="#location对象" class="headerlink" title="location对象"></a>location对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">location对象：表示载入窗口的URL，也可用<span class="built_in">window</span>.location引用它 </span><br><span class="line"> </span><br><span class="line">location.href <span class="comment">//当前载入页面的完整URL，如http://www.somewhere.com/pictures/index.htm </span></span><br><span class="line"> </span><br><span class="line">location.portocol <span class="comment">//URL中使用的协议，即双斜杠之前的部分，如http </span></span><br><span class="line"> </span><br><span class="line">location.host <span class="comment">//服务器的名字，如www.wrox.com </span></span><br><span class="line"> </span><br><span class="line">location.hostname <span class="comment">//通常等于host，有时会省略前面的www </span></span><br><span class="line"> </span><br><span class="line">location.port <span class="comment">//URL声明的请求的端口，默认情况下，大多数URL没有端口信息，如8080 </span></span><br><span class="line"> </span><br><span class="line">location.pathname <span class="comment">//URL中主机名后的部分，如/pictures/index.htm </span></span><br><span class="line"> </span><br><span class="line">location.search <span class="comment">//执行GET请求的URL中的问号后的部分，又称查询字符串，如?param=xxxx </span></span><br><span class="line"> </span><br><span class="line">location.hash <span class="comment">//如果URL包含#，返回该符号之后的内容，如#anchor1 </span></span><br><span class="line"> </span><br><span class="line">location.assign(<span class="string">"http:www.baidu.com"</span>); <span class="comment">//同location.href，新地址都会被加到浏览器的历史栈中 </span></span><br><span class="line"> </span><br><span class="line">location.replace(<span class="string">"http:www.baidu.com"</span>); <span class="comment">//同assign()，但新地址不会被加到浏览器的历史栈中，不能通过back和forward访问 </span></span><br><span class="line"> </span><br><span class="line">location.reload(<span class="literal">true</span> | <span class="literal">false</span>); <span class="comment">//重新载入当前页面，为false时从浏览器缓存中重载，为true时从服务器端重载，默认为false</span></span><br></pre></td></tr></table></figure>
+<h3 id="navigator对象"><a href="#navigator对象" class="headerlink" title="navigator对象"></a>navigator对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">navigator对象：包含大量有关Web浏览器的信息，在检测浏览器及操作系统上非常有用，也可用<span class="built_in">window</span>.navigator引用它 </span><br><span class="line"> </span><br><span class="line">navigator.appCodeName <span class="comment">//浏览器代码名的字符串表示 </span></span><br><span class="line"> </span><br><span class="line">navigator.appName <span class="comment">//官方浏览器名的字符串表示 </span></span><br><span class="line"> </span><br><span class="line">navigator.appVersion <span class="comment">//浏览器版本信息的字符串表示 </span></span><br><span class="line"> </span><br><span class="line">navigator.cookieEnabled <span class="comment">//如果启用cookie返回true，否则返回false </span></span><br><span class="line"> </span><br><span class="line">navigator.javaEnabled <span class="comment">//如果启用java返回true，否则返回false </span></span><br><span class="line"> </span><br><span class="line">navigator.platform <span class="comment">//浏览器所在计算机平台的字符串表示 </span></span><br><span class="line"> </span><br><span class="line">navigator.plugins <span class="comment">//安装在浏览器中的插件数组 </span></span><br><span class="line"> </span><br><span class="line">navigator.taintEnabled <span class="comment">//如果启用了数据污点返回true，否则返回false </span></span><br><span class="line"> </span><br><span class="line">navigator.userAgent <span class="comment">//用户代理头的字符串表示</span></span><br></pre></td></tr></table></figure>
+<h3 id="screen对象"><a href="#screen对象" class="headerlink" title="screen对象"></a>screen对象</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">screen对象：用于获取某些关于用户屏幕的信息，也可用<span class="built_in">window</span>.screen引用它 </span><br><span class="line"> </span><br><span class="line">screen.width/height <span class="comment">//屏幕的宽度与高度，以像素计 </span></span><br><span class="line"> </span><br><span class="line">screen.availWidth/availHeight <span class="comment">//窗口可以使用的屏幕的宽度和高度，以像素计 </span></span><br><span class="line"> </span><br><span class="line">screen.colorDepth <span class="comment">//用户表示颜色的位数，大多数系统采用32位 </span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">window</span>.moveTo(<span class="number">0</span>, <span class="number">0</span>); </span><br><span class="line"> </span><br><span class="line"><span class="built_in">window</span>.resizeTo(screen.availWidth, screen.availHeight); <span class="comment">//填充用户的屏幕</span></span><br></pre></td></tr></table></figure>
+<h2 id="window对象方法则有以下这几种："><a href="#window对象方法则有以下这几种：" class="headerlink" title="window对象方法则有以下这几种："></a>window对象方法则有以下这几种：</h2><p><img src="https://a1.qpic.cn/psb?/V12MFQbM13bQsJ/U3n6AzqQcZoMjPlnqS04BMAdi.IiByn1KRES4nG3vQM!/m/dEABAAAAAAAAnull&amp;bo=mwIzAgAAAAADB4o!&amp;rf=photolist&amp;t=5" alt="mahua"></p>
+<p>BOM和DOM的结构关系示意图：</p>
+<p><img src="https://a2.qpic.cn/psb?/V12MFQbM13bQsJ/HxOfucKK2wG9vDMUkN7sj4X4tFsdASUDI1vp8kAGv2s!/m/dJEAAAAAAAAAnull&amp;bo=SQOwAQAAAAADB9k!&amp;rf=photolist&amp;t=5" alt="mahua"></p>
+<p>window对象思维导图：</p>
+<p><img src="https://a2.qpic.cn/psb?/V12MFQbM13bQsJ/l4jfiIYHf5NJas3lcANYW4KRBZf55ksJxeWE8hRow2Y!/m/dJEAAAAAAAAAnull&amp;bo=gALSCgAAAAADB3g!&amp;rf=photolist&amp;t=5" alt="mahua"></p>
+
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+          <div class="post-nav">
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2018/10/12/VUECLI3/">VUECLI3</a>
+              
+            </div>
+
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2017/09/21/vue-js实战-基础篇/">vue.js实战-基础篇</a>
+              
+            </div>
+          </div>
+        
+
+        
+        
+      </div>
+    
+  </div>
+
+
+
+  
+    <div class="comments" id="comments">
+      
+    </div>
+  
+
+          </div>
+
+          
+        </div>
+
+        
+<div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          Table Of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          Overview
+        </li>
+      </ul>
+    
+
+    <div class="site-overview">
+      <div class="site-author motion-element">
+        <img class="site-author-image" src="/images/default_avatar.jpg" alt="魏姣" />
+        <p class="site-author-name">魏姣</p>
+      </div>
+      <p class="site-description motion-element"></p>
+      <div class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">posts</span>
+        </div>
+        <div class="site-state-item site-state-tags">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">tags</span>
+        </div>
+        <div class="site-state-item site-state-pages">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">pages</span>
+        </div>
+      </div>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+      </div>
+
+      
+      
+
+    </div>
+
+    
+      <div class="post-toc-wrap sidebar-panel-active">
+        <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <div class="post-toc">
+          
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVAScript中DOM与BOM的差异分析"><span class="nav-number">1.</span> <span class="nav-text">JAVAScript中DOM与BOM的差异分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#window-对象"><span class="nav-number">1.0.1.</span> <span class="nav-text">window 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document对象"><span class="nav-number">1.0.2.</span> <span class="nav-text">document对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#location对象"><span class="nav-number">1.0.3.</span> <span class="nav-text">location对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#navigator对象"><span class="nav-number">1.0.4.</span> <span class="nav-text">navigator对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#screen对象"><span class="nav-number">1.0.5.</span> <span class="nav-text">screen对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window对象方法则有以下这几种："><span class="nav-number">1.1.</span> <span class="nav-text">window对象方法则有以下这几种：</span></a></li></ol></li></ol></div>
+          
+        </div>
+        <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+      </div>
+    
+
+  </div>
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2021
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">魏姣</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebatToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebatToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0 && isDesktop()) {
+        setTimeout(function () {
+          $('.sidebar-toggle').trigger('click');
+        }, 800);
+      }
+    });
+  </script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+  
+</body>
+</html>

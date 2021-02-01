@@ -1,0 +1,1005 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-hexo-theme-next-0.4.0">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.0"/>
+
+
+
+
+
+    <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
+
+
+
+
+  <title> 代码段 // 薇娇 </title>
+</head>
+
+<body>
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">薇娇</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+            
+          
+
+          <div id="posts" class="posts-expand">
+            
+  
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              代码段
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            Posted on 2016-06-25
+          
+        </span>
+
+        
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          <h3 id="推荐10-个短小却超实用的-JavaScript-代码段"><a href="#推荐10-个短小却超实用的-JavaScript-代码段" class="headerlink" title="推荐10 个短小却超实用的 JavaScript 代码段"></a>推荐10 个短小却超实用的 JavaScript 代码段</h3><p><img src="http://upload-images.jianshu.io/upload_images/1399853-c7984f4b80f2b72f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>JavaScript正变得越来越流行，它已经成为前端开发的第一选择，并且利用基于JavaScript语言的NodeJS，我们也可以开发出高性能的后端服务，甚至我还看到在硬件编程领域也出现了JavaScript的身影。JavaScript正在逐渐进化为一门全能的开发语言。</p>
+<p>但用好JavaScript并不容易，你除了需要掌握它的语法并知道如何写出高质量的代码之外，还需要了解如何解决那些几乎在每个项目中都会遇到的需求场景，比如：判断日期，高亮文本，限制字符数等等，有很多第三方库可以解决这些问题，但这些库可能并非只是为解决这一个问题而创建的，这意味着你需要引入了很多无关的代码，这将使你的整个系统变得臃肿，而且也会影响到系统的性能。我的做法是，收集和使用那些常见的JavaScript代码段，并在需要时，尽可能首先使用它们。下面便是我收集的10段实用JavaScript代码，基于它们你还可以创造出更强大的JS插件或功能函数。</p>
+<h4 id="1-判断日期是否有效"><a href="#1-判断日期是否有效" class="headerlink" title="1. 判断日期是否有效"></a>1. 判断日期是否有效</h4><p>JavaScript中自带的日期函数还是太过简单，很难满足真实项目中对不同日期格式进行解析和判断的需要。JQuery也有一些第三方库来使日期相关的处理变得简单，但有时你可能只需要一个非常简单的函数，而不想引入一个庞大的第三方库。这时，你可以使用下面这段日期校验代码，它允许你自定义日期格式并进行日期有效性的校验。</p>
+<pre><code>function isValidDate(value, userFormat) {
+
+  // Set default format if format is not provided
+  userFormat = userFormat || &apos;mm/dd/yyyy&apos;;
+
+  // Find custom delimiter by excluding
+  // month, day and year characters
+  var delimiter = /[^mdy]/.exec(userFormat)[0];
+
+  // Create an array with month, day and year
+  // so we know the format order by index
+  var theFormat = userFormat.split(delimiter);
+
+  // Create array from user date
+  var theDate = value.split(delimiter);
+
+  function isDate(date, format) {
+    var m, d, y, i = 0, len = format.length, f;
+    for (i; i &lt; len; i++) {
+      f = format[i];
+      if (/m/.test(f)) m = date[i];
+      if (/d/.test(f)) d = date[i];
+      if (/y/.test(f)) y = date[i];
+    }
+    return (
+          m &gt; 0 &amp;&amp; m &lt; 13 &amp;&amp;
+      y &amp;&amp; y.length === 4 &amp;&amp;
+      d &gt; 0 &amp;&amp;
+      // Check if it&apos;s a valid day of the month
+      d &lt;= (new Date(y, m, 0)).getDate()
+    );
+  }
+
+  return isDate(theDate, theFormat);
+}
+
+
+使用方法：
+</code></pre><p>下面这个调用返回false，因为11月份没有31天</p>
+<pre><code>isValidDate(&apos;dd-mm-yyyy&apos;, &apos;31/11/2012&apos;)
+</code></pre><p>2.获取一组元素的最大宽度或高度<br>下面这个函数，对于需要进行动态排版的开发人员非常有用。</p>
+<pre><code>var getMaxHeight = function ($elms) {
+  var maxHeight = 0;
+  $elms.each(function () {
+// In some cases you may want to use outerHeight() instead
+var height = $(this).height();
+if (height &gt; maxHeight) {
+  maxHeight = height;
+}
+  });
+  return maxHeight;
+};
+</code></pre><p>3.高亮文本<br>有很多JQuery的第三方库可以实现高亮文本的功能，但我更喜欢用下面这一小段JavaScript代码来实现这个功能，它非常短小，而且可以根据我的需要去进行灵活的修改，而且可以自己定义高亮的样式。下面这两个函数可以帮助你创建自己的文本高亮插件。</p>
+<pre><code>function highlight(text, words, tag) {
+
+  // Default tag if no tag is provided
+  tag = tag || &apos;span&apos;;
+
+  var i, len = words.length, re;
+  for (i = 0; i &lt; len; i++) {
+    // Global regex to highlight all matches
+    re = new RegExp(words[i], &apos;g&apos;);
+    if (re.test(text)) {
+      text = text.replace(re, &apos;&lt;&apos;+ tag +&apos; class=&quot;highlight&quot;&gt;$&amp;&lt;/&apos;+ tag +&apos;&gt;&apos;);
+    }
+  }
+
+  return text;
+}
+</code></pre><p>你同样会需要取消高亮的函数：</p>
+<pre><code>function unhighlight(text, tag) {
+  // Default tag if no tag is provided
+  tag = tag || &apos;span&apos;;
+  var re = new RegExp(&apos;(&lt;&apos;+ tag +&apos;.+?&gt;|&lt;\/&apos;+ tag +&apos;&gt;)&apos;, &apos;g&apos;);
+  return text.replace(re, &apos;&apos;);
+}
+</code></pre><p>使用方法：</p>
+<pre><code>$(&apos;p&apos;).html( highlight(
+$(&apos;p&apos;).html(), // the text
+[&apos;foo&apos;, &apos;bar&apos;, &apos;baz&apos;, &apos;hello world&apos;], // list of words or phrases to highlight
+&apos;strong&apos; // custom tag
+));
+</code></pre><p>4.文字动效<br>有时你会希望给你的一段文字增加动效，让其中的每个字都动起来。你可以使用下面这段jQuery插件代码来达到这个效果。当然你需要结合一个CSS3 transition样式来达到更好的效果。</p>
+<pre><code>$.fn.animateText = function(delay, klass) {
+
+  var text = this.text();
+  var letters = text.split(&apos;&apos;);
+
+  return this.each(function(){
+    var $this = $(this);
+    $this.html(text.replace(/./g, &apos;&lt;span class=&quot;letter&quot;&gt;$&amp;&lt;/span&gt;&apos;));
+    $this.find(&apos;span.letter&apos;).each(function(i, el){
+      setTimeout(function(){ $(el).addClass(klass); }, delay * i);
+    });
+  });
+
+};
+</code></pre><p>使用方法：</p>
+<pre><code>$(&apos;p&apos;).animateText(15, &apos;foo&apos;);
+</code></pre><p>5.逐个隐藏元素<br>下面这个jQuery插件可以根据你设置的步长（间隔时间）来逐个隐藏一组元素。在列表元素的重新加载中使用，可以达到很好的效果。    </p>
+<pre><code>$.fn.fadeAll = function (ops) {
+  var o = $.extend({
+delay: 500, // delay between elements
+speed: 500, // animation speed
+ease: &apos;swing&apos; // other require easing plugin
+  }, ops);
+  var $el = this;
+  for (var i=0, d=0, l=$el.length; i&lt;l; i++, d+=o.delay) {
+$el.eq(i).delay(d).fadeIn(o.speed, o.ease);
+  }
+  return $el;
+}
+</code></pre><p>使用方法：</p>
+<pre><code>$(elements).fadeAll({ delay: 300, speed: 300 });
+</code></pre><p>6.限制文本字数<br>下面这端脚本允许你根据给定的字符长度截取文本，如果文本被截取，那么它的后面会自动带上省略号。</p>
+<pre><code>function excerpt(str, nwords) {
+  var words = str.split(&apos; &apos;);
+  words.splice(nwords, words.length-1);
+  return words.join(&apos; &apos;) +
+(words.length !== str.split(&apos; &apos;).length ? &apos;…&apos; : &apos;&apos;);
+}
+</code></pre><p>7.判断相应式布局中当前适配度<br>目前很多设计已经采用了响应式布局来适配网站或应用在不同设备上的显示。你经常需要在代码中判断当前处于哪一个屏幕适配度下。</p>
+<pre><code>function isBreakPoint(bp) {
+  // The breakpoints that you set in your css
+  var bps = [320, 480, 768, 1024];
+  var w = $(window).width();
+  var min, max;
+  for (var i = 0, l = bps.length; i &lt; l; i++) {
+    if (bps[i] === bp) {
+      min = bps[i-1] || 0;
+      max = bps[i];
+      break;
+    }
+  }
+  return w &gt; min &amp;&amp; w &lt;= max;
+}
+</code></pre><p>使用方法：</p>
+<pre><code>if ( isBreakPoint(320) ) {
+  // breakpoint at 320 or less
+}
+if ( isBreakPoint(480) ) {
+  // breakpoint between 320 and 480
+}
+…
+</code></pre><p>8.全局计数<br>在一些游戏或广告场景中，你需要记录用户在当前页面上点击某一个按钮的次数，这时你可以使用jQuery的.data()函数来处理：</p>
+<pre><code>$(element)
+.data(&apos;counter&apos;, 0) // begin counter at zero
+.click(function() {
+    var counter = $(this).data(&apos;counter&apos;); // get
+    $(this).data(&apos;counter&apos;, counter + 1); // set
+    // do something else...
+});
+</code></pre><p>9.嵌入优酷视频</p>
+<pre><code>function embedYouku(link, ops) {
+
+  var o = $.extend({
+       width: 480,
+    height: 320,
+    params: &apos;&apos;
+  }, ops);
+
+  var id = /\?v\=(\w+)/.exec(link)[1];
+
+  return &apos;&lt;embed allowFullScreen=&quot;true&quot; id=&quot;embedid&quot;  quality=&quot;high&quot;     width=&quot;&apos;+o.width+&apos;&quot; height=&quot;&apos;+o.height+&apos;&quot; align=&quot;middle&quot;     allowScriptAccess=&quot;always&quot; type=&quot;application/x-shockwave-flash&quot; src=&quot;&apos;+id    +&apos;?&apos;+o.ops&apos;&quot;&apos;;
+}
+</code></pre><p>使用方法：</p>
+<pre><code>embedYouku(
+  &apos;http://static.youku.com/v/swf/qplayer.swf&apos;, 
+      {&apos;winType=adshow&amp;VideoIDS=XMTE3NzQ0NTky&amp;isAutoPlay=false&amp;isShowRelatedVideo=false&apos;}
+);
+</code></pre><p>10.创建动态菜单或下拉列表<br>在很多场景中，我们都需要动态地创建菜单、下拉列表或列表项。下面是一段最基础的代码实现上面的功能，你可以根据实际需要进行相应的扩展。</p>
+<pre><code>function makeMenu(items, tags) {
+
+  tags = tags || [&apos;ul&apos;, &apos;li&apos;]; // default tags
+  var parent = tags[0];
+  var child = tags[1];
+
+  var item, value = &apos;&apos;;
+  for (var i = 0, l = items.length; i &lt; l; i++) {
+item = items[i];
+// Separate item and value if value is present
+if (/:/.test(item)) {
+  item = items[i].split(&apos;:&apos;)[0];
+  value = items[i].split(&apos;:&apos;)[1];
+    }
+    // Wrap the item in tag
+    items[i] = &apos;&lt;&apos;+ child +&apos; &apos;+
+      (value &amp;&amp; &apos;value=&quot;&apos;+value+&apos;&quot;&apos;) +&apos;&gt;&apos;+ // add value if present
+    item +&apos;&lt;/&apos;+ child +&apos;&gt;&apos;;
+  }
+
+  return &apos;&lt;&apos;+ parent +&apos;&gt;&apos;+ items.join(&apos;&apos;) +&apos;&lt;/&apos;+ parent +&apos;&gt;&apos;;
+}
+</code></pre><p>使用方法：</p>
+<pre><code>// Dropdown select month
+makeMenu(
+  [&apos;January:JAN&apos;, &apos;February:FEB&apos;, &apos;March:MAR&apos;], // item:value
+  [&apos;select&apos;, &apos;option&apos;]
+);
+
+// List of groceries
+makeMenu(
+  [&apos;Carrots&apos;, &apos;Lettuce&apos;, &apos;Tomatos&apos;, &apos;Milk&apos;],
+  [&apos;ol&apos;, &apos;li&apos;]
+);
+</code></pre><p>文／技匠（简书签约作者）<br>原文链接：<a href="http://www.jianshu.com/p/3ef822ec5a63" target="_blank" rel="noopener">http://www.jianshu.com/p/3ef822ec5a63</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书签约作者”。</p>
+<p>总结：<br>以上只是那些实用JavaScript代码段中的一小部分，我也建议你平时注意收集或自己编写这样的基础代码段，它们能在很多项目中使用或通过一些改造提供更完善的功能，使用这些代码段将为你节省下大量的开发时间。</p>
+<p>本文转载自 <a href="http://www.jianshu.com/p/3ef822ec5a63" target="_blank" rel="noopener">http://www.jianshu.com/p/3ef822ec5a63</a></p>
+<p>文／技匠（简书签约作者）<br>原文链接：<a href="http://www.jianshu.com/p/3ef822ec5a63" target="_blank" rel="noopener">http://www.jianshu.com/p/3ef822ec5a63</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书签约作者”。</p>
+
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+          <div class="post-nav">
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/07/15/使用教程/">使用教程</a>
+              
+            </div>
+
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2016/06/01/深入浅出JSONP-解决ajax跨域问题/">深入浅出JSONP--解决ajax跨域问题</a>
+              
+            </div>
+          </div>
+        
+
+        
+        
+      </div>
+    
+  </div>
+
+
+
+  
+    <div class="comments" id="comments">
+      
+    </div>
+  
+
+          </div>
+
+          
+        </div>
+
+        
+<div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          Table Of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          Overview
+        </li>
+      </ul>
+    
+
+    <div class="site-overview">
+      <div class="site-author motion-element">
+        <img class="site-author-image" src="/images/default_avatar.jpg" alt="魏姣" />
+        <p class="site-author-name">魏姣</p>
+      </div>
+      <p class="site-description motion-element"></p>
+      <div class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">posts</span>
+        </div>
+        <div class="site-state-item site-state-tags">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">tags</span>
+        </div>
+        <div class="site-state-item site-state-pages">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">pages</span>
+        </div>
+      </div>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+      </div>
+
+      
+      
+
+    </div>
+
+    
+      <div class="post-toc-wrap sidebar-panel-active">
+        <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <div class="post-toc">
+          
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐10-个短小却超实用的-JavaScript-代码段"><span class="nav-number">1.</span> <span class="nav-text">推荐10 个短小却超实用的 JavaScript 代码段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-判断日期是否有效"><span class="nav-number">1.1.</span> <span class="nav-text">1. 判断日期是否有效</span></a></li></ol></li></ol></div>
+          
+        </div>
+        <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+      </div>
+    
+
+  </div>
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2021
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">魏姣</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebatToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebatToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0 && isDesktop()) {
+        setTimeout(function () {
+          $('.sidebar-toggle').trigger('click');
+        }, 800);
+      }
+    });
+  </script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+  
+</body>
+</html>

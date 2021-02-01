@@ -1,0 +1,1035 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-hexo-theme-next-0.4.0">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.0"/>
+
+
+
+
+
+    <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
+
+
+
+
+  <title> PHP基础（二） // 薇娇 </title>
+</head>
+
+<body>
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">薇娇</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+            
+          
+
+          <div id="posts" class="posts-expand">
+            
+  
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              PHP基础（二）
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            Posted on 2016-08-15
+          
+        </span>
+
+        
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          <h3 id="PHP基础（二）"><a href="#PHP基础（二）" class="headerlink" title="PHP基础（二）"></a>PHP基础（二）</h3><h6 id="在-PHP-中创建数组"><a href="#在-PHP-中创建数组" class="headerlink" title="在 PHP 中创建数组"></a>在 PHP 中创建数组</h6><p>在 PHP 中，array() 函数用于创建数组：</p>
+<p>在 PHP 中，有三种类型的数组：</p>
+<pre><code>* 数值数组 - 带有数字 ID 键的数组
+
+* 关联数组 - 带有指定的键的数组，每个键关联一个值
+
+* 多维数组 - 包含一个或多个数组的数组
+</code></pre><h6 id="PHP-数值数组"><a href="#PHP-数值数组" class="headerlink" title="PHP 数值数组"></a>PHP 数值数组</h6><p>这里有两种创建数值数组的方法：</p>
+<p>自动分配 ID 键（ID 键总是从 0 开始）：</p>
+<pre><code>$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);
+</code></pre><p>人工分配 ID 键：</p>
+<pre><code>$cars[0]=&quot;Volvo&quot;;
+$cars[1]=&quot;BMW&quot;;
+$cars[2]=&quot;Toyota&quot;;
+</code></pre><p>下面的实例创建一个名为 $cars 的数值数组，并给数组分配三个元素,然后打印一段包含数组值的文本：</p>
+<pre><code>&lt;?php
+$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);
+echo &quot;I like &quot; . $cars[0] . &quot;, &quot; . $cars[1] . &quot; and &quot; . $cars[2] . &quot;.&quot;;
+?&gt;
+</code></pre><p>获取数组的长度 - count() 函数</p>
+<p>count() 函数用于返回数组的长度（元素的数量）：</p>
+<pre><code>&lt;?php
+$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);
+echo count($cars);
+?&gt;
+</code></pre><h6 id="遍历数值数组"><a href="#遍历数值数组" class="headerlink" title="遍历数值数组"></a>遍历数值数组</h6><p>遍历并打印数值数组中的所有值，您可以使用 for 循环，如下所示：</p>
+<pre><code>&lt;?php
+$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);
+$arrlength=count($cars);
+
+for($x=0;$x&lt;$arrlength;$x++)
+{
+echo $cars[$x];
+echo &quot;&lt;br&gt;&quot;;
+}
+?&gt;
+</code></pre><h6 id="PHP-关联数组"><a href="#PHP-关联数组" class="headerlink" title="PHP 关联数组"></a>PHP 关联数组</h6><p>关联数组是使用您分配给数组的指定的键的数组。</p>
+<p>这里有两种创建关联数组的方法：</p>
+<pre><code>$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);
+</code></pre><p>or:</p>
+<pre><code>&lt;?php
+$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);
+echo &quot;Peter is &quot; . $age[&apos;Peter&apos;] . &quot; years old.&quot;;
+?&gt;
+</code></pre><p>遍历关联数组</p>
+<p>遍历并打印关联数组中的所有值，您可以使用 foreach 循环，如下所示：</p>
+<pre><code>&lt;?php
+$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);
+
+foreach($age as $x=&gt;$x_value)
+{
+echo &quot;Key=&quot; . $x . &quot;, Value=&quot; . $x_value;
+echo &quot;&lt;br&gt;&quot;;
+}
+?&gt;
+</code></pre><h6 id="PHP-数组排序"><a href="#PHP-数组排序" class="headerlink" title="PHP 数组排序"></a>PHP 数组排序</h6><p>数组中的元素可以按字母或数字顺序进行降序或升序排列。</p>
+<pre><code>sort() - 对数组进行升序排列
+rsort() - 对数组进行降序排列
+asort() - 根据关联数组的值，对数组进行升序排列
+ksort() - 根据关联数组的键，对数组进行升序排列
+arsort() - 根据关联数组的值，对数组进行降序排列
+krsort() - 根据关联数组的键，对数组进行降序排列
+</code></pre><p>sort() - 对数组进行升序排列</p>
+<p>下面的实例将 $cars 数组中的元素按照字母升序排列：</p>
+<pre><code>&lt;?php
+$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);
+sort($cars);
+?&gt;
+</code></pre><p>下面的实例将 $numbers 数组中的元素按照数字升序排列：</p>
+<pre><code>&lt;?php
+$numbers=array(4,6,2,22,11);
+sort($numbers);
+?&gt;
+</code></pre><p>rsort() - 对数组进行降序排列</p>
+<p>下面的实例将 $cars 数组中的元素按照字母降序排列：</p>
+<pre><code>&lt;?php
+$cars=array(&quot;Volvo&quot;,&quot;BMW&quot;,&quot;Toyota&quot;);
+rsort($cars);
+?&gt;
+</code></pre><p>下面的实例将 $numbers 数组中的元素按照数字降序排列：</p>
+<pre><code>&lt;?php
+$numbers=array(4,6,2,22,11);
+rsort($numbers);
+?&gt;
+</code></pre><p>asort() - 根据数组的值，对数组进行升序排列</p>
+<p>下面的实例根据数组的值，对关联数组进行升序排列：</p>
+<pre><code>&lt;?php
+$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);
+asort($age);
+?&gt;
+</code></pre><p>ksort() - 根据数组的键，对数组进行升序排列</p>
+<p>下面的实例根据数组的键，对关联数组进行升序排列：</p>
+<pre><code>&lt;?php
+$age=array(&quot;Peter&quot;=&gt;&quot;35&quot;,&quot;Ben&quot;=&gt;&quot;37&quot;,&quot;Joe&quot;=&gt;&quot;43&quot;);
+ksort($age);
+?&gt;
+</code></pre><h6 id="PHP-超级全局变量"><a href="#PHP-超级全局变量" class="headerlink" title="PHP 超级全局变量"></a>PHP 超级全局变量</h6><pre><code>PHP 超级全局变量列表:
+$GLOBALS
+$_SERVER
+$_REQUEST
+$_POST
+$_GET
+$_FILES
+$_ENV
+$_COOKIE
+$_SESSION
+</code></pre><p>PHP $GLOBALS</p>
+<p>$GLOBALS 是PHP的一个超级全局变量组，在一个PHP脚本的全部作用域中都可以访问。</p>
+<p>$GLOBALS 是一个包含了全部变量的全局组合数组。变量的名字就是数组的键。</p>
+<p>PHP $_SERVER</p>
+<p>$_SERVER 是一个包含了诸如头信息(header)、路径(path)、以及脚本位置(script locations)等等信息的数</p>
+<p>组。这个数组中的项目由 Web 服务器创建。不能保证每个服务器都提供全部项目；服务器可能会忽略一些，或者提供</p>
+<p>一些没有在这里列举出来的项目。</p>
+<p>PHP $_POST  </p>
+<p>PHP $_POST 被广泛应用于收集表单数据，在HTML form标签的指定该属性：”method=”post”。</p>
+<p>以下实例显示了一个输入字段（input）及提交按钮(submit)的表单(form)。 当用户通过点击 “Submit” 按钮提</p>
+<p>交表单数据时, 表单数据将发送至<form>标签中 action 属性中指定的脚本文件。 在这个实例中，我们指定文件来</form></p>
+<p>处理表单数据。如果你希望其他的PHP文件来处理该数据，你可以修改该指定的脚本文件名。 然后，我们可以使用超级</p>
+<p>全局变量 $_POST 来收集表单中的 input 字段数据:</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+
+&lt;form method=&quot;post&quot; action=&quot;&lt;?php echo $_SERVER[&apos;PHP_SELF&apos;];?&gt;&quot;&gt;
+Name: &lt;input type=&quot;text&quot; name=&quot;fname&quot;&gt;
+&lt;input type=&quot;submit&quot;&gt;
+&lt;/form&gt;
+
+&lt;?php 
+$name = $_POST[&apos;fname&apos;]; 
+echo $name; 
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>PHP $_GET</p>
+<p>PHP $_GET 同样被广泛应用于收集表单数据，在HTML form标签的指定该属性：”method=”get”。</p>
+<p>$_GET 也可以收集URL中发送的数据。</p>
+<p>假定我们有一个包含参数的超链接HTML页面：</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+
+&lt;a href=&quot;test_get.php?subject=PHP&amp;web=runoob.com&quot;&gt;Test $GET&lt;/a&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>当用户点击链接 “Test $GET”, 参数 “subject” 和 “web” 将发送至”test_get.php”,你可以在 “test_get.php” </p>
+<p>文件中使用 $_GET 变量来获取这些数据。</p>
+<p>以下实例显示了 “test_get.php” 文件的代码:</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php 
+echo &quot;Study &quot; . $_GET[&apos;subject&apos;] . &quot; at &quot; . $_GET[&apos;web&apos;];
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h6 id="PHP-魔术变量"><a href="#PHP-魔术变量" class="headerlink" title="PHP 魔术变量"></a>PHP 魔术变量</h6><pre><code>PHP 向它运行的任何脚本提供了大量的预定义常量。
+</code></pre><p>不过很多常量都是由不同的扩展库定义的，只有在加载了这些扩展库时才会出现，或者动态加载后，或者在编译时已经包括进去了。<br>有八个魔术常量它们的值随着它们在代码中的位置改变而改变。<br>例如 <strong>LINE</strong> 的值就依赖于它在脚本中所处的行来决定。这些特殊的常量不区分大小写，如下：</p>
+<h3 id="LINE"><a href="#LINE" class="headerlink" title="LINE"></a><strong>LINE</strong></h3><p>文件中的当前行号。</p>
+<pre><code>&lt;?php
+echo &apos;这是第 &quot; &apos;  . __LINE__ . &apos; &quot; 行&apos;;
+?&gt;
+</code></pre><p>以上实例输出结果为：</p>
+<pre><code>这是第 “ 2 ” 行
+</code></pre><h3 id="FILE"><a href="#FILE" class="headerlink" title="FILE"></a><strong>FILE</strong></h3><p>文件的完整路径和文件名。如果用在被包含文件中，则返回被包含的文件名。<br>自 PHP 4.0.2 起，<strong>FILE</strong> 总是包含一个绝对路径（如果是符号连接，则是解析后的绝对路径），而在此之前的版本有时会包含一个相对路径。<br>实例:</p>
+<pre><code>&lt;?php
+echo &apos;该文件位于 &quot; &apos;  . __FILE__ . &apos; &quot; &apos;;
+?&gt;    
+</code></pre><p>以上实例输出结果为：</p>
+<pre><code>该文件位于 “ E:\wamp\www\test\index.php ”
+</code></pre><h3 id="DIR"><a href="#DIR" class="headerlink" title="DIR"></a><strong>DIR</strong></h3><p>文件所在的目录。如果用在被包括文件中，则返回被包括的文件所在的目录。</p>
+<p>它等价于 dirname(<strong>FILE</strong>)。除非是根目录，否则目录中名不包括末尾的斜杠。（PHP 5.3.0中新增）</p>
+<pre><code>&lt;?php
+echo &apos;该文件位于 &quot; &apos;  . __DIR__ . &apos; &quot; &apos;;
+?&gt;
+</code></pre><p>以上实例输出结果为：</p>
+<pre><code>该文件位于 “ E:\wamp\www\test ”
+</code></pre><h3 id="FUNCTION"><a href="#FUNCTION" class="headerlink" title="FUNCTION"></a><strong>FUNCTION</strong></h3><p>函数名称（PHP 4.3.0 新加）。自 PHP 5 起本常量返回该函数被定义时的名字（区分大小写）。在 PHP 4 中该值总是小写字母的</p>
+<pre><code>&lt;?php
+function test() {
+echo  &apos;函数名为：&apos; . __FUNCTION__ ;
+}
+test();
+?&gt;
+</code></pre><h3 id="CLASS"><a href="#CLASS" class="headerlink" title="CLASS"></a><strong>CLASS</strong></h3><p>类的名称（PHP 4.3.0 新加）。自 PHP 5 起本常量返回该类被定义时的名字（区分大小写）。<br>在 PHP 4 中该值总是小写字母的。类名包括其被声明的作用区域（例如 Foo\Bar）。注意自 PHP 5.4 起 <strong>CLASS</strong> 对 trait 也起作用。当用在 trait 方法中时，<strong>CLASS</strong> 是调用 trait 方法的类的名字。</p>
+<pre><code> &lt;?php
+class test {
+function _print() {
+    echo &apos;类名为：&apos;  . __CLASS__ . &quot;&lt;br&gt;&quot;;
+    echo  &apos;函数名为：&apos; . __FUNCTION__ ;
+    }
+}
+$t = new test();
+$t-&gt;_print();
+?&gt;
+</code></pre><p>以上实例输出结果为：</p>
+<p>类名为：test</p>
+<p>函数名为：_print</p>
+<h3 id="TRAIT"><a href="#TRAIT" class="headerlink" title="TRAIT"></a><strong>TRAIT</strong></h3><p>Trait 的名字（PHP 5.4.0 新加）。自 PHP 5.4.0 起，PHP 实现了代码复用的一个方法，称为 traits。<br>Trait 名包括其被声明的作用区域（例如 Foo\Bar）。<br>从基类继承的成员被插入的 SayWorld Trait 中的 MyHelloWorld 方法所覆盖。其行为 MyHelloWorld 类中定义的方法一致。优先顺序是当前类中的方法会覆盖 trait 方法，而 trait 方法又覆盖了基类中的方法。</p>
+<p>实例</p>
+<pre><code>&lt;?php
+class Base {
+public function sayHello() {
+    echo &apos;Hello &apos;;
+}
+}
+
+trait SayWorld {
+    public function sayHello() {
+    parent::sayHello();
+    echo &apos;World!&apos;;
+}
+}
+
+class MyHelloWorld extends Base {
+use SayWorld;
+}
+
+$o = new MyHelloWorld();
+$o-&gt;sayHello();
+?&gt;
+</code></pre><p>以上例程会输出：</p>
+<pre><code>Hello World!
+</code></pre><h3 id="METHOD"><a href="#METHOD" class="headerlink" title="METHOD"></a><strong>METHOD</strong></h3><p>类的方法名（PHP 5.0.0 新加）。返回该方法被定义时的名字（区分大小写）。</p>
+<p>实例:</p>
+<pre><code>&lt;?php
+function test() {
+echo  &apos;函数名为：&apos; . __METHOD__ ;
+}
+test();
+?&gt;
+</code></pre><p>以上实例输出结果为：</p>
+<pre><code>函数名为：test
+</code></pre><h3 id="NAMESPACE"><a href="#NAMESPACE" class="headerlink" title="NAMESPACE"></a><strong>NAMESPACE</strong></h3><p>当前命名空间的名称（区分大小写）。此常量是在编译时定义的（PHP 5.3.0 新增）。</p>
+<p>实例:</p>
+<pre><code>&lt;?php
+namespace MyProject;
+
+echo &apos;命名空间为：&quot;&apos;, __NAMESPACE__, &apos;&quot;&apos;; // 输出 &quot;MyProject&quot;
+?&gt;
+</code></pre><p>以上实例输出结果为：</p>
+<pre><code>命名空间为：&quot;MyProject&quot;
+</code></pre>
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+          <div class="post-nav">
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/08/16/使用HTML5中postMessage实现Ajax中的POST跨域问题/">使用HTML5中postMessage实现Ajax中的POST跨域问题</a>
+              
+            </div>
+
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2016/08/10/PHP基础（一）/">PHP基础（一）</a>
+              
+            </div>
+          </div>
+        
+
+        
+        
+      </div>
+    
+  </div>
+
+
+
+  
+    <div class="comments" id="comments">
+      
+    </div>
+  
+
+          </div>
+
+          
+        </div>
+
+        
+<div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          Table Of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          Overview
+        </li>
+      </ul>
+    
+
+    <div class="site-overview">
+      <div class="site-author motion-element">
+        <img class="site-author-image" src="/images/default_avatar.jpg" alt="魏姣" />
+        <p class="site-author-name">魏姣</p>
+      </div>
+      <p class="site-description motion-element"></p>
+      <div class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">posts</span>
+        </div>
+        <div class="site-state-item site-state-tags">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">tags</span>
+        </div>
+        <div class="site-state-item site-state-pages">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">pages</span>
+        </div>
+      </div>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+      </div>
+
+      
+      
+
+    </div>
+
+    
+      <div class="post-toc-wrap sidebar-panel-active">
+        <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <div class="post-toc">
+          
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP基础（二）"><span class="nav-number">1.</span> <span class="nav-text">PHP基础（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#在-PHP-中创建数组"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">在 PHP 中创建数组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#PHP-数值数组"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">PHP 数值数组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#遍历数值数组"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">遍历数值数组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#PHP-关联数组"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">PHP 关联数组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#PHP-数组排序"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">PHP 数组排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#PHP-超级全局变量"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">PHP 超级全局变量</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#PHP-魔术变量"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">PHP 魔术变量</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LINE"><span class="nav-number">2.</span> <span class="nav-text">LINE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FILE"><span class="nav-number">3.</span> <span class="nav-text">FILE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DIR"><span class="nav-number">4.</span> <span class="nav-text">DIR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FUNCTION"><span class="nav-number">5.</span> <span class="nav-text">FUNCTION</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CLASS"><span class="nav-number">6.</span> <span class="nav-text">CLASS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TRAIT"><span class="nav-number">7.</span> <span class="nav-text">TRAIT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#METHOD"><span class="nav-number">8.</span> <span class="nav-text">METHOD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NAMESPACE"><span class="nav-number">9.</span> <span class="nav-text">NAMESPACE</span></a></li></ol></div>
+          
+        </div>
+        <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+      </div>
+    
+
+  </div>
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2021
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">魏姣</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebatToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebatToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0 && isDesktop()) {
+        setTimeout(function () {
+          $('.sidebar-toggle').trigger('click');
+        }, 800);
+      }
+    });
+  </script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+  
+</body>
+</html>

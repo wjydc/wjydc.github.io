@@ -1,0 +1,989 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-hexo-theme-next-0.4.0">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.0"/>
+
+
+
+
+
+    <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
+
+
+
+
+  <title> NodeJs常用核心模块简介 // 薇娇 </title>
+</head>
+
+<body>
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">薇娇</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+            
+          
+
+          <div id="posts" class="posts-expand">
+            
+  
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              NodeJs常用核心模块简介
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            Posted on 2016-11-16
+          
+        </span>
+
+        
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          <h3 id="NodeJs常用核心模块简介"><a href="#NodeJs常用核心模块简介" class="headerlink" title="NodeJs常用核心模块简介"></a>NodeJs常用核心模块简介</h3><h4 id="fs-文件管理"><a href="#fs-文件管理" class="headerlink" title="fs 文件管理"></a>fs 文件管理</h4><p>fs 模块提供了异步和同步2个版本     fs.readFile()    fs.readFileSync()<br>1.写入文件内容</p>
+<pre><code>fs.writeFile(‘test.txt’, ‘Hello Node’ , [encoding], [callback]);
+</code></pre><p>2.追加写入</p>
+<pre><code>fs.appendFile(‘test.txt’,‘Hello Node’,[encoding],[callback]);
+</code></pre><p>3.文件是否存在</p>
+<pre><code>fs.exists(‘test.txt’,[callback]);
+</code></pre><p>4.读取文件内容</p>
+<pre><code>fs.readFile(‘test.txt’, [encoding], [callback]);
+</code></pre><p>5.修改文件名</p>
+<pre><code>fs.rename(旧文件,新文件,[callback]);
+</code></pre><p>6.移动文件. 没有专门函数,通过修改文件名可以达到目的</p>
+<pre><code>fs.rename(oldPath,newPath,[callback]);
+</code></pre><p>7.删除文件</p>
+<pre><code>fs.unlink(‘test.txt’, [callback]);
+</code></pre><p>8.创建目录</p>
+<pre><code>fs.mkdir(路径, 权限, [callback]);
+路径：新创建的目录。
+权限：可选参数，只在linux下有效，表示目录的权限，默认为0777，表示文件所有    者、文件所有者所在的组的*用户、*所有用户，都有权限进行读、写、执行的操作。
+</code></pre><p>9.删除目录</p>
+<pre><code>fs.rmdir(path, [callback]);
+</code></pre><p>10.读取目录. 读取到指定目录下所有的文件</p>
+<pre><code>fs.readdir(path, [callback]);
+</code></pre><p>11.打开文件</p>
+<pre><code>fs.open(path,flags, [mode], [callback(err,fd)])
+</code></pre><p>12.关闭文件</p>
+<pre><code>fs.close(fd, [callback(err)])
+</code></pre><p>13.读取文件</p>
+<pre><code>fs.read(fd,buffer,offset,length,position,[callback(err,     bytesRead, buffer)])
+</code></pre><p>14.写入文件</p>
+<pre><code>fs.writeFile(filename, data,[encoding],[callback(err)])
+</code></pre><p>15.修改文件时间戳</p>
+<pre><code>fs.utimes(path, atime, mtime, [callback(err)])
+</code></pre><h3 id="url-文件管理"><a href="#url-文件管理" class="headerlink" title="url 文件管理"></a>url 文件管理</h3><p>1 .解析url - 条件解析</p>
+<pre><code>url.parse(‘http://www.baidu.com?page=1’,true);
+结果如: { protocol: ‘http:’,
+slashes: true,
+auth: null,
+host: ‘www.baidu.com’,
+port: null,
+hostname: ‘www.baidu.com’,
+hash: null,
+search: ‘?page=1’,
+query: { page: ‘1’ },
+pathname: ‘/’,
+path: ‘/?page=1’,
+href: ‘http://www.baidu.com/?page=1’ }
+</code></pre><p>2.解析url，返回一个json格式的数组</p>
+<pre><code>url.parse(‘http://www.baidu.com’);
+结果如: { protocol: ‘http:’,
+slashes: null,
+auth: null,
+host: null,
+port: null,
+hostname: null,
+hash: null,
+search: null,
+query: null,
+pathname: ‘www.baidu.com’,
+path: ‘www.baidu.com’,
+href: ‘http://www.baidu.com’ }
+</code></pre><p>3.格式化为url. 将json数组逆向成url</p>
+<pre><code>url.format({
+protocol: ‘http:’,
+hostname:‘www.baidu.com’,
+port:‘80’,
+pathname :’/news’,
+query:{page:1}
+});
+结果如: http://www.baidu.com/news?page=1
+</code></pre><p>4.封装路径</p>
+<pre><code>url.resolve(‘http://example.com/’, ‘/one’)  // &apos;http://example.com/one’
+url.resolve(‘http://example.com/one’, ‘/two’) // ‘http://example.com/two’
+</code></pre><h3 id="path-路径管理"><a href="#path-路径管理" class="headerlink" title="path 路径管理"></a>path 路径管理</h3><p>1.格式化路径. 将不符合规范的路径经过格式化转换为标准路径,解析路径中的.与…外，还能去掉多余的斜杠</p>
+<pre><code>path.normalize(’/path///normalize/hi/…’);
+结果如: ‘/path/normalize/’ 标准化之后的路径里的斜杠在Windows系统下    是，而在Linux系统下是/
+</code></pre><p>2.组合路径</p>
+<pre><code>path.join(’///you’, ‘/are’, ‘//beautiful’);
+结果如:  ‘/you/are/beautiful’
+</code></pre><p>3.返回路径中的目录名</p>
+<pre><code>path.dirname(’/foo/strong/cool/nice’);
+结果如: ‘/foo/strong/cool’
+</code></pre><p>4.返回路径最后一部分,还可以排除指定字符串</p>
+<pre><code>path.basename(’/foo/strong/basename/index.html’);
+path.basename(’/foo/strong/basename/index.html’,’.html’);
+结果如: index.html 和 index
+</code></pre><p>5.返回路径后缀</p>
+<pre><code>path.extname(‘index.html’);
+结果如: .html
+</code></pre><h3 id="Query-String-字符串转换"><a href="#Query-String-字符串转换" class="headerlink" title="Query String 字符串转换"></a>Query String 字符串转换</h3><p>1.序列化对象.将对象类型转换成一个字符串类型（默认的分割符（“&amp;”）和分配符（“=”））</p>
+<pre><code>querystring.stringify({foo:‘bar’,cool:[‘xux’, ‘yys’]});
+结果如: foo=bar&amp;cool=xux&amp;cool=yys
+
+ 重载1: querystring.stringify({foo:‘bar’,cool:[‘xux’,     ‘yys’]},’*’,’$’);
+结果如: foo$bar*cool$xux*cool$yys
+</code></pre><p>2.反序列化</p>
+<pre><code>querystring.parse(‘foo@bar$cool@xux$cool@yys’,’@’,’$’);
+结果如: { foo: ‘bar’ ,  cool: [‘xux’, ‘yys’] }
+</code></pre><h3 id="http-HTTP"><a href="#http-HTTP" class="headerlink" title="http HTTP"></a>http HTTP</h3><p>2个方法</p>
+<pre><code>http.createServer([requestListener])  创建HTTP服务器
+http.createClient([port], [host])     创建HTTP客户端
+</code></pre><h5 id="http-Server"><a href="#http-Server" class="headerlink" title="http.Server"></a>http.Server</h5><p>由 http.createServer 创建所返回的实例</p>
+<h5 id="http-Server-事件"><a href="#http-Server-事件" class="headerlink" title="http.Server 事件"></a>http.Server 事件</h5><p>request 客户端请求到来<br>提供2个参数: req, res  分别是http.ServerRequest 和  http.ServerResponse  的实例.表示请求和响应消息</p>
+<p>connection TCP建立连接时触发<br>提供1个 socket 参数 net.Socket 实例</p>
+<p>close 服务器关闭时触发<br>无参数</p>
+<p>还有checkContinue 、 upgrade 、 clientError 等事件. request 经常使用,所以包含在了 createServer函数中</p>
+<h5 id="http-ServerRequest-对象"><a href="#http-ServerRequest-对象" class="headerlink" title="http.ServerRequest 对象"></a>http.ServerRequest 对象</h5><p>HTTP请求的消息, 一般由 http.Server的 request 事件发送</p>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性:"></a>属性:</h5><pre><code>complete          客户端请求是否已经发送完成
+httpVersion      HTTP 协议版本，通常是 1.0 或 1.1
+method          HTTP 请求方法，如 GET、POST、PUT、DELETE 等
+url              原始的请求路径，例如 /static/image/x.jpg 或 /    user?name=byvoid
+headers          HTTP 请求头
+trailers          HTTP 请求尾（不常见）
+connection      当前 HTTP 连接套接字，为 net.Socket 的实例
+socket          connection 属性的别名
+client          client 属性的别名
+</code></pre><p><strong>GET :</strong> 的请求是直接嵌入路径中的. 解析?后面的路径就行了.  url 模块中  parse 函数提供了这个功能</p>
+<p><strong>POST : </strong></p>
+<pre><code>**HTTP 请求分: 请求头.  请求体**
+http.ServerRequest 提供3个事件控制请求体传输
+data:    请求体数据来到时. 参数 chunk 表示接收到的数据
+end:    请求体数据传输完成时
+close    用户当前请求结束时
+
+
+    var post = &apos;&apos;;
+    req.on(&apos;data&apos;, function(chunk) {    post += chunk;        });
+    req.on(&apos;end&apos;, function() {    post =     querystring.parse(post);
+    res.end(util.inspect(post));});
+</code></pre><h5 id="http-ServerResponse-对象"><a href="#http-ServerResponse-对象" class="headerlink" title="http.ServerResponse 对象"></a>http.ServerResponse 对象</h5><p>http.ServerResponse是返回给客户端的信息,决定了用户最终看到的结果. 有3个重要的成员函数. 用于响应头,响应内容以及结束请求</p>
+<p>1.向客户端发送响应头</p>
+<pre><code>res.writeHead(statusCode, [headers])
+statusCode, 是HTTP状态码. 如200,404.
+
+headers 类似数组的对象,表示响应头的每个属性
+{
+“Content-Type”: “text/html”,
+“Connection”: “keep-alive”
+}
+</code></pre><p>2.发送响应内容, 如果是字符串,需要制定编码方式, 默认 utf-8</p>
+<pre><code>res.write(data, [encoding])
+</code></pre><p>3.结束响应,告知客户端所有响应完成. 此函数必须调用一次</p>
+<pre><code>res.end([data] , [encoding] )
+</code></pre><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>挂接模块</p>
+<pre><code>var EventEmitter = require(‘events’).EventEmitter;
+</code></pre><p>1.实例化一个EventEmitter对象</p>
+<pre><code>var event = new EventEmitter();
+</code></pre><p>2.注册事件</p>
+<pre><code>emitter.on( ‘Event_Name’ , callBack_Fun )
+emitter.once( ‘Event_Name’ , callBack_Fun )    //注册一个单次监听器,触发一次后立刻解除
+</code></pre><p>3.发射事件</p>
+<pre><code>event.emit(‘Event_Name’ , 参数1,参数2);
+</code></pre><p>4.移除事件</p>
+<pre><code>emitter…removeListener(‘Event_Name’ , callBack_Fun)
+emitter.removeAllListeners(  [‘Event_Name’] )    //如果指定了事件名,就移除指定的,否则移除所有事件
+</code></pre><h3 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h3><p>Node.js 的模块和包机制的实现参照了 CommonJS 的标准，但并未完全遵循。</p>
+<pre><code>#### 包
+包是在模块基础上更深一步的抽象, 类似于 c/c++ 的函数库.
+Node.js 包是一个目录. 其中包含一个JSON格式的说明文件 package.json
+CommonJS 规范特征:
+-&gt;   package.json 必须在包的顶层目录下
+-&gt;   二进制文件在bin目录下
+-&gt;   JavaScript代码在lib目录下
+-&gt;   文档应该在doc目录下
+-&gt;   单元测试在test目录下
+
+
+
+#### require(&apos;Modile_Name&apos;)     
+功能:    加载其他模块
+说明:    不会重复加载以加载的模块
+
+
+#### exports.setName
+功能:    公开一个模块中的函数或对象
+说明:    exports 本身仅仅是一个普通的空对象，即 {}. 所以 exports.函数      就是给它加了函数
+module.exports  则是用一个对象取代 exports  对象. (不可以对     exports 直接赋值替代此功能)
+
+
+方式1:
+//使用
+exports.SayName = function(thyName) {console.log(thyName)}; 
+//调用
+var test = require(&apos;./fileName&apos;);
+test.SayName(&apos;XueYou&apos;);
+
+方式2:
+    //使用
+    function hello(){
+     var name;
+    this.setNam(){};
+    this.SayName(){};
+    }
+    module.exports = hello;
+    //调用
+    var test = require(&apos;./fileName&apos;);
+    test = new test();    //注意因为是对象,所以要new
+    test.SayName();
+</code></pre>
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+          <div class="post-nav">
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/11/18/Mongoose基础篇/">Mongoose基础篇</a>
+              
+            </div>
+
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2016/11/13/MongoDB常用操作命令/">MongoDB常用操作命令</a>
+              
+            </div>
+          </div>
+        
+
+        
+        
+      </div>
+    
+  </div>
+
+
+
+  
+    <div class="comments" id="comments">
+      
+    </div>
+  
+
+          </div>
+
+          
+        </div>
+
+        
+<div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          Table Of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          Overview
+        </li>
+      </ul>
+    
+
+    <div class="site-overview">
+      <div class="site-author motion-element">
+        <img class="site-author-image" src="/images/default_avatar.jpg" alt="魏姣" />
+        <p class="site-author-name">魏姣</p>
+      </div>
+      <p class="site-description motion-element"></p>
+      <div class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">posts</span>
+        </div>
+        <div class="site-state-item site-state-tags">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">tags</span>
+        </div>
+        <div class="site-state-item site-state-pages">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">pages</span>
+        </div>
+      </div>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+      </div>
+
+      
+      
+
+    </div>
+
+    
+      <div class="post-toc-wrap sidebar-panel-active">
+        <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <div class="post-toc">
+          
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#NodeJs常用核心模块简介"><span class="nav-number">1.</span> <span class="nav-text">NodeJs常用核心模块简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fs-文件管理"><span class="nav-number">1.1.</span> <span class="nav-text">fs 文件管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url-文件管理"><span class="nav-number">2.</span> <span class="nav-text">url 文件管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path-路径管理"><span class="nav-number">3.</span> <span class="nav-text">path 路径管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Query-String-字符串转换"><span class="nav-number">4.</span> <span class="nav-text">Query String 字符串转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http-HTTP"><span class="nav-number">5.</span> <span class="nav-text">http HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#http-Server"><span class="nav-number">5.0.1.</span> <span class="nav-text">http.Server</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#http-Server-事件"><span class="nav-number">5.0.2.</span> <span class="nav-text">http.Server 事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#http-ServerRequest-对象"><span class="nav-number">5.0.3.</span> <span class="nav-text">http.ServerRequest 对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性"><span class="nav-number">5.0.4.</span> <span class="nav-text">属性:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#http-ServerResponse-对象"><span class="nav-number">5.0.5.</span> <span class="nav-text">http.ServerResponse 对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">6.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块和包"><span class="nav-number">7.</span> <span class="nav-text">模块和包</span></a></li></ol></div>
+          
+        </div>
+        <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+      </div>
+    
+
+  </div>
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2021
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">魏姣</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebatToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebatToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0 && isDesktop()) {
+        setTimeout(function () {
+          $('.sidebar-toggle').trigger('click');
+        }, 800);
+      }
+    });
+  </script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+  
+</body>
+</html>

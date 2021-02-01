@@ -1,0 +1,940 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-hexo-theme-next-0.4.0">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.0"/>
+
+
+
+
+
+    <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
+
+
+
+
+  <title> 那些不推荐使用的html标签 // 薇娇 </title>
+</head>
+
+<body>
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">薇娇</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+            
+          
+
+          <div id="posts" class="posts-expand">
+            
+  
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              那些不推荐使用的html标签
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            Posted on 2016-07-21
+          
+        </span>
+
+        
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          <h3 id="那些不推荐使用的html标签"><a href="#那些不推荐使用的html标签" class="headerlink" title="那些不推荐使用的html标签"></a>那些不推荐使用的html标签</h3><p><code>1、acronym</code></p>
+<p>首字母缩写，例如WWW<br>类似的有abbr标签，表示单词缩写，例如inc.。语法如下：</p>
+<pre><code>&lt;acronym title=&quot;World Wide Web&quot;&gt;WWW&lt;/acronym&gt;
+&lt;abbr title=&quot;incorporated&quot;&gt;inc.&lt;/abbr&gt;
+</code></pre><p>推荐用abbr，不要用acronym（忽略上面提到的语义上的差异）</p>
+<p><code>2、applet</code></p>
+<p>Java小应用程序，主要提供绘图功能（在页面上通过代码绘制一些东西），例如：</p>
+<pre><code>&lt;applet code=&quot;ShowImage.class&quot; width=600 height=400 archive=&quot;Imagetest.jar&quot;&gt;&lt;/applet&gt;
+</code></pre><p>目前几乎没什么用了，因为运行需要JRE，而目前主流浏览器并不默认安装JRE<br>推荐使用canvas绘图，或者用object+embed嵌入flash代替applet<br>注意：使用object+embed是为了更好的兼容性，如果场景允许，推荐使用object</p>
+<p><code>3、basefont</code></p>
+<p>basefont标签定义基准字体。该标签可以为文档中的所有文本定义默认字体颜色、字体大小和字体系列，例如：</p>
+<pre><code>&lt;basefont color=&quot;red&quot; size=&quot;5&quot; face=&quot;Arial&quot; /&gt;
+</code></pre><p>basefont标签只有[IE9-]支持<br>推荐直接给body元素定义默认字体，所有子元素都会继承这些属性值</p>
+<p><code>4、bgsound</code></p>
+<p>用来添加背景音乐，例如：</p>
+<pre><code>&lt;bgsound src=&quot;your.mid&quot; autostart=&quot;true&quot; loop=&quot;infinite&quot;&gt;
+</code></pre><p>推荐使用audio或者object+embed来代替，例如：</p>
+<pre><code>&lt;embed src=&quot;your.mid&quot; autostart=&quot;true&quot; loop=&quot;true&quot; hidden=&quot;true&quot;&gt;
+</code></pre><p><code>5、big</code></p>
+<p>用来放大字体，放大一号（嵌套多层可以放大更多），不支持的浏览器显示粗体，例如：</p>
+<pre><code>&lt;big&gt;大1号&lt;/big&gt;&lt;big&gt;&lt;big&gt;大2号&lt;/big&gt;&lt;/big&gt;
+</code></pre><p>至于“号”是怎么定义的就别管了，不推荐使用，建议根据语义采用em、strong或者自定义样式类代替</p>
+<p><code>6、blink</code></p>
+<p>可以实现闪烁效果，例如：</p>
+<pre><code>&lt;blink&gt;Why would somebody use this?&lt;/blink&gt;
+</code></pre><p>支持性很差，不推荐使用，同样不推荐使用（各大浏览器支持blink值，但没有任何效果）：</p>
+<pre><code>&lt;p style=&quot;text-decoration: blink&quot;&gt;This should be avoided as well.&lt;/p&gt;
+</code></pre><p>建议采用animation代替</p>
+<p><code>7、center</code></p>
+<p>使内容居中，例如：</p>
+<pre><code>&lt;center&gt;文本及子元素会居中&lt;/center&gt;
+</code></pre><p>效果类似于CSS：</p>
+<pre><code>text-align: center;
+</code></pre><p>不建议使用，确实没有任何理由去用</p>
+<p><code>8、dir</code></p>
+<p>目录列表，例如：</p>
+<pre><code>&lt;dir&gt;
+&lt;li&gt;html&lt;/li&gt;
+&lt;li&gt;xhtml&lt;/li&gt;
+&lt;li&gt;css&lt;/li&gt;
+&lt;/dir&gt;
+</code></pre><p>效果和ul基本相同，浏览器默认样式下列表项的左边距有细微差异<br>不推荐使用，建议根据语义采用ul、ol或者dl</p>
+<p><code>9、font</code></p>
+<p>用来定义字体、字号和颜色，例如：</p>
+<pre><code>&lt;font face=&quot;verdana&quot; color=&quot;green&quot; size=&quot;3&quot;&gt;This is some text!&lt;/font&gt;
+</code></pre><p>属性值和basefont一样<br>不推荐使用，建议用CSS代替，没理由用这个标签</p>
+<p><code>10、frame</code><br>配合frameset分栏，例如：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;frameset cols=&quot;25%,*,25%&quot;&gt;
+     &lt;frame src=&quot;frame_a.htm&quot;&gt;
+      &lt;frame src=&quot;frame_b.htm&quot;&gt;
+      &lt;frame src=&quot;frame_c.htm&quot;&gt;
+    &lt;/frameset&gt;
+
+&lt;/html&gt;
+</code></pre><p>注意：用frameset替换掉body<br>复杂的后台页面会用到frameset+frame布局，当然也可以采用float/flex+Ajax实现，根据具体场景来定</p>
+<p><code>11、frameset</code><br>见frame</p>
+<p><code>12、hgroup</code></p>
+<p>给一系列标题分组，例如：</p>
+<pre><code>&lt;hgroup&gt;
+       &lt;h1&gt;The reality dysfunction&lt;/h1&gt;
+       &lt;h2&gt;Space is not the only void&lt;/h2&gt;
+&lt;/hgroup&gt;
+</code></pre><p><code>13、isindex</code></p>
+<p>单行文本控件，初始显示prompt值，例如：</p>
+<pre><code>&lt;isindex prompt=&quot;string&quot; /&gt;
+</code></pre><p>目前支持性很差，不推荐使用，建议用input元素代替<br>W3C建议千万不要用：</p>
+<pre><code>No, really, don’t use it. This element is deprecated. It is not implemented anymore.
+</code></pre><p>引自<a href="W3C wiki">W3C wiki</a></p>
+<p>具体用法可以参考<a href="http://reference.sitepoint.com/html/isindex" target="_blank" rel="noopener">http://reference.sitepoint.com/html/isindex</a></p>
+<p><code>14、listing</code><br>不用管它是什么，微软都不建议使用了：</p>
+<pre><code>This element is obsolete and should no longer be used. Use HTMLPreElement, code or CSS instead. Renders text in a fixed-width font.
+</code></pre><p>引自<a href="MSDN listing element | listing object">MSDN listing element | listing object</a></p>
+<p><code>15、marquee</code></p>
+<p>滚动字幕，效果很强大，例如：</p>
+<pre><code>&lt;marquee style=&quot;height: 104px; width: 22.35%; margin: 10px 20px; background-    color: rgb(204, 255, 255);&quot; bgcolor=&quot;#ccffff&quot; vspace=&quot;10&quot; direction=&quot;up&quot;      width=&quot;22.35%&quot; loop=&quot;3&quot; scrollamount=&quot;1&quot; scrolldelay=&quot;10&quot; hspace=&quot;20&quot;&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;此处输入滚动内容&lt;/font&gt;&lt;/p&gt;&lt;/marquee&gt;
+
+&lt;marquee&gt;这里是输入文字的地方，还可以放图片代码、Flash动画代码和gif动态小图代码。&lt;/marquee&gt;
+</code></pre><p>多用来实现公告，虽然已经过时了，但效果确实很强大，而且支持性良好</p>
+<p><code>16、multicol</code></p>
+<p>用来实现多列布局，不建议使用，任何主流浏览器都不曾支持过</p>
+<pre><code>The HTML element was an experimental element designed to allow multi-column layouts. It never got any significant traction and is not implemented in any major browsers.
+</code></pre><p>引自<a href="MDN multicol">MDN multicol</a></p>
+<p><code>17、nextid</code></p>
+<p>作用未知，支持性未知，不建议使用</p>
+<p><code>18、nobr</code><br>禁止换行，例如：</p>
+<pre><code>&lt;p&gt;Our telephone number is &lt;nobr&gt;0800 123 123 123&lt;/nobr&gt;.&lt;/p&gt;
+</code></pre><p>不推荐使用，建议用CSS代替：</p>
+<pre><code>white-space: nowrap;
+</code></pre><p><code>19、noembed</code></p>
+<p>在浏览器不支持embed时，显示内容，类似于noscript，例如：</p>
+<pre><code>&lt;noembed&gt;
+&lt;img  data-original=&quot;/images/inflate.jpg&quot; alt=&quot;Inflate the tyre by holding the
+pump at 90 degree angle to the valve&quot;&gt;
+&lt;p&gt;You can inflate the tyre by holding the pump at 90 degree angle
+to the valve, as shown in the image above.&lt;/p&gt;
+&lt;/noembed&gt;
+</code></pre><p>不推荐使用，如果需要考虑兼容性的话，建议采用object+embed+noembed（embed/noembed作为object的fallback）</p>
+<p><code>20、noframes</code></p>
+<p>在浏览器不支持frameset+frame时，显示内容，类似于noscript，例如：</p>
+<pre><code>&lt;html&gt;
+
+&lt;frameset cols=&quot;25%,50%,25%&quot;&gt;
+  &lt;frame src=&quot;frame_a.htm&quot;&gt;
+  &lt;frame src=&quot;frame_b.htm&quot;&gt;
+  &lt;frame src=&quot;frame_c.htm&quot;&gt;
+  &lt;noframes&gt;Sorry, your browser does not handle frames!&lt;/noframes&gt;
+&lt;/frameset&gt;
+
+&lt;/html&gt;
+</code></pre><p>noframe标签中可以包含任何能够出现在body中的标签<br>如果需要考虑兼容性的话，可以作为frame的fallback，建议采用float/flex+Ajax实现，根据具体场景来定</p>
+<p><code>21、plaintext</code><br>忽略内容中的html标签，作用类似于pre，例如：</p>
+<pre><code>&lt;p&gt;The markup for this is:&lt;/p&gt;
+&lt;plaintext&gt;
+    &lt;h1&gt;Main heading goes here&lt;/h1&gt;
+    &lt;p&gt;First paragraph goes here&lt;/p&gt;
+    &lt;h2&gt;Sub-heading goes here&lt;/h2&gt;
+&lt;/plaintext&gt;.
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><code>22、spacer</code></p>
+<p>插入空白（white spaces），例如：</p>
+<pre><code>&lt;span&gt;Just a text node&lt;/span&gt;
+&lt;spacer type=&quot;horizontal&quot; size=&quot;10&quot;&gt;&lt;/spacer&gt;
+&lt;span&gt;Just another text node&lt;/span&gt;
+&lt;spacer type=&quot;block&quot;  &gt;&lt;/spacer&gt;
+</code></pre><p>主流浏览器都不支持，不推荐使用</p>
+<p><code>23、strike</code><br>删除线，效果类似于del和s，例如：</p>
+<pre><code>&lt;p&gt;Version 2.0 is &lt;strike&gt;not yet available!&lt;/strike&gt; now available!&lt;/p&gt;
+</code></pre><p>不推荐使用，建议用del代替</p>
+<p><code>24、tt</code></p>
+<p>键盘输入（teletype），例如：</p>
+<pre><code>&lt;p&gt;&lt;tt&gt;Teletype text&lt;/tt&gt;&lt;/p&gt;
+</code></pre><p>不推荐使用，建议根据语义用kbd（键盘按键）、var（变量）、code（代码）、samp（样例输出）或者CSS代替</p>
+<p><code>25、xmp</code></p>
+<p>80列的样例输出，样式效果类似于pre，语义类似于samp，例如：</p>
+<pre><code>&lt;xmp&gt;
+Stock ID    Description             Price         Quantity in Stock
+--------    -----------             -----         -----------------
+116         Inflatable Armchair     21.50                13
+119         Walkie Talkie           40.20                44
+&lt;/xmp&gt;
+</code></pre><p>目前浏览器支持该标签，但不限制80列<br>不推荐使用，建议采用samp代替</p>
+<p>本文转自 <a href="http://mp.weixin.qq.com/s?__biz=MjM5MDA2MTI1MA==&amp;mid=2649084269&amp;idx=2&amp;sn=5245980904cec7883e80496c323d6c88&amp;chksm=be5bf6c0892c7fd6ee472365f77e128c916488cf615376632bd623e8fee8fb0103752615e427&amp;mpshare=1&amp;scene=23&amp;srcid=1121hr1dAV1IrDMndF3jgFCy#rd" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MjM5MDA2MTI1MA==&amp;mid=2649084269&amp;idx=2&amp;sn=5245980904cec7883e80496c323d6c88&amp;chksm=be5bf6c0892c7fd6ee472365f77e128c916488cf615376632bd623e8fee8fb0103752615e427&amp;mpshare=1&amp;scene=23&amp;srcid=1121hr1dAV1IrDMndF3jgFCy#rd</a></p>
+
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+          <div class="post-nav">
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/08/10/PHP基础（一）/">PHP基础（一）</a>
+              
+            </div>
+
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2016/07/15/使用教程/">使用教程</a>
+              
+            </div>
+          </div>
+        
+
+        
+        
+      </div>
+    
+  </div>
+
+
+
+  
+    <div class="comments" id="comments">
+      
+    </div>
+  
+
+          </div>
+
+          
+        </div>
+
+        
+<div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          Table Of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          Overview
+        </li>
+      </ul>
+    
+
+    <div class="site-overview">
+      <div class="site-author motion-element">
+        <img class="site-author-image" src="/images/default_avatar.jpg" alt="魏姣" />
+        <p class="site-author-name">魏姣</p>
+      </div>
+      <p class="site-description motion-element"></p>
+      <div class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">posts</span>
+        </div>
+        <div class="site-state-item site-state-tags">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">tags</span>
+        </div>
+        <div class="site-state-item site-state-pages">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">pages</span>
+        </div>
+      </div>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+      </div>
+
+      
+      
+
+    </div>
+
+    
+      <div class="post-toc-wrap sidebar-panel-active">
+        <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <div class="post-toc">
+          
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#那些不推荐使用的html标签"><span class="nav-number">1.</span> <span class="nav-text">那些不推荐使用的html标签</span></a></li></ol></div>
+          
+        </div>
+        <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+      </div>
+    
+
+  </div>
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2021
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">魏姣</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebatToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebatToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0 && isDesktop()) {
+        setTimeout(function () {
+          $('.sidebar-toggle').trigger('click');
+        }, 800);
+      }
+    });
+  </script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+  
+</body>
+</html>

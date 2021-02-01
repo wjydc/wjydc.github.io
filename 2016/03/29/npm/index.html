@@ -1,0 +1,840 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-hexo-theme-next-0.4.0">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.0"/>
+
+
+
+
+
+    <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
+
+
+
+
+  <title> npm // 薇娇 </title>
+</head>
+
+<body>
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">薇娇</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+
+  <ul id="menu" class="menu">
+    
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          Home
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          Archives
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          Tags
+        </a>
+      </li>
+    
+  </ul>
+
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+            
+          
+
+          <div id="posts" class="posts-expand">
+            
+  
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
+              npm
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          
+            Posted on 2016-03-29
+          
+        </span>
+
+        
+          
+        
+
+        
+          
+        
+      </div>
+    </div>
+
+    
+      <div class="post-body">
+
+        
+        
+
+        
+          <h3 id="浅聊-Yarn-vs-npm"><a href="#浅聊-Yarn-vs-npm" class="headerlink" title="浅聊:Yarn vs npm"></a>浅聊:Yarn vs npm</h3><p>原文链接<a href="https://www.sitepoint.com/yarn-vs-npm/?utm_source=javascriptweekly&amp;utm_medium=email" target="_blank" rel="noopener"> https://www.sitepoint.com/yarn-vs-npm/?utm_source=javascriptweekly&amp;utm_medium=email</a></p>
+<p>译文    <a href="http://www.zcfy.cc/article/yarn-vs-npm-everything-you-need-to-know-1484.html" target="_blank" rel="noopener">http://www.zcfy.cc/article/yarn-vs-npm-everything-you-need-to-know-1484.html</a></p>
+<p>Yarn 是 Facebook, Google, Exponent 和 Tilde 开发的一款新的 JavaScript 包管理工具。就像我们可以从官方文档了解那样，它的目的是解决这些团队使用 npm 面临的少数问题，即：</p>
+<ul>
+<li>安装的时候无法保证速度/一致性</li>
+<li>安全问题，因为 npm 安装时允许运行代码</li>
+</ul>
+<p>但请不要惊慌！它并没有试图完全取代 npm。Yarn 同样是一个从 npm 注册源获取模块的新的 CLI 客户端。注册的方式不会有任何变化 —— 你同样可以正常获取与发布包。</p>
+<p>是否每个人现在都要跳上 Yarn 这辆被大肆宣传的列车？又或者你根本没机会碰到 npm 的这些问题。本篇文章将会比较 npm 与 Yarn，最终你可以决定哪款更适合你。</p>
+<h5 id="Yarn-vs-npm-功能差异"><a href="#Yarn-vs-npm-功能差异" class="headerlink" title="Yarn vs npm: 功能差异"></a>Yarn vs npm: 功能差异</h5><p>乍一看 Yarn 与 npm 很类似，但通过引擎的对比就能察觉 Yarn 的不同。</p>
+<h6 id="yarn-lock-文件"><a href="#yarn-lock-文件" class="headerlink" title="yarn.lock 文件"></a>yarn.lock 文件</h6><p>npm 和 Yarn 都使用 <code>package.json</code> 来跟踪项目的依赖，版本号并非一直准确，因为你可以定义版本号范围，这样你可以选择一个主版本和次要版本的包，但让 npm 安装最新的补丁也许可以修改一些 bug。</p>
+<p>理想状态下使用语义化版本发布补丁不会包含大的变化，但不幸的是这必非真理。npm 的这种策略可能导致两台拥有相同 <code>package.json</code> 文件的机子安装了不同版本的包，这可能导致一些错误。</p>
+<p>为了避免包版本的错误匹配，一个确定的安装版本被固定在一个锁文件中。每次模块被添加时，Yarn 就会创建（或更新）<code>yarn.lock</code> 文件，这样你就可以保证其它机子也安装相同版本的包，同时包含了 <code>package.json</code> 中定义的一系列允许的版本。</p>
+<p>在 npm 中同样可以使用 <code>npm shrinkwrap</code> 命令来生成一个锁文件，这样在使用 <code>npm install</code> 时会在读取 <code>package.json</code> 前先读取这个文件，就像 Yarn 会先读取<code>yarn.lock</code> 一样。这里的区别是 Yarn 总会自动更新 <code>yarn.lock</code>，而 npm 需要你重新操作。</p>
+<h6 id="并行安装"><a href="#并行安装" class="headerlink" title="并行安装"></a>并行安装</h6><p>每当 npm 或 Yarn 需要安装一个包时，它会进行一系列的任务。在 npm 中这些任务是按包的顺序一个个执行，这意味着必须等待上一个包被完整安装才会进入下一个；Yarn 则并行的执行这些任务，提高了性能。</p>
+<p>为了比较，我在没有使用 shrinkwrap/yarn.lock 的方式以及清理了缓存下使用 npm 与 Yarn 安装 express，总共安装了 42 个依赖。</p>
+<ul>
+<li>npm: 9 s</li>
+<li>Yarn: 1.37 s</li>
+</ul>
+<p>我无法相信自己的眼睛，所以重复以上步骤，但得到相同结果。接着我安装 gulp 进行测试，总共安装了 195 个依赖。</p>
+<ul>
+<li>npm: 11 s</li>
+<li>Yarn: 7.81 s</li>
+</ul>
+<p>似乎根据所需要安装的包的数量而有所不同，但 Yarn 依旧比较快。</p>
+<h6 id="清晰的输出"><a href="#清晰的输出" class="headerlink" title="清晰的输出"></a>清晰的输出</h6><p>npm 默认情况下非常冗余，例如使用 <code>npm install</code> 时它会递归列出所有安装的信息；而 Yarn 则一点也不冗余，当可以使用其它命令时，它适当的使用 emojis 表情来减少信息（Windows 除外）。</p>
+<h6 id="Yarn-vs-npm-CLI-的差异"><a href="#Yarn-vs-npm-CLI-的差异" class="headerlink" title="Yarn vs npm: CLI 的差异"></a>Yarn vs npm: CLI 的差异</h6><p>除了一些功能差异，Yarn 命令也存在一些区别。例如移除或修改了一些 npm 命令以及添加了几个有趣的命令。</p>
+<h6 id="yarn-global"><a href="#yarn-global" class="headerlink" title="yarn global"></a>yarn global</h6><p>不像 npm 添加 <code>-g</code>或 <code>--global</code> 可以进行全局安装，Yarn 使用的是 <code>global</code> 前缀。不过与 npm 类似，项目依赖不推荐全局安装。</p>
+<p><code>global</code> 前缀只能用于 <code>yarn add</code>, <code>yarn bin`</code>, yarn ls<code>和</code>yarn remove<code>，除</code>yarn add `外，这些命令都和 npm 等效。</p>
+<h6 id="yarn-install"><a href="#yarn-install" class="headerlink" title="yarn install"></a>yarn install</h6><p><code>npm install</code> 命令会根据 <code>package.json</code> 安装依赖以及允许你添加新的模块；<code>yarn install</code> 仅会按 <code>yarn.lock</code> 或 <code>package.json</code> 里面的依赖顺序来安装模块。</p>
+<h6 id="yarn-add-–dev"><a href="#yarn-add-–dev" class="headerlink" title="yarn add [–dev]"></a>yarn add [–dev]</h6><p>与 <code>npm install</code> 类似，<code>yarn add</code> 允许你添加与安装模块，就像命令的名称一样，添加依赖意味着也会算定将依赖写入 <code>package.json</code>，类似 <code>npm</code>的 <code>--save</code> 参数；<code>Yar 的--dev `</code>参数则是添加开发依赖，类似 npm 的 <code></code>–save-dev 参数。</p>
+<h6 id="yarn-licenses-ls-generate-disclaimer"><a href="#yarn-licenses-ls-generate-disclaimer" class="headerlink" title="yarn licenses [ls|generate-disclaimer]"></a>yarn licenses [ls|generate-disclaimer]</h6><p>npm 没有类似命令来方便编写自己的包。 <code>yarn licenses ls</code>  列出所有已安装包的许可协议。 <code>yarn licenses generate-disclaimer</code> 生成包含已安装包许可协议的免责声明。某些协议要求使用者必须在项目中包含该协议，这时候该命令将变得非常好用。</p>
+<h6 id="yarn-why"><a href="#yarn-why" class="headerlink" title="yarn why"></a>yarn why</h6><p>该命令会查找依赖关系并找出为什么会将某些包安装在你的项目中。也许你明确为什么添加，也许它只是你安装包中的一个依赖，<code>yarn why</code> 可以帮你弄找出。</p>
+<h6 id="yarn-upgrade"><a href="#yarn-upgrade" class="headerlink" title="yarn upgrade"></a>yarn upgrade</h6><p>该命令会根据符合 <code>package.json</code> 设定的规则而不是 <code>yarn.lock</code> 定义的确切版本来将包更新到最新版本。如果想用 npm 来实现相同目的，可以这样执行：</p>
+<pre><code>rm -rf node_modules
+npm install
+</code></pre><p>不要将该命令与 <code>npm update</code> 混淆，它指的是更新到自己的最新版。</p>
+<h6 id="yarn-generate-lock-entry"><a href="#yarn-generate-lock-entry" class="headerlink" title="yarn generate-lock-entry"></a>yarn generate-lock-entry</h6><p><code>yarn generate-lock-entry</code> 会基于 <code>package.json</code> 设置的依赖生成 <code>yarn.lock</code> 文件，该命令与 <code>npm shrinkwrap</code> 类似，但应该小心使用，因为通过 <code>yarn add</code> 和 <code>yarn upgrade</code> 命令添加或更新依赖时会自动更新生成该锁文件。</p>
+<h5 id="稳定性与可靠性"><a href="#稳定性与可靠性" class="headerlink" title="稳定性与可靠性"></a>稳定性与可靠性</h5><p>Yarn 被炒得这么火热会不会有问题？它正式发布当天就收到很多问题反馈，但官方处理问题的速度极快。这些表明社区正努力开发并修复bug。查看问题反馈的数量和类型可以发现 Yarn 在大多数用户的机子上表现的很稳定，但可能个别机子会有问题。</p>
+<p>请注意虽然一个包管理器可能对你的项目非常重要，但它仅仅只是个工具，如果出了状况，恢复包不会困难，也并非要回归 npm。</p>
+<h5 id="未来"><a href="#未来" class="headerlink" title="未来"></a>未来</h5><p>也许你了解 Node.js 与 io.js 之间的历史。简单来说：io.js 是 Node.js 一些核心开发者因为项目管理上的分歧而独立出来创建的分支。不同的是，io.js 选择了开放式管理，在不到一年的时间时，两支团队达成协议，io.js 被合并回 Node.js，无论对错，它为 Node.js 带来了相当多不错的功能。</p>
+<p>我看到 npm 与 Yarn 和它们有着类似的模式，不过 Yarn 不是分支，它解决了 npm 的一些缺陷。如果 npm 从中学到东西并邀请 Facebook，Google 或其它 Yarn 的贡献者们来一起提升 npm 不是很酷吗？虽然言之过早，但我期待它会发生。</p>
+<p>无论哪种结果，Yarn 前途一片光明。社区得到别人对新工具的赞扬后似乎很兴奋，不幸的是，社区并没有提供路线图，所以我不确定 Yarn 是否为我们准备了其它惊喜。</p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>相比 npm 的默认配置，Yarn 获得不少赞同。我们可以方便生成锁文件，安装包时非常迅速并且他们会自动添加进 package.json，同时安装与使用 Yarn 的影响也很小，你可以直接在一个项目上尝试看它是否可以工作，这使得 Yarn 可以完美替代 npm。</p>
+<p>我绝对推荐在一个项目中尽早使用 Yarn，如果你对安装和使用新软件持谨慎态度，可以等待几个月。毕竟 npm 久经考验，它在软件开发领域也有存在的价值。</p>
+<p>使用你正确等待 npm 完成包的安装，也许这是阅读迁移指南的最佳时刻 ;)</p>
+<p>你怎么想呢？你是否已经在使用 Yarn？你是否将要尝试？或者这只是一个已经支离破碎的生态系统的进一步破碎？请在下面评论区留下你的观点。</p>
+
+        
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+          <div class="post-nav">
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/04/02/正则表达式应用——实例应用/">正则表达式应用——实例应用</a>
+              
+            </div>
+
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2016/03/26/预加载-懒加载-demo展示/">预加载+懒加载-demo展示</a>
+              
+            </div>
+          </div>
+        
+
+        
+        
+      </div>
+    
+  </div>
+
+
+
+  
+    <div class="comments" id="comments">
+      
+    </div>
+  
+
+          </div>
+
+          
+        </div>
+
+        
+<div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          Table Of Contents
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          Overview
+        </li>
+      </ul>
+    
+
+    <div class="site-overview">
+      <div class="site-author motion-element">
+        <img class="site-author-image" src="/images/default_avatar.jpg" alt="魏姣" />
+        <p class="site-author-name">魏姣</p>
+      </div>
+      <p class="site-description motion-element"></p>
+      <div class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">posts</span>
+        </div>
+        <div class="site-state-item site-state-tags">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">tags</span>
+        </div>
+        <div class="site-state-item site-state-pages">
+            <span class="site-state-item-count">0</span>
+            <span class="site-state-item-name">pages</span>
+        </div>
+      </div>
+
+      
+
+      <div class="links-of-author motion-element">
+        
+      </div>
+
+      
+      
+
+    </div>
+
+    
+      <div class="post-toc-wrap sidebar-panel-active">
+        <div class="post-toc-indicator-top post-toc-indicator"></div>
+        <div class="post-toc">
+          
+          
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#浅聊-Yarn-vs-npm"><span class="nav-number">1.</span> <span class="nav-text">浅聊:Yarn vs npm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Yarn-vs-npm-功能差异"><span class="nav-number">1.0.1.</span> <span class="nav-text">Yarn vs npm: 功能差异</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#yarn-lock-文件"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">yarn.lock 文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#并行安装"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">并行安装</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#清晰的输出"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">清晰的输出</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Yarn-vs-npm-CLI-的差异"><span class="nav-number">1.0.1.4.</span> <span class="nav-text">Yarn vs npm: CLI 的差异</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#yarn-global"><span class="nav-number">1.0.1.5.</span> <span class="nav-text">yarn global</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#yarn-install"><span class="nav-number">1.0.1.6.</span> <span class="nav-text">yarn install</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#yarn-add-–dev"><span class="nav-number">1.0.1.7.</span> <span class="nav-text">yarn add [–dev]</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#yarn-licenses-ls-generate-disclaimer"><span class="nav-number">1.0.1.8.</span> <span class="nav-text">yarn licenses [ls|generate-disclaimer]</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#yarn-why"><span class="nav-number">1.0.1.9.</span> <span class="nav-text">yarn why</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#yarn-upgrade"><span class="nav-number">1.0.1.10.</span> <span class="nav-text">yarn upgrade</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#yarn-generate-lock-entry"><span class="nav-number">1.0.1.11.</span> <span class="nav-text">yarn generate-lock-entry</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#稳定性与可靠性"><span class="nav-number">1.0.2.</span> <span class="nav-text">稳定性与可靠性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#未来"><span class="nav-number">1.0.3.</span> <span class="nav-text">未来</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结论"><span class="nav-number">1.1.</span> <span class="nav-text">结论</span></a></li></ol></li></ol></div>
+          
+        </div>
+        <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+      </div>
+    
+
+  </div>
+</div>
+
+
+      </div>
+    </div>
+
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; &nbsp; 
+  2021
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author">魏姣</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT
+  </a>
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+
+  <script type="text/javascript">
+  function hasMobileUA () {
+    var nav = window.navigator;
+    var ua = nav.userAgent;
+    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+    return pa.test(ua);
+  }
+
+  function isDesktop () {
+    return screen.width > 991 && !hasMobileUA();
+  }
+
+  function isTablet () {
+    return screen.width < 992 && screen.width > 767 && hasMobileUA();
+  }
+
+  function isMobile () {
+    return screen.width < 767 && hasMobileUA();
+  }
+
+  function escapeSelector (selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+  }
+</script>
+
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" id="motion.global">
+  $(document).ready(function () {
+    var body = $('body');
+    var isSidebarVisible = false;
+    var sidebarToggle = $('.sidebar-toggle');
+    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+    var sidebar = $('.sidebar');
+
+    var SIDEBAR_WIDTH = '320px';
+    var SIDEBAR_DISPLAY_DURATION = 300;
+
+    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+    LogoAndMenuMotion();
+    sidebatToggleMotion();
+    postsListMotion();
+    backToTopMotion();
+
+
+    $(document)
+      .on('sidebar.isShowing', function () {
+        isDesktop() && body.velocity(
+          {paddingRight: SIDEBAR_WIDTH},
+          SIDEBAR_DISPLAY_DURATION
+        );
+        sidebarContentMotion();
+      })
+      .on('sidebar.isHiding', function () {});
+
+    function LogoAndMenuMotion() {
+      $.Velocity.RunSequence([
+        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
+        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
+        
+        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
+      ]);
+      $('.menu-item').velocity('transition.slideDownIn', {display: null});
+    }
+
+
+    function backToTopMotion () {
+      var b2top = $('.back-to-top');
+      b2top.on('click', function () {
+        body.velocity('scroll');
+      });
+    }
+
+    function sidebarShowMotion () {
+
+      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+      sidebar.velocity({width: SIDEBAR_WIDTH}, {
+        display: 'block',
+        duration: SIDEBAR_DISPLAY_DURATION,
+        complete: function () {
+          sidebar.addClass('sidebar-active');
+          sidebar.trigger('sidebar.didShow');
+        }
+      });
+      sidebar.trigger('sidebar.isShowing');
+    }
+
+    function sidebarHideMotion () {
+      isDesktop() && body.velocity({paddingRight: 0});
+      sidebar.velocity('reverse');
+
+      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+
+      sidebar.removeClass('sidebar-active');
+      sidebar.trigger('sidebar.isHiding');
+    };
+
+    function sidebarContentMotion () {
+      $('.sidebar .motion-element').velocity(
+        'transition.slideRightIn',
+        {stagger: 50, drag: true}
+      );
+    }
+
+    function postsListMotion () {
+      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
+      $('.post').velocity('transition.slideDownIn', postMotionOptions);
+    }
+
+    function sidebatToggleMotion () {
+      sidebarToggle.on('click', function () {
+        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+        isSidebarVisible = !isSidebarVisible;
+      });
+
+      sidebarToggle.hover(function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+      }, function () {
+        if (isSidebarVisible) {return}
+        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      });
+    }
+  });
+
+</script>
+
+
+
+
+
+  
+  
+<script type="text/javascript" id="bootstrap.scrollspy.custom">
+  /* ========================================================================
+  * Bootstrap: scrollspy.js v3.3.2
+  * http://getbootstrap.com/javascript/#scrollspy
+  * ========================================================================
+  * Copyright 2011-2015 Twitter, Inc.
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * ======================================================================== */
+
+  /**
+   * Custom by iissnan
+   *
+   * - Add a `clear.bs.scrollspy` event.
+   * - Esacpe targets selector.
+   */
+
+
+  +function ($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body          = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector       = (this.options.target || '') + ' .nav li > a'
+      this.offsets        = []
+      this.targets        = []
+      this.activeTarget   = null
+      this.scrollHeight   = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION  = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function () {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function () {
+      var that          = this
+      var offsetMethod  = 'offset'
+      var offsetBase    = 0
+
+      this.offsets      = []
+      this.targets      = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase   = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function () {
+          var $el   = $(this)
+          var href  = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href
+            && $href.length
+            && $href.is(':visible')
+            && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+        })
+        .sort(function (a, b) { return a[0] - b[0] })
+        .each(function () {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function () {
+      var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets      = this.offsets
+      var targets      = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy')  // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i]
+          && scrollTop >= offsets[i]
+          && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+          && this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function (target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function () {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function () {
+        var $this   = $(this)
+        var data    = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy             = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function () {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function () {
+      $('[data-spy="scroll"]').each(function () {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0 && isDesktop()) {
+        setTimeout(function () {
+          $('.sidebar-toggle').trigger('click');
+        }, 800);
+      }
+    });
+  </script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+  
+</body>
+</html>
