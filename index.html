@@ -153,6 +153,872 @@
     
     
     <article
+  id="post-音频播放控件"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/01/音频播放控件/"
+    >音频播放控件</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/01/音频播放控件/" class="article-date">
+  <time datetime="2021-02-01T09:26:35.000Z" itemprop="datePublished">2021-02-01</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="audio-html"><a href="#audio-html" class="headerlink" title="audio.html"></a>audio.html</h1><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;script src=&quot;../js/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;../js/flexible.debug.js&quot;&gt;&lt;/script&gt;
+    &lt;meta name=viewport content=&quot;width=device-width,initial-scale=1,user-scalable=no&quot;&gt;
+    &lt;title&gt;济公全传-奇文小说&lt;/title&gt;
+    &lt;!-- 播放器样式 --&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;../css/audio.css&quot;&gt;
+    &lt;!-- 页面样式，按设计稿 --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;../css/style.css&quot;&gt;
+
+
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;!-- 磨砂背景 --&gt;
+    &lt;!-- &lt;div class=&quot;blur&quot;&gt;
+            &lt;img src=&quot;../../Image/2.jpg&quot; alt=&quot;&quot;&gt;
+        &lt;/div&gt; --&gt;
+    &lt;!--fixLayer  --&gt;
+    &lt;div class=&quot;audiosWrap fixLayer&quot;&gt;
+        &lt;div class=&quot;header wHeadBg pageHead&quot;&gt;
+            &lt;div class=&quot;head-left&quot;&gt;&lt;a class=&quot;back&quot; href=&quot;#&quot;&gt;&lt;img src=&quot;../img/back.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+            &lt;!-- &lt;div class=&quot;head-left&quot;&gt;&lt;a class=&quot;back&quot; href=&quot;#&quot;&gt;&lt;img src=&quot;../img/backW.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/div&gt; --&gt;
+            &lt;div class=&quot;head-middle&quot;&gt;
+                &lt;p&gt;尤物小妻潜上瘾&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;!-- &lt;div class=&quot;head-right&quot;&gt;
+                &lt;p class=&quot;headRightBox&quot;&gt;
+                    &lt;a class=&quot;menu&quot; href=&quot;javascript:;&quot;&gt;&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/div&gt; --&gt;
+        &lt;/div&gt;
+        &lt;!-- 标题 --&gt;
+        &lt;div class=&quot;cdText&quot;&gt;
+            &lt;p&gt;尤物小妻潜上瘾&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;!-- 封面 --&gt;
+        &lt;div class=&quot;cdBox&quot;&gt;
+            &lt;div class=&quot;coverBox&quot;&gt;
+                &lt;img class=&quot;coverImage&quot; src=&quot;../img/1.jpg&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- 播放器控制面板 --&gt;
+        &lt;div class=&quot;controlBox&quot;&gt;
+            &lt;div id=&quot;playContent&quot;&gt;
+
+                &lt;div onclick=&quot;myControl.selectTime(event)&quot; id=&quot;progressWrap&quot;&gt;
+                    &lt;div id=&quot;progress&quot; style=&quot;display: block;&quot;&gt;&lt;/div&gt;
+                    &lt;div class=&quot;timeBox&quot;&gt;
+                        &lt;span id=&quot;currentTime&quot;&gt;00:00&lt;/span&gt;
+                        &lt;span id=&quot;totleTime&quot;&gt;12:30&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+
+            &lt;ul&gt;
+                &lt;li class=&quot;small&quot;&gt;
+                    &lt;a id=&quot;prevButton&quot; class=&quot;prev gray&quot;
+                        href=&quot;./listening.html?url=http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz002.mp3&quot;&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;playbg&quot;&gt;
+                    &lt;a id=&quot;playButton&quot; onclick=&quot;myControl.mainControl()&quot; class=&quot;play&quot;&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;small&quot;&gt;
+                    &lt;a id=&quot;nextButton&quot; class=&quot;next&quot;
+                        href=&quot;http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz003.mp3&quot;&gt;&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;ol&gt;
+                &lt;li class=&quot;collect noCollected&quot;&gt;
+                    &lt;a href=&quot;javascript:;&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;span&gt;收藏&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li id=&quot;playSpeed&quot; class=&quot;speed&quot;&gt;
+                    &lt;a href=&quot;javascript:;&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;span&gt;1倍数&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;directory&quot;&gt;
+                    &lt;a
+                        href=&quot;../../HTML/page/listening-moreList.html?url=http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz003.mp3&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;span&gt;目录&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ol&gt;
+
+            &lt;audio id=&quot;myMusic&quot;&gt;
+                &lt;!-- &lt;source src=&quot;http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz001.mp3&quot; type=&quot;audio/ogg&quot;&gt;
+                &lt;source src=&quot;http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz001.mp3&quot; type=&quot;audio/mpeg&quot;&gt;
+            --&gt;
+            &lt;/audio&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- 固定悬浮窗 --&gt;
+    &lt;div class=&quot;fixAudio&quot;&gt;
+        &lt;p&gt;5&lt;/p&gt;&lt;img src=&quot;../../Image/1.jpg&quot; alt=&quot;&quot;&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;!-- 
+    音频
+ --&gt;
+&lt;script src=&quot;../js/jquery.cookie.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../js/audiospage.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../js/audios.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // 自动播放
+    var myControl = new Control({
+        currentSrc: &apos;http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz001.mp3&apos;,
+        callback: function() {
+            console.log(&apos;执行事件&apos;)
+        }
+    })
+    myControl.initAutoPlay()
+
+    // 点击播放
+    // $(&apos;#test&apos;).click(function(){
+    //     myControl.mainControl()
+    // })
+&lt;/script&gt;
+
+&lt;/html&gt;
+</code></pre><h1 id="audio-js"><a href="#audio-js" class="headerlink" title="audio.js"></a>audio.js</h1><pre><code>//播放器控制面板    
+var Control = function (o) {
+    let that = this
+    var setting = {
+        audio: $(&quot;#myMusic&quot;)[0], //播放器
+        progressWrap: $(&quot;#progressWrap&quot;), //歌曲进度条容器
+        progress: $(&quot;#progress&quot;),     //歌曲进度条
+        playBtn: $(&quot;#playButton&quot;),   //主控按钮
+        allTimeNode: $(&quot;#totleTime&quot;),    //总时间容器
+        currentTimeNode: $(&quot;#currentTime&quot;),   //当前时间容器
+    }
+    this._opation = $.extend({}, setting, o);
+
+    this.audio = this._opation.audio;
+    this.progressWrap = this._opation.progressWrap;
+    this.progress = this._opation.progress;
+    this.playBtn = this._opation.playBtn;
+    this.allTimeNode = this._opation.allTimeNode;
+    this.currentTimeNode = this._opation.currentTimeNode;
+
+    this.init();
+}
+
+Control.prototype = {
+    // 默认设置
+    init: function () {
+        let that = this
+        //播放控制    
+        this.start = true;
+        //定时器
+        this.timer = null;
+
+        // 设置播放地址
+        this.audio.src = this._opation.currentSrc;
+        // 进入页面播放速率
+        this.setPlaySpeed();
+        // 进入页面开始播放地址以及时间点
+        this.pagePlay();
+        // 每隔2s记录一次播放地址时间
+        setInterval(function () {
+            that.setCookieSong()
+        }, 2000);
+
+        if (this._opation.callback &amp;&amp; typeof that._opation.callback == &quot;function&quot;) {
+            this._opation.callback()
+        }
+
+
+    },
+    // 微信端自动播放
+    initAutoPlay: function () {
+        let that = this;
+        document.addEventListener(&apos;DOMContentLoaded&apos;, function () {
+            that.goPlayStyle();
+            function audioAutoPlay() {
+                that.audio.play()
+                document.addEventListener(&quot;WeixinJSBridgeReady&quot;, function () {
+                    // 可用数据足以开始播放 if(that.audio.readyState &gt;=4){ alert(&apos;readyState=&apos; + readyState) }
+                    that.audio.play()
+                }, false);
+
+                that.timer = setInterval(
+                    function () {
+                        that.oTime()
+                    }, 1000)
+                that.start = false;
+                that.autoNext();
+            }
+            audioAutoPlay();
+        });
+    },
+
+    //转换为时间格式
+    timeDispose: function (number) {
+        var minute = parseInt(number / 60);
+        var second = parseInt(number % 60);
+        minute = minute &gt;= 10 ? minute : &quot;0&quot; + minute;
+        second = second &gt;= 10 ? second : &quot;0&quot; + second;
+        return minute + &quot;:&quot; + second;
+    },
+
+    //播放时间
+    oTime: function () {
+        // if(this.audio.readyState &gt;=4){  }  // 可用数据足以开始播放
+        var currentProgress = Math.round(this.audio.currentTime / this.audio.duration * parseInt(this.progressWrap.css(&quot;width&quot;)));
+        this.progress.css(&quot;width&quot;, currentProgress + &quot;px&quot;);
+        this.allTimeNode.html(this.timeDispose(this.audio.duration));
+        this.currentTimeNode.html(this.timeDispose(this.audio.currentTime));
+    },
+
+    //播放进度选择
+    selectTime: function (event) {
+        var moveTo = event.pageX - this.progressWrap.offset().left;
+        this.audio.currentTime = moveTo / parseInt(this.progressWrap.css(&quot;width&quot;)) * this.audio.duration;
+        this.progress.css(&quot;width&quot;, moveTo + &quot;px&quot;);
+        this.currentTimeNode.html(this.timeDispose(this.audio.currentTime));
+    },
+    // 主控
+    mainControl: function () {
+        function pp(a) {
+            if (a.start) {
+                a.goPlay();
+            } else {
+                a.goPause();
+            }
+        }
+        setTimeout(pp(this), 500);
+    },
+    // 监听播放完毕后 自动播放下一曲
+    autoNext: function () {
+        let that = this
+        this.audio.addEventListener(&apos;waiting&apos;, function () {
+            that.allTimeNode.html(&apos;加载中...&apos;);
+        }, false);
+
+        this.audio.addEventListener(&apos;ended&apos;, function () {
+            console.log(&apos;自动下一曲&apos;)
+            that.restTime()
+            that.goPause()
+            var nextUrl = $(&quot;#nextButton&quot;).attr(&quot;href&quot;);
+            console.log(nextUrl)
+            that.audio.src= nextUrl;
+            that.goPlay();
+        }, false);
+    },
+    restTime: function () {
+        let that = this;
+        let ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == &apos;micromessenger&apos;) {
+            that.audio.addEventListener(&apos;canplay&apos;, function () {
+                that.audio.currentTime = 0;
+            }, false);
+        } else {
+            that.audio.currentTime = 0;
+        }
+        $.cookie(&apos;songTime&apos;, 0, { path: &apos;/&apos; });
+    },
+    // 每隔2s记录 当前播放地址,时间
+    setCookieSong: function () {
+        var mediaUrl = this.audio.currentSrc;
+        var mediaTime = this.audio.currentTime;
+        $.cookie(&apos;mediaUrl&apos;, mediaUrl, { path: &apos;/&apos; });
+        $.cookie(&apos;mediaTime&apos;, mediaTime, { path: &apos;/&apos; });
+    },
+    // 切换页面 接着播放
+    pagePlay: function () {
+        let that = this;
+        var mediaUrlPage = $.cookie(&apos;mediaUrl&apos;);
+        var mediaTimePage = $.cookie(&apos;mediaTime&apos;);
+        if (mediaTimePage &amp;&amp; mediaTimePage != that.audio.duration) {
+            mediaTimePage = parseFloat(mediaTimePage)
+        } else {
+            mediaTimePage = 0;
+        }
+        console.log(&apos;mediaTime=&apos; + mediaTimePage)
+        console.log(&apos;mediaUrl=&apos; + mediaUrlPage);
+        if (mediaUrlPage) {
+            this.audio.currentSrc = mediaUrlPage;
+            let ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == &apos;micromessenger&apos;) {
+                that.audio.addEventListener(&apos;canplay&apos;, function () {
+                    that.audio.currentTime = mediaTimePage;
+                }, false);
+            } else {
+                that.audio.currentTime = mediaTimePage;
+            }
+        }
+    },
+    // 倍数播放1.0  1.5 2.0
+    setPlaySpeed: function () {
+        let that = this;
+        var speed = $.cookie(&apos;playSpeed&apos;);
+        speed = speed ? parseFloat(speed) : 1;
+        console.log(speed)
+        this.audio.playbackRate = speed;
+        that.speedStyle($(&apos;#playSpeed&apos;), speed);
+        // 修改  1-speed10 1.5-speed15  2-speed20
+        $(&apos;#playSpeed&apos;).click(function () {
+            let $this = $(this)
+            $(this).removeAttr(&apos;class&apos;)
+            speed += 0.5;
+            if (speed &gt; 2) { speed = 1; }
+            that.speedStyle($this, speed);
+            that.audio.playbackRate = speed;
+            $.cookie(&apos;playSpeed&apos;, speed, { path: &apos;/&apos; });
+        })
+    },
+    // 倍数播放控制按钮
+    speedStyle: function ($this, spd) {
+        $this.find(&apos;span&apos;).text(spd + &apos;倍数&apos;)
+        $this.removeAttr(&apos;class&apos;).attr(&apos;class&apos;, &apos;speed&apos; + spd * 10)
+    },
+
+
+    //播放
+    goPlay: function () {
+        this.audio.play();
+        var _this = this;
+        this.goPlayStyle();
+        this.timer = setInterval(function () { _this.oTime() }, 1000)
+        this.start = false;
+        this.autoNext();
+        thisTime = new Date();
+        starttime = thisTime.getFullYear() + &quot;&quot; + (thisTime.getMonth() &gt; 8 ? &apos;&apos; : &apos;0&apos;) + (thisTime.getMonth() + 1) + &quot;&quot; + (thisTime.getDate() &gt; 9 ? &apos;&apos; : &apos;0&apos;) + thisTime.getDate() + (thisTime.getHours() &gt; 9 ? &apos;&apos; : &apos;0&apos;) + thisTime.getHours() + (thisTime.getMinutes() &gt; 9 ? &apos;&apos; : &apos;0&apos;) + thisTime.getMinutes() + (thisTime.getSeconds() &gt; 9 ? &apos;&apos; : &apos;0&apos;) + thisTime.getSeconds();
+
+    },
+
+    //暂停
+    goPause: function () {
+        this.audio.pause();
+        this.goPauseStyle();
+        clearInterval(this.timer);
+        this.start = true;
+    },
+
+    //播放样式
+    goPlayStyle: function () {
+        this.playBtn.addClass(&quot;pause&quot;);
+        this.playBtn.removeClass(&quot;play&quot;);
+        $(&quot;#progress&quot;).show();
+
+    },
+
+    //暂停样式
+    goPauseStyle: function () {
+        this.playBtn.addClass(&quot;play&quot;);
+        this.playBtn.removeClass(&quot;pause&quot;);
+    },
+
+}
+</code></pre><h1 id="页面样式-style-css"><a href="#页面样式-style-css" class="headerlink" title="页面样式 style.css"></a>页面样式 style.css</h1><pre><code>/* 页面样式 */
+html,
+body {
+    height: auto;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 头部样式 */
+.header {
+    width: 100%;
+    height: 1.2rem;
+    overflow: hidden;
+    position: relative;
+    /* position: fixed; */
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 500; */
+}
+
+.header .head-left {
+    height: 1.2rem;
+    position: absolute;
+    top: 0;
+    left: 0.47rem;
+    z-index: 8;
+}
+
+.header .head-left a {
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.header .head-middle {
+    width: 100%;
+    height: 1.2rem;
+}
+
+.header .head-right {
+    height: 1.2rem;
+    position: absolute;
+    top: 0;
+    right: 0.47rem;
+    z-index: 8;
+}
+
+.header .head-right .headRightBox {
+    width: auto;
+    height: 1.2rem;
+}
+
+.header .head-right .headRightBox a {
+    height: 100%;
+    overflow: hidden;
+    text-align: right;
+    padding-right: 0.03rem;
+    display: block;
+    float: left;
+    font-size: 0;
+}
+
+.header .head-right .headRightBox a img {
+    display: block;
+    width: 0.48rem;
+    height: 0.48rem;
+    margin: auto;
+}
+
+.pageHead .head-left a {
+    text-align: left;
+    padding-top: 0.39rem;
+    font-size: 0;
+}
+
+.pageHead .head-left a img {
+    height: 0.43rem;
+}
+
+.pageHead .head-middle {
+    padding: 0 1.53rem 0;
+}
+
+.pageHead .head-middle p {
+    text-align: center;
+    font-size: 0.48rem;
+    line-height: 1.2rem;
+    height: 1.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.pageHead .head-middle p i {
+    font-size: 0.4rem;
+    color: #BFBDB8;
+}
+
+.pageHead .head-right .headRightBox a {
+    width: 0.8rem;
+    background: url(&apos;../img/menu.png&apos;) no-repeat center;
+    background-size: 0.48rem 0.48rem;
+}
+
+.wHeadBg {
+    background-color: #fff;
+    /* 白色底 */
+    box-shadow: 0 0 .2rem #e8ecf0;
+    -moz-box-shadow: 0 0 .2rem #e8ecf0;
+    -webkit-box-shadow: 0 0 .2rem #e8ecf0;
+    color: #221802;
+}
+
+.nHeadBg {
+    background-color: transparent;
+    color: #FFF;
+    border-bottom: 1px solid #fff;
+    /* 透明底 */
+}
+
+
+
+.fixAudio {
+    width: 2rem;
+    height: 1.8rem;
+    position: fixed;
+    right: 0.27rem;
+    bottom: 3.2rem;
+    z-index: 500;
+  }
+  .fixAudio p {
+    display: block;
+    width: 0.8rem;
+    height: 0.8rem;
+    font-size: 0.38rem;
+    color: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    z-index: 10;
+    text-align: center;
+    line-height: calc(0.8rem - 4px);
+    background-color: red;
+    /* 不支持线性的时候显示 */
+    background-image: linear-gradient(#ee9c9c, #df7979, #F53F3F);
+    box-shadow: 0 0 0.13rem #8c8c8f;
+    -moz-box-shadow: 0 0 0.13rem #8c8c8f;
+    -webkit-box-shadow: 0 0 0.13rem #8c8c8f;
+  }
+  .fixAudio img {
+    width: 1.6rem;
+    height: 1.6rem;
+    position: absolute;
+    left: 0.25rem;
+    top: 0.1rem;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0.13rem #8c8c8f;
+    -moz-box-shadow: 0 0 0.13rem #8c8c8f;
+    -webkit-box-shadow: 0 0 0.13rem #8c8c8f;
+  }
+
+
+/* ---------------------------------------------------------------- */
+
+/* 磨砂背景 */
+.blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.blur img {
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+    position: absolute;
+}
+.blur::after{
+    content:&apos;&apos;;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    overflow: hidden;
+    background-color: #000;
+    opacity: 0.3;
+    z-index: 2;
+}
+
+/* --------------------------- 正文样式   ------------------------------------ */
+
+.audiosWrap {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.fixLayer{
+    position: fixed;
+    z-index: 100000;
+    top: 100vh;
+}
+
+.slideOut{
+    animation:slideOut 0.5s  linear forwards ;
+    -webkit-animation:slideOut 0.5s linear forwards ; /* Safari 和 Chrome */
+}
+@keyframes slideOut {
+    from { top: 0; } to { top: 100vh; }
+}
+@-webkit-keyframes slideOut{
+    from { top: 0; } to { top: 100vh; }
+}
+.slideIn{
+    animation:slideIn 0.5s  linear forwards ;
+    -webkit-animation:slideIn 0.5s linear forwards ; /* Safari 和 Chrome */
+}
+@keyframes slideIn {
+    from { top: 100vh; } to {top: 0;}
+}
+@-webkit-keyframes slideIn{
+    from { top: 100vh; } to {top: 0;}
+}
+/* --------------------------------------------------------------- */
+
+.cdText{
+
+}
+.cdText p{
+    height: .67rem;
+    padding: .4rem;
+    font-size: .32rem;
+    color: #999;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- */
+
+/* 封面 */
+.cdBox {
+    position: relative;
+    margin: 1.07rem auto;
+}
+.coverBox {
+
+}
+.coverBox img {
+    width: 6.4rem;
+    height: 6.4rem;
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: #807D7D 0px 0.03rem 0.16rem;
+    -webkit-box-shadow: #807D7D 0 0.03rem 0.16rem;
+    -moz-box-shadow: #807D7D 0px 0.03rem 0.16rem;
+}
+</code></pre><h1 id="页面样式-audio-css"><a href="#页面样式-audio-css" class="headerlink" title="页面样式 audio.css"></a>页面样式 audio.css</h1><pre><code>/* 播放器样式 */
+*{
+    font-family:&apos;PingFang-SC-Bold&apos; ;
+    margin:0;
+    padding: 0;
+    -moz-box-sizing: border-box;  
+    -webkit-box-sizing: border-box; 
+    -o-box-sizing: border-box; 
+    -ms-box-sizing: border-box; 
+    box-sizing: border-box; 
+    -webkit-overflow-scrolling: touch;
+    list-style: none;
+  }
+a{ text-decoration: none;}
+.controlBox{
+
+}
+
+#playContent{
+    width: 100%;
+    z-index: 50;
+    overflow: hidden;
+    text-align: center;
+    min-height: 1.5rem;
+}
+.timeBox{ 
+    overflow: hidden;
+    margin-top: .27rem;
+}
+
+#currentTime { 
+    font-size: .32rem;
+    color: #B3B3B3;
+    /* display: inline-block;
+    vertical-align: middle; */
+    /* margin-left: 0.16rem; */
+    float: left;
+}
+#totleTime {
+    font-size: .32rem;
+    color: #B3B3B3;
+    /* display: inline-block;
+    vertical-align: middle; */
+    /* margin-right: 0.16rem; */
+    float: right;
+}
+#progressWrap{    
+    width: 7.2rem;
+    height: .12rem;
+    border-radius: .09rem;
+    background-color:#E6E6E6;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#progress{
+    background: #F2AC17;
+    height: .12rem;
+    position: absolute;
+    width: 0;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#progress:after{
+    content: &quot;&quot;;
+    position: absolute;
+    width: .24rem;
+    background: #F2AC17;
+    height: .24rem;
+    top: -0.06rem;
+    right: -0.24rem;
+    border-radius: 50%;
+}
+
+
+
+.controlBox ul{
+    width: 7.2rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 55;
+    margin: .2rem auto ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.controlBox ul li a{
+    display: block;
+    margin: auto;
+}
+.controlBox ul li.small{
+    width: 1.33rem;
+    height: 1.33rem;
+}
+.controlBox ul li.small a{
+    width: 1.33rem;
+    height: 1.33rem;
+    border-radius: 50%;
+}
+.controlBox a.next{
+    background:url(../img/next.png) no-repeat 50%;
+    background-size: 1.33rem 1.33rem;
+}
+.controlBox a.prev{
+    background:url(../img/pre.png) no-repeat center;
+    background-size: 1.33rem 1.33rem;
+} 
+
+
+.controlBox ul li.playbg{
+    width: 1.81rem;
+    height: 1.81rem;
+}
+.controlBox ul li.playbg a{
+    width: 1.81rem;
+    height: 1.81rem;
+    border-radius: 50%;
+}
+
+.controlBox a.play{
+    background:url(../img/pause.png) no-repeat center;
+    background-size: 1.81rem 1.81rem;
+}
+
+.controlBox a.pause{
+    background:url(../img/play.png) no-repeat center;   
+    background-size: 1.81rem 1.81rem;
+}
+
+
+
+.controlBox ol{
+    width: 7.2rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 55;
+    margin: .93rem auto  0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.controlBox ol li a{
+    min-width: 1.33rem;
+    display: block;
+    text-align: center;
+}
+.controlBox ol li a i{
+    display: block;
+    height: .53rem;
+    margin: 0 auto;
+}
+.controlBox ol li a span{
+    display: block;
+    color: #999999;
+    font-size: .32rem;
+}
+
+.controlBox ol li.hasCollected i{
+    background:url(../img/start.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+.controlBox ol li.hasCollected span{
+    color: #F2AC17;
+}
+.controlBox ol li.noCollected i{
+    background:url(../img/start0.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+
+.controlBox ol li.speed10 i{
+    background:url(../img/1b.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+.controlBox ol li.speed15 i{
+    background:url(../img/1.5b.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+.controlBox ol li.speed20 i{
+    background:url(../img/2b.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+
+.controlBox ol li.directory i{
+    background:url(../img/ml.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-移动端布局自适应flexible-js"
   class="article article-type-post"
   itemscope
@@ -1625,126 +2491,6 @@ new Vue({
       &lt;child v-bind:my-message=&quot;parentMsg&quot;&gt;&lt;/child&gt;
 &lt;/div&gt;
 </code></pre> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="单页应用spa开发中的-框架"
-  class="article article-type-单页应用spa开发中的"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2016/09/06/框架/"
-    >框架</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2016/09/06/框架/" class="article-date">
-  <time datetime="2016-09-06T01:36:29.000Z" itemprop="datePublished">2016-09-06</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="单页应用-SPA-开发中的-Top-10-框架"><a href="#单页应用-SPA-开发中的-Top-10-框架" class="headerlink" title="单页应用(SPA)开发中的 Top 10 框架"></a>单页应用(SPA)开发中的 Top 10 框架</h2><p>要用原生 JavaScript 开发 web 应用 ？ 呵呵哒！现在都追求开发效率，开发者需要要更高效的方式，于是 JavaScript 框架诞生了。JavaScript 框架是单页应用开发的顶梁柱，它为 HTML 和 原生 JavaScript 增加了强大的功能。</p>
-<p>多年以来，我们苦逼地使用原生 JavaScirpt 和 jQuery 开发复杂的界面，开发和维护的苦真是一言难尽。</p>
-<p>框架能够让开发者抽出更多的精力专注在交互功能上，不用太操心代码的结构和组织。</p>
-<p>大多数框架使用了 MVC 模式，并增强了代码的扩展性，重用性和可维护性。MVC 并不是唯一的准则，还有一些其他的模式，比如 MV＊， MVVM， MVP。 要根据项目的需求应用恰当的模式。</p>
-<p>最近一段时间 JavaScirpt 框架层出不穷，其中有十个最棒的，它们高端大气，功能丰富，广受欢迎，让我们可以搞定那些难搞的单页应用。</p>
-<h3 id="React-js"><a href="#React-js" class="headerlink" title="React.js"></a>React.js</h3><p>Facebook 和 Instagram 的用户界面为什么这么给力呢？因为它们用的是 React.js。我们借此可以感受到 ReactJS 在创建大规模动态应用方面的强大能力。</p>
-<p>React 在 2013 年发布了第一个的开源版本，它遵循 BSD 许可。一经发布社区规模就迅速扩大，必须承认它是当今发展最快 JavaScript 框架。随手就可以找到非常多的资料，教程和 React 的组件库。</p>
-<p>ReactJS 最擅长高效地渲染复杂的用户界面。它的基本原理是一个称为 virtual DOM 的东西。virtual DOM 可以在客户端或服务端渲染，并进行通信。</p>
-<p>在数据处理变的复杂和动态之后，客户端的 DOM 操作的性能受到影响。 React 的解决办法是：</p>
-<ul>
-<li>使用 virtual DOM 在服务端进行 DOM 渲染。</li>
-<li>比较真实的 DOM 和 virtual DOM，并标记两者的差异。</li>
-<li>只更新那些发生变化的 DOM 节点而不是重绘完整的 DOM 树。</li>
-</ul>
-<p>React 另一个优势在于响应式组件带来了很好的重用性，React 组件库创建后可以在多个项目中共用，也能供大众使用。</p>
-<p>官网有更多的信息－<a href="http://reactnative.cn/" target="_blank" rel="noopener">http://reactnative.cn/</a></p>
-<h3 id="Angular-js"><a href="#Angular-js" class="headerlink" title="Angular.js"></a>Angular.js</h3><p>AngularJS 是 JavaScript 框架中一面旗帜，在2009年发布第一版，遵循 MIT 许可开源。发布以来，Angular 的生态圈就以惊人的速度壮大。它自称拥有最大的开发者社区，也是最常用的框架。</p>
-<p>Angular 为 HTML 增添了开发动态交互页面时所需的全部功能，其中包括在 HTML 元素的属性上添加 Angular 的指令。用 Angular 扩展 HTML 太方便了，把默认指令或者自定义指令放在某个 div 的属性上就可以了。</p>
-<p>Angular 负责编译和渲染 HTML，并生成用户界面， 在此过程中，它操作 DOM 并实现指令中的全部功能。不过，指令只是 Angular 强大功能的一部分。</p>
-<p>双向数据绑定是 Angular 的核心功能。用户在界面上戳戳点点或是输入点什么的时候，改变了应用中的 view，此时 model(JavaScript objects) 会跟随着 view 一起发生变化，model 中的代码逻辑得到执行，最终将更新 DOM 结构。</p>
-<p>这个过程反过来也一样的，当某些因素引起 model 变化时（比如使用服务端的消息推送），view 会重新渲染。这种方式大体上根治了手工维护 DOM 的痛苦。</p>
-<p>最近发布的 ReactJS 有超越 Angular 的势头，不过 Angular 牢牢地把持着领先地位，人们对它的需求有增无减。Angular 能够不断地成长是因为 每一个版本都会有优化和先进的功能。</p>
-<p>我们可以访问 Angular 的官方网张了解更多的信息- <a href="angularjs.org">angularjs.org</a></p>
-<h3 id="Backbone-js"><a href="#Backbone-js" class="headerlink" title="Backbone.js"></a>Backbone.js</h3><p>是不是想要一个轻量又包含所有功能的 JavaScript 框架呢？Backone.JS 正是这样的。 Jeremy Ashkenas 在 2010 年发布了它的一个开源版本，遵循 MIT 协议。</p>
-<p>backbone 功能强大并应用广泛，Pinterest，Foursquare，Walmart，DIsqus 和 Delicious 这些大公司都在使用它。这仅是用户中的一小部分，由于用户数量巨大，无法罗列出来。</p>
-<p>backbone 的优势是它比较简单，很小并容易上手。使用 backbone 开发可以说干就干。</p>
-<p>backbone 非常灵活，因为它提供了一个最小的功能集合，开发者在此基础上二次开发，自己写代码或者使用第三方的库都可以。还可以在 backbone 的基础上构建一个全功能的框架。</p>
-<p>过去的几个月中，backbone 使用者的增长速度缓慢，远远落后Angular， Ember 还有新出道的 React 的增速。</p>
-<p>主要是因为 backbone 版本迭代慢，缺少其他框架提供的强大功能。</p>
-<p>尽管还有人使用 backbone，不过更多的作为辅助框架而不是主要的框架。</p>
-<p>Backbone 的更多信息请看<a href="backbonejs.org">backbonejs.org</a></p>
-<h3 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h3><p>Vue.js 的开发者是尤小右，2014 年发布了第一个开源版本，遵循 MIT 许可。</p>
-<p>VueJs 是个小鲜肉，吸引了很多开发者关注。VueJs 使用了 MVVM 模式，它的API 非常简单。VueJs 的设计精简至极，为开发者精心准备了几个必需的模块。</p>
-<p>VueJs 参考了 AngularJS, ReactiveJs, konckoutJS 和 RivetsJS，使用双向的数据绑定更新 model 和 view。</p>
-<p>目前来说，Vue 并不能同 Angular 还有 Ember 一较高下，但它很有潜力成为日后的主流框架，届时将获得相应的占有率。发布 10 个月以来它牢牢地站稳了脚跟，现在由尤小右维护。</p>
-<p>关于 VueJs 的更多信息请看-<a href="vuejs.org">vuejs.org</a></p>
-<h3 id="Mercury-js"><a href="#Mercury-js" class="headerlink" title="Mercury.js"></a>Mercury.js</h3><p>我们身处 JavaScript 框架大发展的时期，这种状况前所未有。我的 top ten 名单里也给新晋者留着一个位置，这就是 Mercury.js，它刚刚发布但前景广阔。</p>
-<p>Mercury 由Raynos 创建，遵循 MIT 许可。它迅速的火了起来，吸引了大量的开发者关注。</p>
-<p>Mercury 应该是借鉴 react 并使用了虚拟 DOM。它是现代化的框架，完全模块化，也可以按照需要扩展。</p>
-<p>想一下这几个概念，压缩体积小，模块化，高效还有广受欢迎，Mercury 因此占据了当今十佳 JavaScript 框架的一个位置。</p>
-<p>了解更多请看 <a href="githubcom/Raynos/mercury">githubcom/Raynos/mercury</a></p>
-<h3 id="Knockout-js"><a href="#Knockout-js" class="headerlink" title="Knockout.js"></a>Knockout.js</h3><p>knockoutJS 由 Steve Sanderson 在 2010 年发布了第一个开源版本，遵循 MIT 许可。Knockout 依照的是 MVVM 模式，这让它变的与 Ember 还有 Angular 不太一样。</p>
-<p>Knockout 曾经流行过，不过现在与 Angular, Ember 还有 Backbone 相比，用户增速非常缓慢。原因很简单，因为在增加新的功能和改进现有功能方面相差太多。</p>
-<p>社区的开发者正在慢慢地转向 React 还有 Angular 的方向发展。Knockout 底蕴深厚，如果有人愿意接手它，并为它增加最新的技术，它还有希望重现辉煌。 </p>
-<p>我们可以了解更多的信息<a href="knockoutjs.com">knockoutjs.com</a></p>
-<h3 id="Polymer-js"><a href="#Polymer-js" class="headerlink" title="Polymer.js"></a>Polymer.js</h3><p>Polymer.js 是一个与众不同的框架，由 google 在 2013 年发布。Polymer 使用了 web components 来增强 HTML 的功能。</p>
-<p>Web Components 是由 W3C 发布的一项浏览器技术，用来创建定制的 HTML 标签。比如 <audio> 是一个标准的 HTML5 元素，通过使用 web components 和相关的技术可以生成一个自定义的标签，比如说<my-audio>。</my-audio></audio></p>
-<p>Polymer 使用的是包含 web components 在内的浏览器技术，它开创了自定义 HTML 标签的一套体系。</p>
-<p>有关 Polymer 的更多信息请看 <a href="polymer-project.org">polymer-project.org</a></p>
-<h3 id="Meteor-js"><a href="#Meteor-js" class="headerlink" title="Meteor.js"></a>Meteor.js</h3><p>喜欢只使用 JavaScript 开发完整的 web 应用吗？MeteorJS 正是这个神奇的全栈开发平台，让我们可以迅速地开发移动应用和网页应用。MeteorJS非常给力，拥有我们需要的所有功能，包括前端渲染，后端开发，业务逻辑处理和数据库管理。</p>
-<p>Meteor 是 Meteor 开发组创造的，在 2012 年发布了一个开源版本，遵循 MIT 许可。</p>
-<p>发布以来，MeteorJS 的生态圈迅速的发展壮大，它的社区业非常地活跃，相关的资料，教程和第三方的包很多，这些让 MeteorJS 变的非常强力。</p>
-<p>MeteorJS 最棒的地方是仅 javaScript 开发就够了，不用花费时间去学习其他的语言。另外 MetrorJS 是模块化的，包和库可以按需加载。</p>
-<p>服务端的代码运行在 nodejs 上，使用 MeteorJS 就能操作数据库，全都是 JavsScript， MeteorJS 是实时的 web 应用。</p>
-<p>性能方面，数据库中的改变都会实时得反映在 UI 上，避免了不同语言间切换，减少了服务器的响应时间。</p>
-<p>我们在官网了解到更多的信息-<a href="meteor.com">meteor.com</a></p>
-<h3 id="Aurelia-js"><a href="#Aurelia-js" class="headerlink" title="Aurelia.js"></a>Aurelia.js</h3><p>AureliaJS 由 Rob Eisenberg 为首的团队创建，团队中大部分的人来自 Angular 和 Durandal。它是 Durandal 公司旗下的一个开源的产品。该公司是一个创业公司，提供下一代 web 开发所用的库，工具和框架。</p>
-<p>AureliaJS 是 2015 年 1 月发布的，不过已经在用于生产环境。它是 Durandal 的继承者，据 Eisenberg 说其实就是 Durandal 的下一个版本。 Durandal，Angular 1还有Angualr 2 的开发者可以轻松地迁移到 Aurelia 。</p>
-<p>虽然 AureliaJS 刚发布不久，但是如果你在寻找 JavaScript 框架，请认真考虑它。因为它底蕴深厚，并由一只非常专业的团队维护着。</p>
-<p>AureliaJS 的模块化程度非常高，由众多相互独立的，规模较小的库组成。我们可以在项目中使用整个框架，也可以仅使用一些必备的库，或者是扩展所用包来构建自己的框架。</p>
-<p>AureliaJS 不依赖其他的库，除了一些必要的 polyfill 没有额外的依赖。</p>
-<p>通过官网我们可以了解更多的信息－<a href="aurelia.io">aurelia.io</a></p>
-<h3 id="Ember-js"><a href="#Ember-js" class="headerlink" title="Ember.js"></a>Ember.js</h3><p>EmberJS 也是一个功能强大的 MVC 框架。Ember 由 Yehuda 在 2011 年发布了第一个开源版本，遵循MIT 许可。EmberJS 在创建交互应用方面可以同 Angular，React 一较高下，也拥有非常活跃的社区。</p>
-<p>Ember 和 Angular 一样使用了双向数据绑定，也就是说，当 model 变化时更新 view；当 view 变化时更新 model，view 和 model 一直保持同步。</p>
-<p>Ember 可以跻身优秀的框架之列，是因为它不断地增添强大的功能。它引入的 Fastboot.js 模块提供了服务端渲染的能力，这个思路有点类似 React。</p>
-<p>Ember 想要将 Angular 双向绑定和 React 服务端渲染的优点继承过来。Ember 社区使用这种方式持续不断地给它增加优秀地功能，我十分确信 Ember 会一直流行下去。</p>
-<p>关于更多 Ember 的信息请看 <a href="emberjs.com">emberjs.com</a></p>
-<p>总结<br>虽然 JavaScript 框架出现的时间不长，但在过去的几年中发展迅速。JavaScript 框架是创建复杂用户界面的首选，尤其是创建单页应用时。</p>
-<p>不同的框架间有不同的概念和方法，但殊途同归，都在试图解决构建复杂应用时的通用问题，让单页应用变的更易用和便捷。</p>
-<p>文章中提到的框架是当今市场中最优秀的框架。请在评论中写下你的经验和你所用的框架。</p>
-<p>关于作者：<br>Sunil 是 noeticforce.com 的创始人和特约编辑。他的文章里包含了所有能够使移动应用，web 应用，网站变的更现代化。是一位富有激情的开发者，他使用 Python, Swift, JavaScript, PHP, Java, Android &amp; iOS ，也包括 HTML/CSS。</p>
-<p>译者：CoolTiger  </p>
-<p>原文地址:<a href="http://noeticforce.com/best-Javascript-frameworks-for-single-page-modern-web-applications" target="_blank" rel="noopener">http://noeticforce.com/best-Javascript-frameworks-for-single-page-modern-web-applications
-</a></p>
- 
       <!-- reward -->
       
     </div>

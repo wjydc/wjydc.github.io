@@ -153,6 +153,160 @@
     
     
     <article
+  id="post-常见兼容性问题（一）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/05/09/常见兼容性问题（一）/"
+    >常见兼容性问题（一）</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/05/09/常见兼容性问题（一）/" class="article-date">
+  <time datetime="2016-05-09T10:57:49.000Z" itemprop="datePublished">2016-05-09</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="常见兼容性问题"><a href="#常见兼容性问题" class="headerlink" title="常见兼容性问题"></a>常见兼容性问题</h3><p>关于各主流浏览器之间的兼容性问题，有时候确实让人头疼，为了提高工作效率，在网上搜集了有关此问题 简单整理了一下，时常来看看<br>出处：<img src="http://www.cnblogs.com/duanhuajian/archive/2012/09/23/2699119.html" alt="http://www.cnblogs.com/duanhuajian/archive/2012/09/23/2699119.html"></p>
+<h5 id="ie6-0横向margin加倍"><a href="#ie6-0横向margin加倍" class="headerlink" title="ie6.0横向margin加倍"></a>ie6.0横向margin加倍</h5><p>产生因素：块属性、float、有横向margin。<br>解决方法：display：inline；</p>
+<h5 id="2-ie6-0下默认有行高"><a href="#2-ie6-0下默认有行高" class="headerlink" title="2 ie6.0下默认有行高"></a>2 ie6.0下默认有行高</h5><p>解决方法：overflow:hidden;或font-size:0;或line-height：xx px；</p>
+<p>#####3 在各个浏览器下img有空隙(原因是：回车。)</p>
+<p>解决方法:让图片浮动。</p>
+<h5 id="4-一个父标签与几个子标签嵌套，父标签不浮动，子标签float，子标签不撑开父的高度。"><a href="#4-一个父标签与几个子标签嵌套，父标签不浮动，子标签float，子标签不撑开父的高度。" class="headerlink" title="4 一个父标签与几个子标签嵌套，父标签不浮动，子标签float，子标签不撑开父的高度。"></a>4 一个父标签与几个子标签嵌套，父标签不浮动，子标签float，子标签不撑开父的高度。</h5><p>解决方法：    </p>
+<p>a 在子标签最后清浮动{<div style="height:0;clear:both;">&nbsp;</div>}</p>
+<p> b 父标签添加{overflow：hidden；}</p>
+<p> c 给父标签设置高度</p>
+<h5 id="5-Ie6下，不识别最大宽、高度和最小宽高度，意即min-width-height和-Max-width-height在ie6中没效果，"><a href="#5-Ie6下，不识别最大宽、高度和最小宽高度，意即min-width-height和-Max-width-height在ie6中没效果，" class="headerlink" title="5 Ie6下，不识别最大宽、高度和最小宽高度，意即min-width/height和 Max-width/height在ie6中没效果，"></a>5 Ie6下，不识别最大宽、高度和最小宽高度，意即min-width/height和 Max-width/height在ie6中没效果，</h5><p>解决方法：</p>
+<pre><code>(1)：.abc{border:1px blue solid;width:200px;height:200px;}
+                  html&gt;body .abc{width:auto;height:auto;min-width:200px;min-        height:200px;}
+
+(2)：.abc{width:200px;height:200px;_width:200px;_height:200px;}（因为ie6有一个特征，当定义一个高度时，如果内容超过高度，元素会自动调整高度。）
+</code></pre><h5 id="6-Ie6里面：如li设宽、高，并且li里面的标签浮动，那么li之间会有间距"><a href="#6-Ie6里面：如li设宽、高，并且li里面的标签浮动，那么li之间会有间距" class="headerlink" title="6 Ie6里面：如li设宽、高，并且li里面的标签浮动，那么li之间会有间距"></a>6 Ie6里面：如li设宽、高，并且li里面的标签浮动，那么li之间会有间距</h5><p>解决方法：li不设宽、高或者li内的标签不浮动</p>
+<h5 id="7-li之间有间距"><a href="#7-li之间有间距" class="headerlink" title="7  li之间有间距"></a>7  li之间有间距</h5><p>解决方法：li 设置vertical-align:middle;</p>
+<h5 id="8-3像素问题：ie6下，当浮动元素与流动元素并列显示时，他们之间会存在三像素问题。"><a href="#8-3像素问题：ie6下，当浮动元素与流动元素并列显示时，他们之间会存在三像素问题。" class="headerlink" title="8 3像素问题：ie6下，当浮动元素与流动元素并列显示时，他们之间会存在三像素问题。"></a>8 3像素问题：ie6下，当浮动元素与流动元素并列显示时，他们之间会存在三像素问题。</h5><p>   解决方法：用hack技术， 例如：</p>
+<pre><code>   所有浏览器通用 height:100px;
+
+ie6专用_height:100px;
+
+ie7专用*+height:100px; 
+
+ie6/ie7共用*height:100px;
+</code></pre><h5 id="9-当定义行内元素为包含框时，且包含框包含的绝对定位元素以百分比为单位进行定位时，会出现混乱。"><a href="#9-当定义行内元素为包含框时，且包含框包含的绝对定位元素以百分比为单位进行定位时，会出现混乱。" class="headerlink" title="9 当定义行内元素为包含框时，且包含框包含的绝对定位元素以百分比为单位进行定位时，会出现混乱。"></a>9 当定义行内元素为包含框时，且包含框包含的绝对定位元素以百分比为单位进行定位时，会出现混乱。</h5><p> 解决方法：在行内元素里加入{zoom：1；}</p>
+<h5 id="10-当多个浮动元素中间夹杂着HTML注释语句时，如果浮动元素宽度为100-，则在下一行多显示一个上一行最后一个字符。"><a href="#10-当多个浮动元素中间夹杂着HTML注释语句时，如果浮动元素宽度为100-，则在下一行多显示一个上一行最后一个字符。" class="headerlink" title="10 当多个浮动元素中间夹杂着HTML注释语句时，如果浮动元素宽度为100%，则在下一行多显示一个上一行最后一个字符。"></a>10 当多个浮动元素中间夹杂着HTML注释语句时，如果浮动元素宽度为100%，则在下一行多显示一个上一行最后一个字符。</h5><p>解决办法：给浮动元素添加display:inline;。</p>
+<h5 id="11-opacity-定义元素的不透明度"><a href="#11-opacity-定义元素的不透明度" class="headerlink" title="11 opacity 定义元素的不透明度"></a>11 opacity 定义元素的不透明度</h5><p>  filter：alpha（opacity=80）；/<em>ie支持该属性</em>/</p>
+<p>  opacity：0.8；/<em>支持css3的浏览器</em>/</p>
+<h5 id="12-两个块元素，竖向的margin值不增加，会重叠，其间距为最大margin值。"><a href="#12-两个块元素，竖向的margin值不增加，会重叠，其间距为最大margin值。" class="headerlink" title="12 两个块元素，竖向的margin值不增加，会重叠，其间距为最大margin值。"></a>12 两个块元素，竖向的margin值不增加，会重叠，其间距为最大margin值。</h5><p>#####13 优先级：被!important 注明的css属性具有最高优先级(.abc{color:red !important;})。但在ie6中!important具有一个bug:在同一组css属性中，!important不起作用。</p>
+<h5 id="14-火狐不识别background-position-y-或background-position-x"><a href="#14-火狐不识别background-position-y-或background-position-x" class="headerlink" title="14 火狐不识别background-position-y 或background-position-x;"></a>14 火狐不识别background-position-y 或background-position-x;</h5><h5 id="15-ie6-不支持-fixed"><a href="#15-ie6-不支持-fixed" class="headerlink" title="15 ie6 不支持 fixed"></a>15 ie6 不支持 fixed</h5><pre><code>/*对于非IE6可以这样写*/
+#top{  
+position:fixed;  
+bottom:0;  
+right:20px;  
+}  
+
+/*但是IE6是不支持fixed定位的，需要另外重写*/
+#top{  
+position:fixed;  
+_position:absolute;  
+top:0;  
+right:20px;  
+_bottom:auto;  
+_top:expression(eval(document.documentElement.scrollTop));
+}  
+
+/*使用hack使IE6实现该效果，但这个东东会闪烁，需要以下代码*/
+*html{  
+background-image:url(about:blank);  
+background-attachment:fixed;  
+}  
+
+/*使固定在顶部*/
+#top{  
+_position:absolute;  
+_bottom:auto;  
+_top:expression(eval(document.documentElement.scrollTop));  
+}  
+
+/*固定在底部*/
+#top{  
+_position:absolute;  
+_bottom:auto;  
+_top:expression(eval(document.documentElement.scrollTop    +document.documentElement.clientHeight-this.offsetHeight-    (parseInt(this.currentStyle.marginTop)||0)-    (parseInt(this.currentStyle.marginBottom)||0)));  
+}  
+/*垂直居中*/
+#top{
+position:fixed;
+top:50%;
+margin-top:-50px;
+_position:absolute;
+_top:expression(eval(document.documentElement.scrollTop    +document.documentElement.clientHeight/2)); 
+}
+</code></pre><h5 id="16解决-ie6-最大、最小宽高-hack方法"><a href="#16解决-ie6-最大、最小宽高-hack方法" class="headerlink" title="16解决 ie6 最大、最小宽高 hack方法"></a>16解决 ie6 最大、最小宽高 hack方法</h5><pre><code>/* 最小宽度 */
+.min_width{
+min-width:300px;
+_width:expression(parseInt(this.clientWidth) &lt; 300 ? &quot;300px&quot; : this.clientWidth);
+}
+
+/* 最大宽度 */
+.max_width{
+       max-width:600px;
+       _width:expression(parseInt(this.clientWidth) &gt; 600 ? &quot;600px&quot; :         this.clientWidth);
+    }
+/* 最小高度 */
+.min_height{
+   min-height:200px;
+   _height:expression(parseInt(this.clientHeight) &lt; 200 ? &quot;200px&quot; :     this.clientHeight);
+}
+
+/* 最大高度 */
+max_height{
+   max-height:400px;
+   _height:expression(parseInt(this.clientHeight) &gt; 400 ? &quot;400px&quot; :     this.clientHeight);
+}
+</code></pre><h5 id="17-z-index不起作用的-bug"><a href="#17-z-index不起作用的-bug" class="headerlink" title="17 z-index不起作用的 bug"></a>17 z-index不起作用的 bug</h5><p>1）ie6下 首先讲讲第一种z-index无论设置多高都不起作用情况。这种情况发生的条件有三个：1、父标签position属性为relative；2、问题标签含有浮动(float)属性。</p>
+<p>2）所有浏览器：它只认第一个爸爸<br>层级的高低不仅要看自己，还要看自己的老爸这个后台是否够硬。用术语具体描述为：<br>父标签position属性为relative或absolute时，子标签的absolute属性是相对于父标签而言的。而在IE6下，层级的表现有时候不是看子标签的z-index多高，而要看它们的父标签的z-index谁高谁低。</p>
+<h5 id="18-ie各个版本hack"><a href="#18-ie各个版本hack" class="headerlink" title="18 ie各个版本hack"></a>18 ie各个版本hack</h5><pre><code>/*类内部hack：*/
+.header {_width:100px;}            /* IE6专用*/
+.header {*+width:100px;}        /* IE7专用*/
+.header {*width:100px;}            /* IE6、IE7共用*/
+.header {width:100px\0;}        /* IE8、IE9共用*/
+.header {width:100px\9;}        /* IE6、IE7、IE8、IE9共用*/
+.header {width:330px\9\0;}    /* IE9专用*/
+
+/*选择器Hack：*/
+*html .header{}        /*IE6*/ 
+*+html .header{}    /*IE7*/ 
+</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-JavaScript使用小技巧"
   class="article article-type-post"
   itemscope
@@ -1193,156 +1347,6 @@ console.log(a.__proto__); //Object {}（即构造器function A 的原型对象�
 console.log(a.__proto__.__proto__); //Object {}（即构造器function Object 的原型对象）
 console.log(a.__proto__.__proto__.__proto__); //null
 </code></pre> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-使用CSS完成元素居中的七种方法"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2016/02/22/使用CSS完成元素居中的七种方法/"
-    >使用CSS完成元素居中的七种方法</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2016/02/22/使用CSS完成元素居中的七种方法/" class="article-date">
-  <time datetime="2016-02-22T04:53:56.000Z" itemprop="datePublished">2016-02-22</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="使用CSS完成元素居中的七种方法"><a href="#使用CSS完成元素居中的七种方法" class="headerlink" title="使用CSS完成元素居中的七种方法"></a>使用CSS完成元素居中的七种方法</h3><p>在网页上使 HTML 元素居中看似一件很简单的事情. 至少在某些情况下是这样的，但是复杂的布局往往使一些解决方案不能很好的发挥作用。</p>
-<p>在网页布局中元素水平居中比元素垂直居中要简单不少，同时实现水平居中和垂直居中往往是最难的。现在是响应式设计的时代，我们很难确切的知道元素的准确高度和宽度，所以一些方案不大适用。据我所知, 在CSS中至少有六种实现居中的方法。我将使用下面的HTML结构从简单到复杂开始讲解:</p>
-<pre><code>&lt;div class=&quot;center&quot;&gt;
-      &lt;img src=&quot;jimmy-choo-shoe.jpg&quot; alt&gt;&lt;/div&gt;
-</code></pre><h4 id="使用text-align水平居中"><a href="#使用text-align水平居中" class="headerlink" title="使用text-align水平居中"></a>使用text-align水平居中</h4><p><img src="https://gss0.baidu.com/9fo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/eac4b74543a982268da2a9ac8c82b9014b90ebde.jpg" alt=""></p>
-<p>有时显而易见的方案是最佳的选择：</p>
-<pre><code>div.center {
-  text-align: center;
-  background: hsl(0, 100%, 97%);}div.center img {
-  width: 33%; height: auto;}
-</code></pre><p> 这种方案没有使图片垂直居中：你需要给<div> 添加 padding 或者给内容添加margin-top 和 margin-bottom使容器与内容之间有一定的距离。</div></p>
-<h4 id="使用-margin-auto-居中"><a href="#使用-margin-auto-居中" class="headerlink" title="使用 margin: auto 居中"></a>使用 margin: auto 居中</h4><p><img src="http://d06.res.meilishuo.net/picdetail/a/53/82/990dcf4f386c706bbd38a83d3996_715_488_1_1.jpeg" alt=""></p>
-<p>这种方式实现水平居中和上面使用text-align的方法有相同局限性。</p>
-<pre><code>div.center {
-  background: hsl(60, 100%, 97%);}div.center img {
-  display: block;
-  width: 33%;
-  height: auto;
-  margin: 0 auto;}
-</code></pre><p> 注意： 必须使用display: block使 margin: 0 auto对img元素生效。</p>
-<h4 id="使用table-cell居中"><a href="#使用table-cell居中" class="headerlink" title="使用table-cell居中"></a>使用table-cell居中</h4><p><img src="http://d04.res.meilishuo.net/pic/_o/12/b2/fedaa42ff8322d23c7f838706030_500_500.jpeg" alt=""></p>
-<p>使用 display: table-cell, 而不是使用table标签; 可以实现水平居中和垂直居中，但是这种方法需要添加额外的元素作为外部容器。</p>
-<pre><code>&lt;div class=&quot;center-aligned&quot;&gt;
-&lt;div class=&quot;center-core&quot;&gt;
-    &lt;img src=&quot;jimmy-choo-shoe.jpg&quot;&gt;
-&lt;/div&gt;&lt;/div&gt;
-</code></pre><p>CSS:</p>
-<pre><code>.center-aligned {
-display: table;
-background: hsl(120, 100%, 97%);
-width: 100%;}.center-core {
-display: table-cell;
-text-align: center;
-vertical-align: middle;}.center-core img {
-width: 33%;
-height: auto;}
-</code></pre><p>注意：为了使div 不折叠必须加上 width: 100%，外部容器元素也需要加上一定高度使得内容垂直居中。给html和body设置高度后，也可以使元素在body垂直居中。此方法在IE8+浏览器上生效。</p>
-<h4 id="使用absolute定位居中"><a href="#使用absolute定位居中" class="headerlink" title="使用absolute定位居中"></a>使用absolute定位居中</h4><p><img src="http://d1.tuanimg.com/imagev2/zhaoshang/700x700.fdd06d6fd9aaed1bb1a333be58f1ec72.310x310.jpg" alt=""></p>
-<p>这种 方案 有非常好的跨浏览器支持。有一个缺点就是必须显式声明外部容器元素的height：</p>
-<pre><code>.absolute-aligned {
-position: relative;
-min-height: 500px;
-background: hsl(200, 100%, 97%);}.absolute-aligned img {
-width: 50%;
-min-width: 200px;
-height: auto;
-overflow: auto;
-margin: auto;
-position: absolute;
-top: 0; left: 0;
-bottom: 0; right: 0;}
-</code></pre><p>Stephen在他的 博客 中演示了这种方案的几种变化。</p>
-<h4 id="使用translate居中"><a href="#使用translate居中" class="headerlink" title="使用translate居中"></a>使用translate居中</h4><p><img src="http://d1.tuanimg.com/imagev2/zhaoshang/700x700.fdd06d6fd9aaed1bb1a333be58f1ec72.310x310.jpg" alt=""><br>Chris Coiyer 提出了一个使用 CSS transforms 的新方案。 同样支持水平居中和垂直居中:</p>
-<pre><code>.center {
-background: hsl(180, 100%, 97%);
-position: relative;
-min-height: 500px;}.center img {
-position: absolute;
-top: 50%; left: 50%;
-transform: translate(-50%, -50%);
-width: 30%; height: auto;}
-</code></pre><p>但是有以下几种缺点:</p>
-<ul>
-<li>CSS transform 在部分就浏览器上需要使用 前缀。</li>
-<li>不支持 IE9 以下的浏览器。</li>
-<li>外部容器需要设置height （或者用其他方式设置），因为不能获取 绝对定位 的内容的高度。</li>
-<li>如果内容包含文字，现在的浏览器合成技术会使文字模糊不清。 </li>
-</ul>
-<h4 id="使用Flexbox居中"><a href="#使用Flexbox居中" class="headerlink" title="使用Flexbox居中"></a>使用Flexbox居中</h4><p><img src="http://www.qqjia.com/z/07/tu8603_13.jpg" alt=""><br>当新旧语法差异和浏览器前缀消失时，这种方法会成为主流的居中方案。</p>
-<pre><code>.center { 
-background: hsl(240, 100%, 97%);
-display: flex;
-justify-content: center;
-align-items: center;}.center img { 
-width: 30%; height: auto;}
-</code></pre><p>在很多方面 flexbox 是一种简单的方案， 但是它有新旧两种语法以及早期版本的IE缺乏支持 （尽管可以使用 display: table-cell作为降级方案）。</p>
-<p>现在规范已经最终确定，现代浏览器也大都支持,我写了一篇详细的教程 教程。</p>
-<h4 id="使用calc居中"><a href="#使用calc居中" class="headerlink" title="使用calc居中"></a>使用calc居中</h4><p><img src="http://www.qqjia.com/z/07/tu8603_13.jpg" alt=""></p>
-<p>在某些情况下比flexbox更全面：</p>
-<pre><code>.center {
-background: hsl(300, 100%, 97%);
-min-height: 600px;
-position: relative;}.center img {
-width: 40%;
-height: auto;
-position: absolute;
-top: calc(50% - 20%);
-left: calc(50% - 20%);}
-</code></pre><p>很简单，calc 允许你基于当前的页面布局计算尺寸。在上面的简单计算中， 50% 是容器元素的中心点，但是如果只设置50%会使图片的左上角对齐div的中心位置。 我们需要把图片向左和向上各移动图片宽高的一半。计算公式为：</p>
-<pre><code>top: calc(50% - (40% / 2));left: calc(50% - (40% / 2));
-</code></pre><p>在现在的浏览其中你会发现，这种方法更适用于当内容的宽高为固定尺寸：</p>
-<pre><code>.center img {
-width: 500px; height: 500px;
-position: absolute;
-top: calc(50% - (300px / 2));
-left: calc(50% - (300px – 2)); }
-</code></pre><p> 这种方案和flex一样有许多相同的缺点： 虽然在现代浏览器中有良好的支持，但是在较早的版本中仍然需要浏览器前缀，并且不支持IE8。</p>
-<pre><code> .center img {
-width: 40%; height: auto;
-position: absolute;
-top: calc(50% - 20%);
-left: calc(50% - 20%);}
-</code></pre><p> 当然还有 其他更多的方案。理解这六种方案之后，web开发人员在面对元素居中的时候会有更多的选择。</p>
-<p>来源<a href="http://www.zcfy.cc/article/the-new-code-seven-ways-of-centering-with-css-439.html" target="_blank" rel="noopener">http://www.zcfy.cc/article/the-new-code-seven-ways-of-centering-with-css-439.html</a></p>
- 
       <!-- reward -->
       
     </div>

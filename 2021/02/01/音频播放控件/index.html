@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    音频播放控件 |  薇娇
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-音频播放控件"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  音频播放控件
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/01/音频播放控件/" class="article-date">
+  <time datetime="2021-02-01T09:26:35.000Z" itemprop="datePublished">2021-02-01</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">3.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">18 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="audio-html"><a href="#audio-html" class="headerlink" title="audio.html"></a>audio.html</h1><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;script src=&quot;../js/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;../js/flexible.debug.js&quot;&gt;&lt;/script&gt;
+    &lt;meta name=viewport content=&quot;width=device-width,initial-scale=1,user-scalable=no&quot;&gt;
+    &lt;title&gt;济公全传-奇文小说&lt;/title&gt;
+    &lt;!-- 播放器样式 --&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;../css/audio.css&quot;&gt;
+    &lt;!-- 页面样式，按设计稿 --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;../css/style.css&quot;&gt;
+
+
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;!-- 磨砂背景 --&gt;
+    &lt;!-- &lt;div class=&quot;blur&quot;&gt;
+            &lt;img src=&quot;../../Image/2.jpg&quot; alt=&quot;&quot;&gt;
+        &lt;/div&gt; --&gt;
+    &lt;!--fixLayer  --&gt;
+    &lt;div class=&quot;audiosWrap fixLayer&quot;&gt;
+        &lt;div class=&quot;header wHeadBg pageHead&quot;&gt;
+            &lt;div class=&quot;head-left&quot;&gt;&lt;a class=&quot;back&quot; href=&quot;#&quot;&gt;&lt;img src=&quot;../img/back.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+            &lt;!-- &lt;div class=&quot;head-left&quot;&gt;&lt;a class=&quot;back&quot; href=&quot;#&quot;&gt;&lt;img src=&quot;../img/backW.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/div&gt; --&gt;
+            &lt;div class=&quot;head-middle&quot;&gt;
+                &lt;p&gt;尤物小妻潜上瘾&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;!-- &lt;div class=&quot;head-right&quot;&gt;
+                &lt;p class=&quot;headRightBox&quot;&gt;
+                    &lt;a class=&quot;menu&quot; href=&quot;javascript:;&quot;&gt;&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/div&gt; --&gt;
+        &lt;/div&gt;
+        &lt;!-- 标题 --&gt;
+        &lt;div class=&quot;cdText&quot;&gt;
+            &lt;p&gt;尤物小妻潜上瘾&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;!-- 封面 --&gt;
+        &lt;div class=&quot;cdBox&quot;&gt;
+            &lt;div class=&quot;coverBox&quot;&gt;
+                &lt;img class=&quot;coverImage&quot; src=&quot;../img/1.jpg&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- 播放器控制面板 --&gt;
+        &lt;div class=&quot;controlBox&quot;&gt;
+            &lt;div id=&quot;playContent&quot;&gt;
+
+                &lt;div onclick=&quot;myControl.selectTime(event)&quot; id=&quot;progressWrap&quot;&gt;
+                    &lt;div id=&quot;progress&quot; style=&quot;display: block;&quot;&gt;&lt;/div&gt;
+                    &lt;div class=&quot;timeBox&quot;&gt;
+                        &lt;span id=&quot;currentTime&quot;&gt;00:00&lt;/span&gt;
+                        &lt;span id=&quot;totleTime&quot;&gt;12:30&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+            &lt;/div&gt;
+
+            &lt;ul&gt;
+                &lt;li class=&quot;small&quot;&gt;
+                    &lt;a id=&quot;prevButton&quot; class=&quot;prev gray&quot;
+                        href=&quot;./listening.html?url=http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz002.mp3&quot;&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;playbg&quot;&gt;
+                    &lt;a id=&quot;playButton&quot; onclick=&quot;myControl.mainControl()&quot; class=&quot;play&quot;&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;small&quot;&gt;
+                    &lt;a id=&quot;nextButton&quot; class=&quot;next&quot;
+                        href=&quot;http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz003.mp3&quot;&gt;&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;ol&gt;
+                &lt;li class=&quot;collect noCollected&quot;&gt;
+                    &lt;a href=&quot;javascript:;&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;span&gt;收藏&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li id=&quot;playSpeed&quot; class=&quot;speed&quot;&gt;
+                    &lt;a href=&quot;javascript:;&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;span&gt;1倍数&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;directory&quot;&gt;
+                    &lt;a
+                        href=&quot;../../HTML/page/listening-moreList.html?url=http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz003.mp3&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;span&gt;目录&lt;/span&gt;&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ol&gt;
+
+            &lt;audio id=&quot;myMusic&quot;&gt;
+                &lt;!-- &lt;source src=&quot;http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz001.mp3&quot; type=&quot;audio/ogg&quot;&gt;
+                &lt;source src=&quot;http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz001.mp3&quot; type=&quot;audio/mpeg&quot;&gt;
+            --&gt;
+            &lt;/audio&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- 固定悬浮窗 --&gt;
+    &lt;div class=&quot;fixAudio&quot;&gt;
+        &lt;p&gt;5&lt;/p&gt;&lt;img src=&quot;../../Image/1.jpg&quot; alt=&quot;&quot;&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;!-- 
+    音频
+ --&gt;
+&lt;script src=&quot;../js/jquery.cookie.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../js/audiospage.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../js/audios.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // 自动播放
+    var myControl = new Control({
+        currentSrc: &apos;http://file.huaxiazi.com/mp3/%E6%B5%8E%E5%85%AC%E5%85%A8%E4%BC%A0/jgqz001.mp3&apos;,
+        callback: function() {
+            console.log(&apos;执行事件&apos;)
+        }
+    })
+    myControl.initAutoPlay()
+
+    // 点击播放
+    // $(&apos;#test&apos;).click(function(){
+    //     myControl.mainControl()
+    // })
+&lt;/script&gt;
+
+&lt;/html&gt;
+</code></pre><h1 id="audio-js"><a href="#audio-js" class="headerlink" title="audio.js"></a>audio.js</h1><pre><code>//播放器控制面板    
+var Control = function (o) {
+    let that = this
+    var setting = {
+        audio: $(&quot;#myMusic&quot;)[0], //播放器
+        progressWrap: $(&quot;#progressWrap&quot;), //歌曲进度条容器
+        progress: $(&quot;#progress&quot;),     //歌曲进度条
+        playBtn: $(&quot;#playButton&quot;),   //主控按钮
+        allTimeNode: $(&quot;#totleTime&quot;),    //总时间容器
+        currentTimeNode: $(&quot;#currentTime&quot;),   //当前时间容器
+    }
+    this._opation = $.extend({}, setting, o);
+
+    this.audio = this._opation.audio;
+    this.progressWrap = this._opation.progressWrap;
+    this.progress = this._opation.progress;
+    this.playBtn = this._opation.playBtn;
+    this.allTimeNode = this._opation.allTimeNode;
+    this.currentTimeNode = this._opation.currentTimeNode;
+
+    this.init();
+}
+
+Control.prototype = {
+    // 默认设置
+    init: function () {
+        let that = this
+        //播放控制    
+        this.start = true;
+        //定时器
+        this.timer = null;
+
+        // 设置播放地址
+        this.audio.src = this._opation.currentSrc;
+        // 进入页面播放速率
+        this.setPlaySpeed();
+        // 进入页面开始播放地址以及时间点
+        this.pagePlay();
+        // 每隔2s记录一次播放地址时间
+        setInterval(function () {
+            that.setCookieSong()
+        }, 2000);
+
+        if (this._opation.callback &amp;&amp; typeof that._opation.callback == &quot;function&quot;) {
+            this._opation.callback()
+        }
+
+
+    },
+    // 微信端自动播放
+    initAutoPlay: function () {
+        let that = this;
+        document.addEventListener(&apos;DOMContentLoaded&apos;, function () {
+            that.goPlayStyle();
+            function audioAutoPlay() {
+                that.audio.play()
+                document.addEventListener(&quot;WeixinJSBridgeReady&quot;, function () {
+                    // 可用数据足以开始播放 if(that.audio.readyState &gt;=4){ alert(&apos;readyState=&apos; + readyState) }
+                    that.audio.play()
+                }, false);
+
+                that.timer = setInterval(
+                    function () {
+                        that.oTime()
+                    }, 1000)
+                that.start = false;
+                that.autoNext();
+            }
+            audioAutoPlay();
+        });
+    },
+
+    //转换为时间格式
+    timeDispose: function (number) {
+        var minute = parseInt(number / 60);
+        var second = parseInt(number % 60);
+        minute = minute &gt;= 10 ? minute : &quot;0&quot; + minute;
+        second = second &gt;= 10 ? second : &quot;0&quot; + second;
+        return minute + &quot;:&quot; + second;
+    },
+
+    //播放时间
+    oTime: function () {
+        // if(this.audio.readyState &gt;=4){  }  // 可用数据足以开始播放
+        var currentProgress = Math.round(this.audio.currentTime / this.audio.duration * parseInt(this.progressWrap.css(&quot;width&quot;)));
+        this.progress.css(&quot;width&quot;, currentProgress + &quot;px&quot;);
+        this.allTimeNode.html(this.timeDispose(this.audio.duration));
+        this.currentTimeNode.html(this.timeDispose(this.audio.currentTime));
+    },
+
+    //播放进度选择
+    selectTime: function (event) {
+        var moveTo = event.pageX - this.progressWrap.offset().left;
+        this.audio.currentTime = moveTo / parseInt(this.progressWrap.css(&quot;width&quot;)) * this.audio.duration;
+        this.progress.css(&quot;width&quot;, moveTo + &quot;px&quot;);
+        this.currentTimeNode.html(this.timeDispose(this.audio.currentTime));
+    },
+    // 主控
+    mainControl: function () {
+        function pp(a) {
+            if (a.start) {
+                a.goPlay();
+            } else {
+                a.goPause();
+            }
+        }
+        setTimeout(pp(this), 500);
+    },
+    // 监听播放完毕后 自动播放下一曲
+    autoNext: function () {
+        let that = this
+        this.audio.addEventListener(&apos;waiting&apos;, function () {
+            that.allTimeNode.html(&apos;加载中...&apos;);
+        }, false);
+
+        this.audio.addEventListener(&apos;ended&apos;, function () {
+            console.log(&apos;自动下一曲&apos;)
+            that.restTime()
+            that.goPause()
+            var nextUrl = $(&quot;#nextButton&quot;).attr(&quot;href&quot;);
+            console.log(nextUrl)
+            that.audio.src= nextUrl;
+            that.goPlay();
+        }, false);
+    },
+    restTime: function () {
+        let that = this;
+        let ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == &apos;micromessenger&apos;) {
+            that.audio.addEventListener(&apos;canplay&apos;, function () {
+                that.audio.currentTime = 0;
+            }, false);
+        } else {
+            that.audio.currentTime = 0;
+        }
+        $.cookie(&apos;songTime&apos;, 0, { path: &apos;/&apos; });
+    },
+    // 每隔2s记录 当前播放地址,时间
+    setCookieSong: function () {
+        var mediaUrl = this.audio.currentSrc;
+        var mediaTime = this.audio.currentTime;
+        $.cookie(&apos;mediaUrl&apos;, mediaUrl, { path: &apos;/&apos; });
+        $.cookie(&apos;mediaTime&apos;, mediaTime, { path: &apos;/&apos; });
+    },
+    // 切换页面 接着播放
+    pagePlay: function () {
+        let that = this;
+        var mediaUrlPage = $.cookie(&apos;mediaUrl&apos;);
+        var mediaTimePage = $.cookie(&apos;mediaTime&apos;);
+        if (mediaTimePage &amp;&amp; mediaTimePage != that.audio.duration) {
+            mediaTimePage = parseFloat(mediaTimePage)
+        } else {
+            mediaTimePage = 0;
+        }
+        console.log(&apos;mediaTime=&apos; + mediaTimePage)
+        console.log(&apos;mediaUrl=&apos; + mediaUrlPage);
+        if (mediaUrlPage) {
+            this.audio.currentSrc = mediaUrlPage;
+            let ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == &apos;micromessenger&apos;) {
+                that.audio.addEventListener(&apos;canplay&apos;, function () {
+                    that.audio.currentTime = mediaTimePage;
+                }, false);
+            } else {
+                that.audio.currentTime = mediaTimePage;
+            }
+        }
+    },
+    // 倍数播放1.0  1.5 2.0
+    setPlaySpeed: function () {
+        let that = this;
+        var speed = $.cookie(&apos;playSpeed&apos;);
+        speed = speed ? parseFloat(speed) : 1;
+        console.log(speed)
+        this.audio.playbackRate = speed;
+        that.speedStyle($(&apos;#playSpeed&apos;), speed);
+        // 修改  1-speed10 1.5-speed15  2-speed20
+        $(&apos;#playSpeed&apos;).click(function () {
+            let $this = $(this)
+            $(this).removeAttr(&apos;class&apos;)
+            speed += 0.5;
+            if (speed &gt; 2) { speed = 1; }
+            that.speedStyle($this, speed);
+            that.audio.playbackRate = speed;
+            $.cookie(&apos;playSpeed&apos;, speed, { path: &apos;/&apos; });
+        })
+    },
+    // 倍数播放控制按钮
+    speedStyle: function ($this, spd) {
+        $this.find(&apos;span&apos;).text(spd + &apos;倍数&apos;)
+        $this.removeAttr(&apos;class&apos;).attr(&apos;class&apos;, &apos;speed&apos; + spd * 10)
+    },
+
+
+    //播放
+    goPlay: function () {
+        this.audio.play();
+        var _this = this;
+        this.goPlayStyle();
+        this.timer = setInterval(function () { _this.oTime() }, 1000)
+        this.start = false;
+        this.autoNext();
+        thisTime = new Date();
+        starttime = thisTime.getFullYear() + &quot;&quot; + (thisTime.getMonth() &gt; 8 ? &apos;&apos; : &apos;0&apos;) + (thisTime.getMonth() + 1) + &quot;&quot; + (thisTime.getDate() &gt; 9 ? &apos;&apos; : &apos;0&apos;) + thisTime.getDate() + (thisTime.getHours() &gt; 9 ? &apos;&apos; : &apos;0&apos;) + thisTime.getHours() + (thisTime.getMinutes() &gt; 9 ? &apos;&apos; : &apos;0&apos;) + thisTime.getMinutes() + (thisTime.getSeconds() &gt; 9 ? &apos;&apos; : &apos;0&apos;) + thisTime.getSeconds();
+
+    },
+
+    //暂停
+    goPause: function () {
+        this.audio.pause();
+        this.goPauseStyle();
+        clearInterval(this.timer);
+        this.start = true;
+    },
+
+    //播放样式
+    goPlayStyle: function () {
+        this.playBtn.addClass(&quot;pause&quot;);
+        this.playBtn.removeClass(&quot;play&quot;);
+        $(&quot;#progress&quot;).show();
+
+    },
+
+    //暂停样式
+    goPauseStyle: function () {
+        this.playBtn.addClass(&quot;play&quot;);
+        this.playBtn.removeClass(&quot;pause&quot;);
+    },
+
+}
+</code></pre><h1 id="页面样式-style-css"><a href="#页面样式-style-css" class="headerlink" title="页面样式 style.css"></a>页面样式 style.css</h1><pre><code>/* 页面样式 */
+html,
+body {
+    height: auto;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 头部样式 */
+.header {
+    width: 100%;
+    height: 1.2rem;
+    overflow: hidden;
+    position: relative;
+    /* position: fixed; */
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 500; */
+}
+
+.header .head-left {
+    height: 1.2rem;
+    position: absolute;
+    top: 0;
+    left: 0.47rem;
+    z-index: 8;
+}
+
+.header .head-left a {
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.header .head-middle {
+    width: 100%;
+    height: 1.2rem;
+}
+
+.header .head-right {
+    height: 1.2rem;
+    position: absolute;
+    top: 0;
+    right: 0.47rem;
+    z-index: 8;
+}
+
+.header .head-right .headRightBox {
+    width: auto;
+    height: 1.2rem;
+}
+
+.header .head-right .headRightBox a {
+    height: 100%;
+    overflow: hidden;
+    text-align: right;
+    padding-right: 0.03rem;
+    display: block;
+    float: left;
+    font-size: 0;
+}
+
+.header .head-right .headRightBox a img {
+    display: block;
+    width: 0.48rem;
+    height: 0.48rem;
+    margin: auto;
+}
+
+.pageHead .head-left a {
+    text-align: left;
+    padding-top: 0.39rem;
+    font-size: 0;
+}
+
+.pageHead .head-left a img {
+    height: 0.43rem;
+}
+
+.pageHead .head-middle {
+    padding: 0 1.53rem 0;
+}
+
+.pageHead .head-middle p {
+    text-align: center;
+    font-size: 0.48rem;
+    line-height: 1.2rem;
+    height: 1.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.pageHead .head-middle p i {
+    font-size: 0.4rem;
+    color: #BFBDB8;
+}
+
+.pageHead .head-right .headRightBox a {
+    width: 0.8rem;
+    background: url(&apos;../img/menu.png&apos;) no-repeat center;
+    background-size: 0.48rem 0.48rem;
+}
+
+.wHeadBg {
+    background-color: #fff;
+    /* 白色底 */
+    box-shadow: 0 0 .2rem #e8ecf0;
+    -moz-box-shadow: 0 0 .2rem #e8ecf0;
+    -webkit-box-shadow: 0 0 .2rem #e8ecf0;
+    color: #221802;
+}
+
+.nHeadBg {
+    background-color: transparent;
+    color: #FFF;
+    border-bottom: 1px solid #fff;
+    /* 透明底 */
+}
+
+
+
+.fixAudio {
+    width: 2rem;
+    height: 1.8rem;
+    position: fixed;
+    right: 0.27rem;
+    bottom: 3.2rem;
+    z-index: 500;
+  }
+  .fixAudio p {
+    display: block;
+    width: 0.8rem;
+    height: 0.8rem;
+    font-size: 0.38rem;
+    color: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    z-index: 10;
+    text-align: center;
+    line-height: calc(0.8rem - 4px);
+    background-color: red;
+    /* 不支持线性的时候显示 */
+    background-image: linear-gradient(#ee9c9c, #df7979, #F53F3F);
+    box-shadow: 0 0 0.13rem #8c8c8f;
+    -moz-box-shadow: 0 0 0.13rem #8c8c8f;
+    -webkit-box-shadow: 0 0 0.13rem #8c8c8f;
+  }
+  .fixAudio img {
+    width: 1.6rem;
+    height: 1.6rem;
+    position: absolute;
+    left: 0.25rem;
+    top: 0.1rem;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0.13rem #8c8c8f;
+    -moz-box-shadow: 0 0 0.13rem #8c8c8f;
+    -webkit-box-shadow: 0 0 0.13rem #8c8c8f;
+  }
+
+
+/* ---------------------------------------------------------------- */
+
+/* 磨砂背景 */
+.blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.blur img {
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+    position: absolute;
+}
+.blur::after{
+    content:&apos;&apos;;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    overflow: hidden;
+    background-color: #000;
+    opacity: 0.3;
+    z-index: 2;
+}
+
+/* --------------------------- 正文样式   ------------------------------------ */
+
+.audiosWrap {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.fixLayer{
+    position: fixed;
+    z-index: 100000;
+    top: 100vh;
+}
+
+.slideOut{
+    animation:slideOut 0.5s  linear forwards ;
+    -webkit-animation:slideOut 0.5s linear forwards ; /* Safari 和 Chrome */
+}
+@keyframes slideOut {
+    from { top: 0; } to { top: 100vh; }
+}
+@-webkit-keyframes slideOut{
+    from { top: 0; } to { top: 100vh; }
+}
+.slideIn{
+    animation:slideIn 0.5s  linear forwards ;
+    -webkit-animation:slideIn 0.5s linear forwards ; /* Safari 和 Chrome */
+}
+@keyframes slideIn {
+    from { top: 100vh; } to {top: 0;}
+}
+@-webkit-keyframes slideIn{
+    from { top: 100vh; } to {top: 0;}
+}
+/* --------------------------------------------------------------- */
+
+.cdText{
+
+}
+.cdText p{
+    height: .67rem;
+    padding: .4rem;
+    font-size: .32rem;
+    color: #999;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- */
+
+/* 封面 */
+.cdBox {
+    position: relative;
+    margin: 1.07rem auto;
+}
+.coverBox {
+
+}
+.coverBox img {
+    width: 6.4rem;
+    height: 6.4rem;
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: #807D7D 0px 0.03rem 0.16rem;
+    -webkit-box-shadow: #807D7D 0 0.03rem 0.16rem;
+    -moz-box-shadow: #807D7D 0px 0.03rem 0.16rem;
+}
+</code></pre><h1 id="页面样式-audio-css"><a href="#页面样式-audio-css" class="headerlink" title="页面样式 audio.css"></a>页面样式 audio.css</h1><pre><code>/* 播放器样式 */
+*{
+    font-family:&apos;PingFang-SC-Bold&apos; ;
+    margin:0;
+    padding: 0;
+    -moz-box-sizing: border-box;  
+    -webkit-box-sizing: border-box; 
+    -o-box-sizing: border-box; 
+    -ms-box-sizing: border-box; 
+    box-sizing: border-box; 
+    -webkit-overflow-scrolling: touch;
+    list-style: none;
+  }
+a{ text-decoration: none;}
+.controlBox{
+
+}
+
+#playContent{
+    width: 100%;
+    z-index: 50;
+    overflow: hidden;
+    text-align: center;
+    min-height: 1.5rem;
+}
+.timeBox{ 
+    overflow: hidden;
+    margin-top: .27rem;
+}
+
+#currentTime { 
+    font-size: .32rem;
+    color: #B3B3B3;
+    /* display: inline-block;
+    vertical-align: middle; */
+    /* margin-left: 0.16rem; */
+    float: left;
+}
+#totleTime {
+    font-size: .32rem;
+    color: #B3B3B3;
+    /* display: inline-block;
+    vertical-align: middle; */
+    /* margin-right: 0.16rem; */
+    float: right;
+}
+#progressWrap{    
+    width: 7.2rem;
+    height: .12rem;
+    border-radius: .09rem;
+    background-color:#E6E6E6;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#progress{
+    background: #F2AC17;
+    height: .12rem;
+    position: absolute;
+    width: 0;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+#progress:after{
+    content: &quot;&quot;;
+    position: absolute;
+    width: .24rem;
+    background: #F2AC17;
+    height: .24rem;
+    top: -0.06rem;
+    right: -0.24rem;
+    border-radius: 50%;
+}
+
+
+
+.controlBox ul{
+    width: 7.2rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 55;
+    margin: .2rem auto ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.controlBox ul li a{
+    display: block;
+    margin: auto;
+}
+.controlBox ul li.small{
+    width: 1.33rem;
+    height: 1.33rem;
+}
+.controlBox ul li.small a{
+    width: 1.33rem;
+    height: 1.33rem;
+    border-radius: 50%;
+}
+.controlBox a.next{
+    background:url(../img/next.png) no-repeat 50%;
+    background-size: 1.33rem 1.33rem;
+}
+.controlBox a.prev{
+    background:url(../img/pre.png) no-repeat center;
+    background-size: 1.33rem 1.33rem;
+} 
+
+
+.controlBox ul li.playbg{
+    width: 1.81rem;
+    height: 1.81rem;
+}
+.controlBox ul li.playbg a{
+    width: 1.81rem;
+    height: 1.81rem;
+    border-radius: 50%;
+}
+
+.controlBox a.play{
+    background:url(../img/pause.png) no-repeat center;
+    background-size: 1.81rem 1.81rem;
+}
+
+.controlBox a.pause{
+    background:url(../img/play.png) no-repeat center;   
+    background-size: 1.81rem 1.81rem;
+}
+
+
+
+.controlBox ol{
+    width: 7.2rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 55;
+    margin: .93rem auto  0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.controlBox ol li a{
+    min-width: 1.33rem;
+    display: block;
+    text-align: center;
+}
+.controlBox ol li a i{
+    display: block;
+    height: .53rem;
+    margin: 0 auto;
+}
+.controlBox ol li a span{
+    display: block;
+    color: #999999;
+    font-size: .32rem;
+}
+
+.controlBox ol li.hasCollected i{
+    background:url(../img/start.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+.controlBox ol li.hasCollected span{
+    color: #F2AC17;
+}
+.controlBox ol li.noCollected i{
+    background:url(../img/start0.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+
+.controlBox ol li.speed10 i{
+    background:url(../img/1b.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+.controlBox ol li.speed15 i{
+    background:url(../img/1.5b.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+.controlBox ol li.speed20 i{
+    background:url(../img/2b.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+
+.controlBox ol li.directory i{
+    background:url(../img/ml.png) no-repeat center;   
+    background-size: auto .48rem;
+}
+</code></pre> 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2021/02/01/音频播放控件/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2021/02/01/移动端布局自适应flexible-js/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">移动端布局自适应flexible.js</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2021
+        <i class="ri-heart-fill heart_icon"></i> 魏姣
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="薇娇"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<!-- Tocbot -->
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+<link rel="stylesheet" href="/css/clipboard.css">
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>
