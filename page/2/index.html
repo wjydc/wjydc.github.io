@@ -1,145 +1,185 @@
-<!doctype html>
-<html class="theme-next use-motion theme-next-hexo-theme-next-0.4.0">
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
 <head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     薇娇
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  <link rel="stylesheet" href="/dist/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
   
 
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  
 
-
-
-
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.0"/>
-
-
-
-
-
-    <meta name="keywords" content="Hexo,next" />
-
-
-
-
-
-    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.0" />
-
-
-
-
-  <title> 薇娇 </title>
 </head>
 
+</html>
+
 <body>
-  <div class="container one-column 
-   page-home 
-">
-    <div class="headband"></div>
-
-    <div id="header" class="header">
-      <div class="header-inner">
-        <h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand">
-      <span class="logo">
-        <i class="icon-logo"></i>
-      </span>
-      <span class="site-title">薇娇</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
-</h1>
-
-
-  <ul id="menu" class="menu">
+  <div id="app">
     
       
-      <li class="menu-item menu-item-home">
-        <a href="/">
-          <i class="menu-item-icon icon-home"></i> <br />
-          Home
-        </a>
-      </li>
+    <main class="content on">
+      
+<section class="cover">
     
       
-      <li class="menu-item menu-item-archives">
-        <a href="/archives">
-          <i class="menu-item-icon icon-archives"></i> <br />
-          Archives
-        </a>
-      </li>
+      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
     
-      
-      <li class="menu-item menu-item-tags">
-        <a href="/tags">
-          <i class="menu-item-icon icon-tags"></i> <br />
-          Tags
-        </a>
-      </li>
-    
-  </ul>
-
-
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">薇娇</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
       </div>
     </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
 
-    <div id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content">
-          
-            
-          
 
-          <div id="posts" class="posts-expand">
-            
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
   
+<div id="main">
+  <section class="outer">
+  
+  <ul class="ads">
     
+        <li>
+            <a href="https://curl.qcloud.com/ezctH6FU">
+                <img src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/ten_1.jpg" width="300" alt="腾讯云限时秒杀">
+            </a>
+        </li>
+    
+        <li>
+            <a href="https://curl.qcloud.com/kvO7hb43">
+                <img src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/ten_2.jpg" width="300" alt="云服务器全球购低至2折">
+            </a>
+        </li>
+    
+</ul>
+  
+  
+  
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+<div class="notice" style="margin-top:50px">
+    <i class="ri-heart-fill"></i>
+    <div class="notice-content" id="broad"></div>
+</div>
+<script type="text/javascript">
+    fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("broad").innerHTML = data.hitokoto;
+        })
+        .catch(console.error)
+</script>
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/08/16/使用HTML5中postMessage实现Ajax中的POST跨域问题/">
-                使用HTML5中postMessage实现Ajax中的POST跨域问题
-              </a>
-            
-          
-        </h1>
-      
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
 
-      <div class="post-meta">
-        <span class="post-time">
-          
-            Posted on 2016-08-16
-          
-        </span>
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
 
-        
-          
-        
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-使用HTML5中postMessage实现Ajax中的POST跨域问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/08/16/使用HTML5中postMessage实现Ajax中的POST跨域问题/"
+    >使用HTML5中postMessage实现Ajax中的POST跨域问题</a> 
+</h2>
+ 
 
-        
-          
-        
-      </div>
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/08/16/使用HTML5中postMessage实现Ajax中的POST跨域问题/" class="article-date">
+  <time datetime="2016-08-16T01:02:01.000Z" itemprop="datePublished">2016-08-16</time>
+</a>    
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h3 id="使用HTML5中postMessage实现Ajax中的POST跨域问题"><a href="#使用HTML5中postMessage实现Ajax中的POST跨域问题" class="headerlink" title="使用HTML5中postMessage实现Ajax中的POST跨域问题"></a>使用HTML5中postMessage实现Ajax中的POST跨域问题</h3><p>HTML5中提供了在网页文档之间相互接收与发送信息的功能。使用这个功能，只要获取到网页所在窗口对象的实例，不仅仅同源(域+端口号)的web网页之间可以互相通信，甚至可以实现跨域通信。<br>浏览器支持程度：IE8+，firefox4+，chrome8+ opera10+</p>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="使用HTML5中postMessage实现Ajax中的POST跨域问题"><a href="#使用HTML5中postMessage实现Ajax中的POST跨域问题" class="headerlink" title="使用HTML5中postMessage实现Ajax中的POST跨域问题"></a>使用HTML5中postMessage实现Ajax中的POST跨域问题</h3><p>HTML5中提供了在网页文档之间相互接收与发送信息的功能。使用这个功能，只要获取到网页所在窗口对象的实例，不仅仅同源(域+端口号)的web网页之间可以互相通信，甚至可以实现跨域通信。<br>浏览器支持程度：IE8+，firefox4+，chrome8+ opera10+</p>
 <p>1.首先，要想接收从其他的窗口发过来的消息，就必须对窗口对象的message事件进行监听，如下代码：</p>
 <pre><code>window.addEventListener(“message”, function(){},false);
 </code></pre><p>2.其次，需要使用window对象的postMessage方法向其他窗口发送消息，该方法定义如下所示：</p>
@@ -237,73 +277,53 @@ $data=array(
  echo json_encode($data);?&gt;
 </code></pre><p>如上实现方式 就可以实现ajax post跨域了。</p>
 <p>文章参考<a href="http://mp.weixin.qq.com/s?__biz=MjM5MDA2MTI1MA==&amp;mid=2649084284&amp;idx=1&amp;sn=fa0fb2d0a163ffb201a756fcd4da529a&amp;chksm=be5bf6d1892c7fc74d84dc53bdf8d4f69cf6c762b4268d67f4b21ded9022ebb2dc069b9cd1b7&amp;mpshare=1&amp;scene=23&amp;srcid=1121m1iYfBMxtp1TfARtoiEw#rd" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MjM5MDA2MTI1MA==&amp;mid=2649084284&amp;idx=1&amp;sn=fa0fb2d0a163ffb201a756fcd4da529a&amp;chksm=be5bf6d1892c7fc74d84dc53bdf8d4f69cf6c762b4268d67f4b21ded9022ebb2dc069b9cd1b7&amp;mpshare=1&amp;scene=23&amp;srcid=1121m1iYfBMxtp1TfARtoiEw#rd</a></p>
-
-          
-        
-      </div>
+ 
+      <!-- reward -->
+      
+    </div>
     
 
+    <!-- copyright -->
     
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
+    <footer class="article-footer">
+       
+    </footer>
   </div>
 
-
-  
     
+ 
+    
+</article>
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+    
+    <article
+  id="post-PHP基础（二）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/08/15/PHP基础（二）/"
+    >PHP基础（二）</a> 
+</h2>
+ 
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/08/15/PHP基础（二）/">
-                PHP基础（二）
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            Posted on 2016-08-15
-          
-        </span>
-
-        
-          
-        
-
-        
-          
-        
-      </div>
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/08/15/PHP基础（二）/" class="article-date">
+  <time datetime="2016-08-15T15:25:37.000Z" itemprop="datePublished">2016-08-15</time>
+</a>    
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h3 id="PHP基础（二）"><a href="#PHP基础（二）" class="headerlink" title="PHP基础（二）"></a>PHP基础（二）</h3><h6 id="在-PHP-中创建数组"><a href="#在-PHP-中创建数组" class="headerlink" title="在 PHP 中创建数组"></a>在 PHP 中创建数组</h6><p>在 PHP 中，array() 函数用于创建数组：</p>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="PHP基础（二）"><a href="#PHP基础（二）" class="headerlink" title="PHP基础（二）"></a>PHP基础（二）</h3><h6 id="在-PHP-中创建数组"><a href="#在-PHP-中创建数组" class="headerlink" title="在 PHP 中创建数组"></a>在 PHP 中创建数组</h6><p>在 PHP 中，array() 函数用于创建数组：</p>
 <p>在 PHP 中，有三种类型的数组：</p>
 <pre><code>* 数值数组 - 带有数字 ID 键的数组
 
@@ -546,73 +566,53 @@ echo &apos;命名空间为：&quot;&apos;, __NAMESPACE__, &apos;&quot;&apos;; //
 ?&gt;
 </code></pre><p>以上实例输出结果为：</p>
 <pre><code>命名空间为：&quot;MyProject&quot;
-</code></pre>
-          
-        
-      </div>
+</code></pre> 
+      <!-- reward -->
+      
+    </div>
     
 
+    <!-- copyright -->
     
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
+    <footer class="article-footer">
+       
+    </footer>
   </div>
 
-
-  
     
+ 
+    
+</article>
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+    
+    <article
+  id="post-PHP基础（一）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/08/10/PHP基础（一）/"
+    >PHP基础（一）</a> 
+</h2>
+ 
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/08/10/PHP基础（一）/">
-                PHP基础（一）
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            Posted on 2016-08-10
-          
-        </span>
-
-        
-          
-        
-
-        
-          
-        
-      </div>
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/08/10/PHP基础（一）/" class="article-date">
+  <time datetime="2016-08-10T05:25:28.000Z" itemprop="datePublished">2016-08-10</time>
+</a>    
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h3 id="PHP基础（一）"><a href="#PHP基础（一）" class="headerlink" title="PHP基础（一）"></a>PHP基础（一）</h3><p>PHP 是一种创建动态交互性站点的强有力的服务器端脚本语言。</p>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="PHP基础（一）"><a href="#PHP基础（一）" class="headerlink" title="PHP基础（一）"></a>PHP基础（一）</h3><p>PHP 是一种创建动态交互性站点的强有力的服务器端脚本语言。</p>
 <p>PHP 是什么？</p>
 <ul>
 <li>PHP（全称：PHP：Hypertext Preprocessor，即”PHP：超文本预处理器”）是一种通用开源脚本语言。</li>
@@ -873,73 +873,53 @@ echo &quot;Have a good night!&quot;;
     如果 n 既不等于 label1 也不等于 label2，此处代码将执行;
 }
 </code></pre><p>工作原理：首先对一个简单的表达式 n（通常是变量）进行一次计算。将表达式的值与结构中每个 case 的值进行比较。如果存在匹配，则执行与 case 关联的代码。代码执行后，使用 break 来阻止代码跳入下一个 case 中继续执行。default 语句用于不存在匹配（即没有 case 为真）时执行。</p>
-
-          
-        
-      </div>
+ 
+      <!-- reward -->
+      
+    </div>
     
 
+    <!-- copyright -->
     
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
+    <footer class="article-footer">
+       
+    </footer>
   </div>
 
-
-  
     
+ 
+    
+</article>
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+    
+    <article
+  id="post-那些不推荐使用的html标签"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/07/21/那些不推荐使用的html标签/"
+    >那些不推荐使用的html标签</a> 
+</h2>
+ 
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/07/21/那些不推荐使用的html标签/">
-                那些不推荐使用的html标签
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            Posted on 2016-07-21
-          
-        </span>
-
-        
-          
-        
-
-        
-          
-        
-      </div>
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/07/21/那些不推荐使用的html标签/" class="article-date">
+  <time datetime="2016-07-21T15:23:30.000Z" itemprop="datePublished">2016-07-21</time>
+</a>    
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h3 id="那些不推荐使用的html标签"><a href="#那些不推荐使用的html标签" class="headerlink" title="那些不推荐使用的html标签"></a>那些不推荐使用的html标签</h3><p><code>1、acronym</code></p>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="那些不推荐使用的html标签"><a href="#那些不推荐使用的html标签" class="headerlink" title="那些不推荐使用的html标签"></a>那些不推荐使用的html标签</h3><p><code>1、acronym</code></p>
 <p>首字母缩写，例如WWW<br>类似的有abbr标签，表示单词缩写，例如inc.。语法如下：</p>
 <pre><code>&lt;acronym title=&quot;World Wide Web&quot;&gt;WWW&lt;/acronym&gt;
 &lt;abbr title=&quot;incorporated&quot;&gt;inc.&lt;/abbr&gt;
@@ -1087,73 +1067,53 @@ Stock ID    Description             Price         Quantity in Stock
 &lt;/xmp&gt;
 </code></pre><p>目前浏览器支持该标签，但不限制80列<br>不推荐使用，建议采用samp代替</p>
 <p>本文转自 <a href="http://mp.weixin.qq.com/s?__biz=MjM5MDA2MTI1MA==&amp;mid=2649084269&amp;idx=2&amp;sn=5245980904cec7883e80496c323d6c88&amp;chksm=be5bf6c0892c7fd6ee472365f77e128c916488cf615376632bd623e8fee8fb0103752615e427&amp;mpshare=1&amp;scene=23&amp;srcid=1121hr1dAV1IrDMndF3jgFCy#rd" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MjM5MDA2MTI1MA==&amp;mid=2649084269&amp;idx=2&amp;sn=5245980904cec7883e80496c323d6c88&amp;chksm=be5bf6c0892c7fd6ee472365f77e128c916488cf615376632bd623e8fee8fb0103752615e427&amp;mpshare=1&amp;scene=23&amp;srcid=1121hr1dAV1IrDMndF3jgFCy#rd</a></p>
-
-          
-        
-      </div>
+ 
+      <!-- reward -->
+      
+    </div>
     
 
+    <!-- copyright -->
     
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
+    <footer class="article-footer">
+       
+    </footer>
   </div>
 
-
-  
     
+ 
+    
+</article>
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+    
+    <article
+  id="易懂的webpack-使用教程"
+  class="article article-type-易懂的webpack"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/07/15/使用教程/"
+    >使用教程</a> 
+</h2>
+ 
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/07/15/使用教程/">
-                使用教程
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            Posted on 2016-07-15
-          
-        </span>
-
-        
-          
-        
-
-        
-          
-        
-      </div>
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/07/15/使用教程/" class="article-date">
+  <time datetime="2016-07-15T13:34:46.000Z" itemprop="datePublished">2016-07-15</time>
+</a>    
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h3 id="易懂的-webpack-使用教程"><a href="#易懂的-webpack-使用教程" class="headerlink" title="易懂的 webpack 使用教程"></a>易懂的 webpack 使用教程</h3><p>原文链接：<a href="https://www.zfanw.com/blog/webpack-tutorial.html" target="_blank" rel="noopener">https://www.zfanw.com/blog/webpack-tutorial.html</a></p>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="易懂的-webpack-使用教程"><a href="#易懂的-webpack-使用教程" class="headerlink" title="易懂的 webpack 使用教程"></a>易懂的 webpack 使用教程</h3><p>原文链接：<a href="https://www.zfanw.com/blog/webpack-tutorial.html" target="_blank" rel="noopener">https://www.zfanw.com/blog/webpack-tutorial.html</a></p>
 <ul>
 <li><p>1安装 webpack</p>
 </li>
@@ -1344,73 +1304,53 @@ loader: &apos;style!css!autoprefixer?{browsers:[&quot;last 2 version&quot;, &quo
 </code></pre><h4 id="打包、构建"><a href="#打包、构建" class="headerlink" title="打包、构建"></a>打包、构建</h4><p>项目结束后，代码要压缩、混淆、合并等，只需要在命令行执行：</p>
 <pre><code>$ webpack
 </code></pre><p> 即可，webpack 根据 webpack.config.js 文件中的配置路径、构建文件名生成相应的文件。通常，我们会额外定义一个专门用于生产环境的配置文件，比如 webpack.production.config.js，其中可以做许多代码优化。</p>
-
-          
-        
-      </div>
+ 
+      <!-- reward -->
+      
+    </div>
     
 
+    <!-- copyright -->
     
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
+    <footer class="article-footer">
+       
+    </footer>
   </div>
 
-
-  
     
+ 
+    
+</article>
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+    
+    <article
+  id="推荐10-代码段"
+  class="article article-type-推荐10"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/06/25/代码段/"
+    >代码段</a> 
+</h2>
+ 
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/06/25/代码段/">
-                代码段
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            Posted on 2016-06-25
-          
-        </span>
-
-        
-          
-        
-
-        
-          
-        
-      </div>
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/06/25/代码段/" class="article-date">
+  <time datetime="2016-06-25T01:19:45.000Z" itemprop="datePublished">2016-06-25</time>
+</a>    
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h3 id="推荐10-个短小却超实用的-JavaScript-代码段"><a href="#推荐10-个短小却超实用的-JavaScript-代码段" class="headerlink" title="推荐10 个短小却超实用的 JavaScript 代码段"></a>推荐10 个短小却超实用的 JavaScript 代码段</h3><p><img src="http://upload-images.jianshu.io/upload_images/1399853-c7984f4b80f2b72f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="推荐10-个短小却超实用的-JavaScript-代码段"><a href="#推荐10-个短小却超实用的-JavaScript-代码段" class="headerlink" title="推荐10 个短小却超实用的 JavaScript 代码段"></a>推荐10 个短小却超实用的 JavaScript 代码段</h3><p><img src="http://upload-images.jianshu.io/upload_images/1399853-c7984f4b80f2b72f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>JavaScript正变得越来越流行，它已经成为前端开发的第一选择，并且利用基于JavaScript语言的NodeJS，我们也可以开发出高性能的后端服务，甚至我还看到在硬件编程领域也出现了JavaScript的身影。JavaScript正在逐渐进化为一门全能的开发语言。</p>
 <p>但用好JavaScript并不容易，你除了需要掌握它的语法并知道如何写出高质量的代码之外，还需要了解如何解决那些几乎在每个项目中都会遇到的需求场景，比如：判断日期，高亮文本，限制字符数等等，有很多第三方库可以解决这些问题，但这些库可能并非只是为解决这一个问题而创建的，这意味着你需要引入了很多无关的代码，这将使你的整个系统变得臃肿，而且也会影响到系统的性能。我的做法是，收集和使用那些常见的JavaScript代码段，并在需要时，尽可能首先使用它们。下面便是我收集的10段实用JavaScript代码，基于它们你还可以创造出更强大的JS插件或功能函数。</p>
 <h4 id="1-判断日期是否有效"><a href="#1-判断日期是否有效" class="headerlink" title="1. 判断日期是否有效"></a>1. 判断日期是否有效</h4><p>JavaScript中自带的日期函数还是太过简单，很难满足真实项目中对不同日期格式进行解析和判断的需要。JQuery也有一些第三方库来使日期相关的处理变得简单，但有时你可能只需要一个非常简单的函数，而不想引入一个庞大的第三方库。这时，你可以使用下面这段日期校验代码，它允许你自定义日期格式并进行日期有效性的校验。</p>
@@ -1623,73 +1563,53 @@ makeMenu(
 <p>总结：<br>以上只是那些实用JavaScript代码段中的一小部分，我也建议你平时注意收集或自己编写这样的基础代码段，它们能在很多项目中使用或通过一些改造提供更完善的功能，使用这些代码段将为你节省下大量的开发时间。</p>
 <p>本文转载自 <a href="http://www.jianshu.com/p/3ef822ec5a63" target="_blank" rel="noopener">http://www.jianshu.com/p/3ef822ec5a63</a></p>
 <p>文／技匠（简书签约作者）<br>原文链接：<a href="http://www.jianshu.com/p/3ef822ec5a63" target="_blank" rel="noopener">http://www.jianshu.com/p/3ef822ec5a63</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书签约作者”。</p>
-
-          
-        
-      </div>
+ 
+      <!-- reward -->
+      
+    </div>
     
 
+    <!-- copyright -->
     
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
+    <footer class="article-footer">
+       
+    </footer>
   </div>
 
-
-  
     
+ 
+    
+</article>
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+    
+    <article
+  id="post-深入浅出JSONP-解决ajax跨域问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/06/01/深入浅出JSONP-解决ajax跨域问题/"
+    >深入浅出JSONP--解决ajax跨域问题</a> 
+</h2>
+ 
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/06/01/深入浅出JSONP-解决ajax跨域问题/">
-                深入浅出JSONP--解决ajax跨域问题
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            Posted on 2016-06-01
-          
-        </span>
-
-        
-          
-        
-
-        
-          
-        
-      </div>
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/06/01/深入浅出JSONP-解决ajax跨域问题/" class="article-date">
+  <time datetime="2016-06-01T03:53:18.000Z" itemprop="datePublished">2016-06-01</time>
+</a>    
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h2 id="JSONP–解决ajax跨域问题"><a href="#JSONP–解决ajax跨域问题" class="headerlink" title="JSONP–解决ajax跨域问题"></a>JSONP–解决ajax跨域问题</h2><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><blockquote>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="JSONP–解决ajax跨域问题"><a href="#JSONP–解决ajax跨域问题" class="headerlink" title="JSONP–解决ajax跨域问题"></a>JSONP–解决ajax跨域问题</h2><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><blockquote>
 <p>同源策略，它是由Netscape提出的一个著名的安全策略。现在所有支持JavaScript 的浏览器都会使用这个策略。所谓同源是指，域名，协议，端口相同。当一个浏览器的两个tab页中分别打开来 百度和谷歌的页面当一个百度浏览器执行一个脚本的时候会检查这个脚本是属于哪个页面的，即检查是否同源，只有和百度同源的脚本才会被执行。</p>
 </blockquote>
 <h3 id="JSON和JSONP"><a href="#JSON和JSONP" class="headerlink" title="JSON和JSONP"></a>JSON和JSONP</h3><p>JSONP和JSON好像啊，他们之间有什么联系吗？</p>
@@ -1826,73 +1746,53 @@ function addScriptTag(src){
    }
  &lt;/script&gt;　　
 </code></pre><p>这就完成了一个最基本的JSONP服务调用了</p>
-
-          
-        
-      </div>
+ 
+      <!-- reward -->
+      
+    </div>
     
 
+    <!-- copyright -->
     
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
+    <footer class="article-footer">
+       
+    </footer>
   </div>
 
-
-  
     
+ 
+    
+</article>
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+    
+    <article
+  id="swiper-Animation使用"
+  class="article article-type-swiper"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/05/12/Animation使用/"
+    >Animation使用</a> 
+</h2>
+ 
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/05/12/Animation使用/">
-                Animation使用
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            Posted on 2016-05-12
-          
-        </span>
-
-        
-          
-        
-
-        
-          
-        
-      </div>
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/05/12/Animation使用/" class="article-date">
+  <time datetime="2016-05-12T07:12:11.000Z" itemprop="datePublished">2016-05-12</time>
+</a>    
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h3 id="Swiper-Animate使用方法"><a href="#Swiper-Animate使用方法" class="headerlink" title="Swiper Animate使用方法"></a>Swiper Animate使用方法</h3><p><strong> Swiper Animate</strong>，是Swiper中文网提供的用于在Swiper内快速制作CSS3动画效果的小插件，适用于Swiper2.x和Swiper3.x 。<br><strong> 此插件不适用于loop模式</strong></p>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="Swiper-Animate使用方法"><a href="#Swiper-Animate使用方法" class="headerlink" title="Swiper Animate使用方法"></a>Swiper Animate使用方法</h3><p><strong> Swiper Animate</strong>，是Swiper中文网提供的用于在Swiper内快速制作CSS3动画效果的小插件，适用于Swiper2.x和Swiper3.x 。<br><strong> 此插件不适用于loop模式</strong></p>
 <ol>
 <li>使用Swiper Animate需要先加载swiper.animate.min.js和animate.min.css。code:<br> &lt;!DOCTYPE html&gt;<pre><code>&lt;html&gt;
 &lt;head&gt;
@@ -1909,73 +1809,53 @@ swiperAnimate(swiper); //初始化完成开始动画
 </code></pre>   }<br>   })<br>   </script><br> </li>
 <li>在需要运动的元素上面增加类名  ani   ，和其他的类似插件相同，Swiper         Animate需要指定几个参数：<br>swiper-animate-effect：切换效果，例如 fadeInUp<br>swiper-animate-duration：可选，动画持续时间（单位秒），例如 0.5s<br>swiper-animate-delay：可选，动画延迟时间（单位秒），例如 0.3s code:<br>div class=”swiper-slide”&gt;<br><p class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">内容</p><br><br>如果以上这些效果不能满足你的需求，你可以仿照animate.css的格式制作一些其他效果，加到你自己的css文件。其他参数：transition-timing-function </li>
 </ol>
-
-          
-        
-      </div>
+ 
+      <!-- reward -->
+      
+    </div>
     
 
+    <!-- copyright -->
     
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
+    <footer class="article-footer">
+       
+    </footer>
   </div>
 
-
-  
     
+ 
+    
+</article>
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+    
+    <article
+  id="post-常见兼容性问题（一）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/05/09/常见兼容性问题（一）/"
+    >常见兼容性问题（一）</a> 
+</h2>
+ 
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/05/09/常见兼容性问题（一）/">
-                常见兼容性问题（一）
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            Posted on 2016-05-09
-          
-        </span>
-
-        
-          
-        
-
-        
-          
-        
-      </div>
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/05/09/常见兼容性问题（一）/" class="article-date">
+  <time datetime="2016-05-09T10:57:49.000Z" itemprop="datePublished">2016-05-09</time>
+</a>    
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h3 id="常见兼容性问题"><a href="#常见兼容性问题" class="headerlink" title="常见兼容性问题"></a>常见兼容性问题</h3><p>关于各主流浏览器之间的兼容性问题，有时候确实让人头疼，为了提高工作效率，在网上搜集了有关此问题 简单整理了一下，时常来看看<br>出处：<img src="http://www.cnblogs.com/duanhuajian/archive/2012/09/23/2699119.html" alt="http://www.cnblogs.com/duanhuajian/archive/2012/09/23/2699119.html"></p>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="常见兼容性问题"><a href="#常见兼容性问题" class="headerlink" title="常见兼容性问题"></a>常见兼容性问题</h3><p>关于各主流浏览器之间的兼容性问题，有时候确实让人头疼，为了提高工作效率，在网上搜集了有关此问题 简单整理了一下，时常来看看<br>出处：<img src="http://www.cnblogs.com/duanhuajian/archive/2012/09/23/2699119.html" alt="http://www.cnblogs.com/duanhuajian/archive/2012/09/23/2699119.html"></p>
 <h5 id="ie6-0横向margin加倍"><a href="#ie6-0横向margin加倍" class="headerlink" title="ie6.0横向margin加倍"></a>ie6.0横向margin加倍</h5><p>产生因素：块属性、float、有横向margin。<br>解决方法：display：inline；</p>
 <h5 id="2-ie6-0下默认有行高"><a href="#2-ie6-0下默认有行高" class="headerlink" title="2 ie6.0下默认有行高"></a>2 ie6.0下默认有行高</h5><p>解决方法：overflow:hidden;或font-size:0;或line-height：xx px；</p>
 <p>#####3 在各个浏览器下img有空隙(原因是：回车。)</p>
@@ -2083,73 +1963,53 @@ max_height{
 /*选择器Hack：*/
 *html .header{}        /*IE6*/ 
 *+html .header{}    /*IE7*/ 
-</code></pre>
-          
-        
-      </div>
+</code></pre> 
+      <!-- reward -->
+      
+    </div>
     
 
+    <!-- copyright -->
     
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
+    <footer class="article-footer">
+       
+    </footer>
   </div>
 
-
-  
     
+ 
+    
+</article>
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
+    
+    <article
+  id="post-JavaScript使用小技巧"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/05/05/JavaScript使用小技巧/"
+    >JavaScript使用小技巧</a> 
+</h2>
+ 
 
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2016/05/05/JavaScript使用小技巧/">
-                JavaScript使用小技巧
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          
-            Posted on 2016-05-05
-          
-        </span>
-
-        
-          
-        
-
-        
-          
-        
-      </div>
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/05/05/JavaScript使用小技巧/" class="article-date">
+  <time datetime="2016-05-05T01:20:06.000Z" itemprop="datePublished">2016-05-05</time>
+</a>    
     </div>
-
-    
-      <div class="post-body">
-
-        
-        
-
-        
-          
-            <h1 id="JavaScript-小知识点使用"><a href="#JavaScript-小知识点使用" class="headerlink" title="JavaScript 小知识点使用"></a>JavaScript 小知识点使用</h1><p>本文是一篇翻译文章，原文信息如下：</p>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="JavaScript-小知识点使用"><a href="#JavaScript-小知识点使用" class="headerlink" title="JavaScript 小知识点使用"></a>JavaScript 小知识点使用</h1><p>本文是一篇翻译文章，原文信息如下：</p>
 <ul>
 <li>原文：<45 useful="" javascript="" tips,="" tricks="" and="" best="" practices=""></45></li>
 <li>作者：<saad mousliki=""><br>JavaScript还是很多新手踏入编程世界的第一个语言。既可以用来显示浏览器中的简单提示框，也可以通过nodebot或nodruino来控制机器人。能够编写结构清晰、性能高效的JavaScript代码的开发人员，现如今已成了招聘市场最受追捧的人<h2 id="1-用JSON来序列化与反序列化"><a href="#1-用JSON来序列化与反序列化" class="headerlink" title="1 用JSON来序列化与反序列化"></a>1 用JSON来序列化与反序列化</h2>var person = {name :’Saad’, age : 26, department : {ID : 15, name : “R&amp;D”} };<br>var stringFromPerson = JSON.stringify(person);<br>/<em> stringFromPerson 结果为 “{“name”:”Saad”,”age”:26,”department”:{“ID”:15,”name”:”R&amp;D”}}”   </em>/<br>var personFromString = JSON.parse(stringFromPerson);<br>/<em> personFromString 的值与 person 对象相同  </em>/</saad></li>
@@ -2178,306 +2038,385 @@ return text.replace(/[&lt;&gt;&amp;&quot;]/g, function(character) {
 <h2 id="16-javascript-amp-amp-Jquery-获取各种高度"><a href="#16-javascript-amp-amp-Jquery-获取各种高度" class="headerlink" title="16 javascript &amp;&amp; Jquery 获取各种高度"></a>16 javascript &amp;&amp; Jquery 获取各种高度</h2><p>IE中：<br>document.body.clientWidth ==&gt; BODY对象宽度<br>document.body.clientHeight ==&gt; BODY对象高度<br>document.documentElement.clientWidth ==&gt; 可见区域宽度<br>document.documentElement.clientHeight ==&gt; 可见区域高度<br>FireFox中：<br>document.body.clientWidth ==&gt; BODY对象宽度<br>document.body.clientHeight ==&gt; BODY对象高度<br>document.documentElement.clientWidth ==&gt; 可见区域宽度<br>document.documentElement.clientHeight ==&gt; 可见区域高度<br>Opera中：<br>document.body.clientWidth ==&gt; 可见区域宽度<br>document.body.clientHeight ==&gt; 可见区域高度<br>document.documentElement.clientWidth ==&gt; 页面对象宽度（即BODY对象宽度加上Margin宽）<br>document.documentElement.clientHeight ==&gt; 页面对象高度（即BODY对象高度加上Margin高）</p>
 <p>alert(document.body.clientWidth);  //网页可见区域宽(body)<br>alert(document.body.clientHeight);  //网页可见区域高(body)<br>alert(document.body.offsetWidth);    //网页可见区域宽(body)，包括border、margin等<br>alert(document.body.offsetHeight);   //网页可见区域宽(body)，包括border、margin等<br>alert(document.body.scrollWidth);    //网页正文全文宽，包括有滚动条时的未见区域<br>alert(document.body.scrollHeight);  //网页正文全文高，包括有滚动条时的未见区域<br>alert(document.body.scrollTop);           //网页被卷去的Top(滚动条)<br>alert(document.body.scrollLeft);           //网页被卷去的Left(滚动条)<br>alert(window.screenTop);                     //浏览器距离Top<br>alert(window.screenLeft);                     //浏览器距离Left<br>alert(window.screen.height);                //屏幕分辨率的高<br>alert(window.screen.width);                 //屏幕分辨率的宽<br>alert(window.screen.availHeight);          //屏幕可用工作区的高<br>alert(window.screen.availWidth);           //屏幕可用工作区的宽</p>
 <p>Jquery<br>alert($(window).height());       //浏览器当前窗口可视区域高度<br>alert($(document).height());     //浏览器当前窗口文档的高度<br>alert($(document.body).height());//浏览器当前窗口文档body的高度<br>alert($(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin<br>alert($(window).width());      //浏览器当前窗口可视区域宽度<br>alert($(document).width());    //浏览器当前窗口文档对象宽度<br>alert($(document.body).width()); //浏览器当前窗口文档body的宽度<br>alert($(document.body).outerWidth(true));//浏览器当前窗口文档body的总宽度 包括border padding margin</p>
-
-          
-        
-      </div>
+ 
+      <!-- reward -->
+      
+    </div>
     
 
+    <!-- copyright -->
     
-      <div class="post-footer">
-        
-
-        
-
-        
-        
-          <div class="post-eof"></div>
-        
-      </div>
-    
+    <footer class="article-footer">
+       
+    </footer>
   </div>
 
+    
+ 
+    
+</article>
 
+    
+  </article>
   
 
-          </div>
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+  </nav>
+  
+</section>
+</div>
 
-          
-            <div class="pagination">
-              <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">&raquo;</a>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2021
+        <i class="ri-heart-fill heart_icon"></i> 魏姣
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="薇娇"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/旅行/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+<script src="/dist/main.js"></script>
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
         </div>
-
-        
-<div class="sidebar-toggle">
-  <div class="sidebar-toggle-line-wrap">
-    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-  </div>
-</div>
-
-<div id="sidebar" class="sidebar">
-  <div class="sidebar-inner">
-
-    
-
-    <div class="site-overview">
-      <div class="site-author motion-element">
-        <img class="site-author-image" src="/images/default_avatar.jpg" alt="魏姣" />
-        <p class="site-author-name">魏姣</p>
-      </div>
-      <p class="site-description motion-element"></p>
-      <div class="site-state motion-element">
-        <div class="site-state-item site-state-posts">
-          <span class="site-state-item-count">33</span>
-          <span class="site-state-item-name">posts</span>
-        </div>
-        <div class="site-state-item site-state-tags">
-            <span class="site-state-item-count">0</span>
-            <span class="site-state-item-name">tags</span>
-        </div>
-        <div class="site-state-item site-state-pages">
-            <span class="site-state-item-count">0</span>
-            <span class="site-state-item-name">pages</span>
-        </div>
-      </div>
-
-      
-
-      <div class="links-of-author motion-element">
-        
-      </div>
-
-      
-      
 
     </div>
 
-    
-
-  </div>
 </div>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
 
-      </div>
-    </div>
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
 
-    <div id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">
-  
-  &copy; &nbsp; 
-  2021
-  <span class="with-love">
-    <i class="icon-heart"></i>
-  </span>
-  <span class="author">魏姣</span>
-</div>
-
-<div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
-</div>
-
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT
-  </a>
-</div>
-
-
-
-      </div>
-    </div>
-
-    <div class="back-to-top"></div>
-  </div>
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $(".fancybox").fancybox();
-    });
-  </script>
-
-  <script type="text/javascript">
-  function hasMobileUA () {
-    var nav = window.navigator;
-    var ua = nav.userAgent;
-    var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
-
-    return pa.test(ua);
-  }
-
-  function isDesktop () {
-    return screen.width > 991 && !hasMobileUA();
-  }
-
-  function isTablet () {
-    return screen.width < 992 && screen.width > 767 && hasMobileUA();
-  }
-
-  function isMobile () {
-    return screen.width < 767 && hasMobileUA();
-  }
-
-  function escapeSelector (selector) {
-    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
-  }
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
 </script>
 
-  
+<!-- MathJax -->
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+<!-- Katex -->
 
-  <script type="text/javascript" id="motion.global">
-  $(document).ready(function () {
-    var body = $('body');
-    var isSidebarVisible = false;
-    var sidebarToggle = $('.sidebar-toggle');
-    var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
-    var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
-    var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
-    var sidebar = $('.sidebar');
+<!-- busuanzi  -->
 
-    var SIDEBAR_WIDTH = '320px';
-    var SIDEBAR_DISPLAY_DURATION = 300;
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
 
-    var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+<!-- ClickLove -->
 
-    var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
-    var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
-    var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+<!-- ClickBoom1 -->
 
-    var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
-    var sidebarToggleLine2ndStatusArrow = {width: '90%'};
-    var sidebarToogleLine2ndStatusClose = {opacity: 0};
+<!-- ClickBoom2 -->
 
-    var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
-    var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
-    var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+<!-- CodeCopy -->
 
-    LogoAndMenuMotion();
-    sidebatToggleMotion();
-    postsListMotion();
-    backToTopMotion();
-
-
-    $(document)
-      .on('sidebar.isShowing', function () {
-        isDesktop() && body.velocity(
-          {paddingRight: SIDEBAR_WIDTH},
-          SIDEBAR_DISPLAY_DURATION
-        );
-        sidebarContentMotion();
-      })
-      .on('sidebar.isHiding', function () {});
-
-    function LogoAndMenuMotion() {
-      $.Velocity.RunSequence([
-        { e: $('.brand'), p: { opacity: 1 }, o: { duration: 100 } },
-        { e: $('.logo'), p: { opacity: 1, top: 0 }, o: { duration: 50} },
-        
-        { e: $('.site-title'), p: { opacity: 1, top: 0 }, o: { duration: 200 } }
-      ]);
-      $('.menu-item').velocity('transition.slideDownIn', {display: null});
-    }
-
-
-    function backToTopMotion () {
-      var b2top = $('.back-to-top');
-      b2top.on('click', function () {
-        body.velocity('scroll');
-      });
-    }
-
-    function sidebarShowMotion () {
-
-      sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
-      sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
-      sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
-
-      sidebar.velocity({width: SIDEBAR_WIDTH}, {
-        display: 'block',
-        duration: SIDEBAR_DISPLAY_DURATION,
-        complete: function () {
-          sidebar.addClass('sidebar-active');
-          sidebar.trigger('sidebar.didShow');
+<link rel="stylesheet" href="/css/clipboard.css">
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
         }
       });
-      sidebar.trigger('sidebar.isShowing');
-    }
-
-    function sidebarHideMotion () {
-      isDesktop() && body.velocity({paddingRight: 0});
-      sidebar.velocity('reverse');
-
-      sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
-      sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
-      sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
-
-      sidebar.removeClass('sidebar-active');
-      sidebar.trigger('sidebar.isHiding');
-    };
-
-    function sidebarContentMotion () {
-      $('.sidebar .motion-element').velocity(
-        'transition.slideRightIn',
-        {stagger: 50, drag: true}
-      );
-    }
-
-    function postsListMotion () {
-      var postMotionOptions = window.postMotionOptions || {stagger: 300, drag: true};
-      $('.post').velocity('transition.slideDownIn', postMotionOptions);
-    }
-
-    function sidebatToggleMotion () {
-      sidebarToggle.on('click', function () {
-        isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
-        isSidebarVisible = !isSidebarVisible;
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
       });
-
-      sidebarToggle.hover(function () {
-        if (isSidebarVisible) {return}
-        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
-        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
-        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
-      }, function () {
-        if (isSidebarVisible) {return}
-        sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
-        sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
-        sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
       });
     }
-  });
-
+    initCopyCode();
+  }(window, document);
 </script>
 
 
+<!-- CanvasBackground -->
 
 
-
-  
-
-  
-
-  
-  
-
-  
-
-
-  
+    
+  </div>
 </body>
+
 </html>
