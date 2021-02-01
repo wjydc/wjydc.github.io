@@ -153,6 +153,257 @@
     
     
     <article
+  id="post-PHP基础（三）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/08/17/PHP基础（三）/"
+    >PHP基础（三）</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/08/17/PHP基础（三）/" class="article-date">
+  <time datetime="2016-08-17T05:40:36.000Z" itemprop="datePublished">2016-08-17</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="PHP基础（三）"><a href="#PHP基础（三）" class="headerlink" title="PHP基础（三）"></a>PHP基础（三）</h3><h6 id="PHP-表单和用户输入"><a href="#PHP-表单和用户输入" class="headerlink" title="PHP 表单和用户输入"></a>PHP 表单和用户输入</h6><p>PHP 中的 $_GET 和 $_POST 变量用于检索表单中的信息，比如用户输入。</p>
+<h6 id="PHP-表单处理"><a href="#PHP-表单处理" class="headerlink" title="PHP 表单处理"></a>PHP 表单处理</h6><p>有一点很重要的事情值得注意，当处理 HTML 表单时，PHP 能把来自 HTML 页面中的表单元素自动变成可供 PHP 脚本使用。</p>
+<p>实例<br>下面的实例包含了一个 HTML 表单，带有两个输入框和一个提交按钮。<br>form.html 文件代码如下：</p>
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;php教程(runoob.com)&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form action=&quot;welcome.php&quot; method=&quot;post&quot;&gt;
+名字: &lt;input type=&quot;text&quot; name=&quot;fname&quot;&gt;
+年龄: &lt;input type=&quot;text&quot; name=&quot;age&quot;&gt;
+&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>当用户填写完上面的表单并点击提交按钮时，表单的数据会被送往名为 “welcome.php” 的 PHP 文件：</p>
+<pre><code>欢迎 &lt;?php echo $_POST[&quot;fname&quot;]; ?&gt;!&lt;br&gt;
+你的年龄是 &lt;?php echo $_POST[&quot;age&quot;]; ?&gt;  岁。
+</code></pre><p><img src="http://www.runoob.com/wp-content/uploads/2013/08/form1.gif" alt="http://www.runoob.com/wp-content/uploads/2013/08/form1.gif"><br>图片来源：菜鸟教程</p>
+<h6 id="PHP-文件处理"><a href="#PHP-文件处理" class="headerlink" title="PHP 文件处理"></a>PHP 文件处理</h6><p>fopen() 函数用于在 PHP 中打开文件。</p>
+<p>打开文件<br>fopen() 函数用于在 PHP 中打开文件。<br>此函数的第一个参数含有要打开的文件的名称，第二个参数规定了使用哪种模式来打开文件：</p>
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+
+&lt;?php
+$file=fopen(&quot;welcome.txt&quot;,&quot;r&quot;);
+?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>模式    描述</p>
+<p>r    只读。在文件的开头开始。</p>
+<p>r+    读/写。在文件的开头开始。</p>
+<p>w    只写。打开并清空文件的内容；如果文件不存在，则创建新文件。</p>
+<p>w+    读/写。打开并清空文件的内容；如果文件不存在，则创建新文件。</p>
+<p>a    追加。打开并向文件末尾进行写操作，如果文件不存在，则创建新文件。</p>
+<p>a+    读/追加。通过向文件末尾写内容，来保持文件内容。</p>
+<p>x    只写。创建新文件。如果文件已存在，则返回 FALSE 和一个错误。</p>
+<p>x+    读/写。创建新文件。如果文件已存在，则返回 FALSE 和一个错误。</p>
+<p>注释：如果 fopen() 函数无法打开指定文件，则返回 0 (false)。</p>
+<p>关闭文件</p>
+<pre><code>&lt;?php
+$file = fopen(&quot;test.txt&quot;,&quot;r&quot;);
+
+//执行一些代码
+
+fclose($file);
+?&gt;
+fclose() 函数用于关闭打开的文件：
+</code></pre><p>检测文件末尾（EOF）</p>
+<p>feof() 函数检测是否已到达文件末尾（EOF）。</p>
+<p>在循环遍历未知长度的数据时，feof() 函数很有用。</p>
+<p>注释：在 w 、a 和 x 模式下，您无法读取打开的文件！</p>
+<p>if (feof($file)) echo “文件结尾”;</p>
+<pre><code>if (feof($file)) echo &quot;文件结尾&quot;;
+</code></pre><p>逐行读取文件</p>
+<p>fgets() 函数用于从文件中逐行读取文件。</p>
+<p>注释：在调用该函数之后，文件指针会移动到下一行。</p>
+<p>逐字符读取文件</p>
+<p>fgetc() 函数用于从文件中逐字符地读取文件。</p>
+<p>注释：在调用该函数之后，文件指针会移动到下一个字符。</p>
+<p>PHP 文件上传</p>
+<p>通过 PHP，可以把文件上传到服务器。</p>
+<p>创建一个文件上传表单</p>
+<p>允许用户从表单上传文件是非常有用的。</p>
+<p>请看下面这个供上传文件的 HTML 表单：</p>
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;php教程(runoob.com)&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form action=&quot;upload_file.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;label for=&quot;file&quot;&gt;文件名：&lt;/label&gt;
+    &lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;file&quot;&gt;&lt;br&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;提交&quot;&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>将以上代码保存到 form.html 文件中。</p>
+<p>有关上面的 HTML 表单的一些注意项列举如下：</p>
+<p><form> 标签的 enctype 属性规定了在提交表单时要使用哪种内容类型。在表单需要二进制数据时，比如文件内容，请使用 “multipart/form-data”。</form></p>
+<p><input> 标签的 type=”file” 属性规定了应该把输入作为文件来处理。举例来说，当在浏览器中预览时，会看到输入框旁边有一个浏览按钮。</p>
+<p>注释：允许用户上传文件是一个巨大的安全风险。请仅仅允许可信的用户执行文件上传操作。</p>
+<p>创建上传脚本</p>
+<pre><code>&quot;upload_file.php&quot; 文件含有供上传文件的代码：
+&lt;?php
+if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)
+{
+echo &quot;错误：&quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br&gt;&quot;;
+}
+else
+{
+    echo &quot;上传文件名: &quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot;&lt;br&gt;&quot;;
+    echo &quot;文件类型: &quot; . $_FILES[&quot;file&quot;][&quot;type&quot;] . &quot;&lt;br&gt;&quot;;
+    echo &quot;文件大小: &quot; . ($_FILES[&quot;file&quot;][&quot;size&quot;] / 1024) . &quot; kB&lt;br&gt;&quot;;
+    echo &quot;文件临时存储的位置: &quot; . $_FILES[&quot;file&quot;][&quot;tmp_name&quot;];
+}
+?&gt;
+</code></pre><p>通过使用 PHP 的全局数组 $_FILES，你可以从客户计算机向远程服务器上传文件。</p>
+<p>第一个参数是表单的 input name，第二个下标可以是 “name”、”type”、”size”、”tmp_name” 或 “error”。如下所示：</p>
+<ul>
+<li>$_FILES[“file”][“name”] - 上传文件的名称</li>
+</ul>
+<ul>
+<li><p>$_FILES[“file”][“type”] - 上传文件的类型</p>
+</li>
+<li><p>$_FILES[“file”][“size”] - 上传文件的大小，以字节计</p>
+</li>
+</ul>
+<ul>
+<li>$_FILES[“file”][“tmp_name”] - 存储在服务器的文件的临时副本的名称</li>
+</ul>
+<ul>
+<li>$_FILES[“file”][“error”] - 由文件上传导致的错误代码</li>
+</ul>
+<p>这是一种非常简单文件上传方式。基于安全方面的考虑，您应当增加有关允许哪些用户上传文件的限制。</p>
+<p>上传限制 </p>
+<p>在这个脚本中，我们增加了对文件上传的限制。用户只能上传 .gif、.jpeg、.jpg、.png 文件，文件大小必须小于 200 kB：</p>
+<pre><code>&lt;?php
+// 允许上传的图片后缀
+$allowedExts = array(&quot;gif&quot;, &quot;jpeg&quot;, &quot;jpg&quot;, &quot;png&quot;);
+$temp = explode(&quot;.&quot;, $_FILES[&quot;file&quot;][&quot;name&quot;]);
+$extension = end($temp);        // 获取文件后缀名
+if ((($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/gif&quot;)
+|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpeg&quot;)
+|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpg&quot;)
+|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/pjpeg&quot;)
+|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/x-png&quot;)
+|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/png&quot;))
+&amp;&amp; ($_FILES[&quot;file&quot;][&quot;size&quot;] &lt; 204800)    // 小于 200 kb
+&amp;&amp; in_array($extension, $allowedExts))
+{
+if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)
+{
+    echo &quot;错误：: &quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br&gt;&quot;;
+}
+else
+{
+    echo &quot;上传文件名: &quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot;&lt;br&gt;&quot;;
+    echo &quot;文件类型: &quot; . $_FILES[&quot;file&quot;][&quot;type&quot;] . &quot;&lt;br&gt;&quot;;
+    echo &quot;文件大小: &quot; . ($_FILES[&quot;file&quot;][&quot;size&quot;] / 1024) . &quot; kB&lt;br&gt;&quot;;
+    echo &quot;文件临时存储的位置: &quot; . $_FILES[&quot;file&quot;][&quot;tmp_name&quot;];
+}
+}
+else
+{
+echo &quot;非法的文件格式&quot;;
+}
+?&gt;
+</code></pre><p>保存被上传的文件</p>
+<p>上面的实例在服务器的 PHP 临时文件夹中创建了一个被上传文件的临时副本。</p>
+<p>这个临时的副本文件会在脚本结束时消失。要保存被上传的文件，我们需要把它拷贝到另外的位置：</p>
+<pre><code>    &lt;?php
+// 允许上传的图片后缀
+$allowedExts = array(&quot;gif&quot;, &quot;jpeg&quot;, &quot;jpg&quot;, &quot;png&quot;);
+$temp = explode(&quot;.&quot;, $_FILES[&quot;file&quot;][&quot;name&quot;]);
+echo $_FILES[&quot;file&quot;][&quot;size&quot;];
+$extension = end($temp);     // 获取文件后缀名
+if ((($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/gif&quot;)
+|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpeg&quot;)
+|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpg&quot;)
+|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/pjpeg&quot;)
+|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/x-png&quot;)
+|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/png&quot;))
+&amp;&amp; ($_FILES[&quot;file&quot;][&quot;size&quot;] &lt; 204800)   // 小于 200 kb
+&amp;&amp; in_array($extension, $allowedExts))
+{
+if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)
+{
+    echo &quot;错误：: &quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br&gt;&quot;;
+}
+else
+{
+    echo &quot;上传文件名: &quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot;&lt;br&gt;&quot;;
+    echo &quot;文件类型: &quot; . $_FILES[&quot;file&quot;][&quot;type&quot;] . &quot;&lt;br&gt;&quot;;
+    echo &quot;文件大小: &quot; . ($_FILES[&quot;file&quot;][&quot;size&quot;] / 1024) . &quot; kB&lt;br&gt;&quot;;
+    echo &quot;文件临时存储的位置: &quot; . $_FILES[&quot;file&quot;][&quot;tmp_name&quot;] . &quot;&lt;br&gt;&quot;;
+
+    // 判断当期目录下的 upload 目录是否存在该文件
+    // 如果没有 upload 目录，你需要创建它，upload 目录权限为 777
+    if (file_exists(&quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]))
+    {
+        echo $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot; 文件已经存在。 &quot;;
+    }
+    else
+    {
+        // 如果 upload 目录不存在该文件则将文件上传到 upload 目录下
+        move_uploaded_file($_FILES[&quot;file&quot;][&quot;tmp_name&quot;], &quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]);
+        echo &quot;文件存储在: &quot; . &quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;];
+    }
+}
+}
+else
+{
+echo &quot;非法的文件格式&quot;;
+}
+?&gt;
+</code></pre><p>上面的脚本检测了文件是否已存在，如果不存在，则把文件拷贝到名为 “upload” 的目录下。<br>文件上传演示操作如下所示：<br><img src="http://www.runoob.com/wp-content/uploads/2013/08/upload-form.gif" alt="http://www.runoob.com/wp-content/uploads/2013/08/upload-form.gif"></p>
+<p>图片来源：菜鸟教程    </p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-使用HTML5中postMessage实现Ajax中的POST跨域问题"
   class="article article-type-post"
   itemscope
@@ -1964,81 +2215,6 @@ max_height{
 *html .header{}        /*IE6*/ 
 *+html .header{}    /*IE7*/ 
 </code></pre> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-JavaScript使用小技巧"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2016/05/05/JavaScript使用小技巧/"
-    >JavaScript使用小技巧</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2016/05/05/JavaScript使用小技巧/" class="article-date">
-  <time datetime="2016-05-05T01:20:06.000Z" itemprop="datePublished">2016-05-05</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="JavaScript-小知识点使用"><a href="#JavaScript-小知识点使用" class="headerlink" title="JavaScript 小知识点使用"></a>JavaScript 小知识点使用</h1><p>本文是一篇翻译文章，原文信息如下：</p>
-<ul>
-<li>原文：<45 useful="" javascript="" tips,="" tricks="" and="" best="" practices=""></45></li>
-<li>作者：<saad mousliki=""><br>JavaScript还是很多新手踏入编程世界的第一个语言。既可以用来显示浏览器中的简单提示框，也可以通过nodebot或nodruino来控制机器人。能够编写结构清晰、性能高效的JavaScript代码的开发人员，现如今已成了招聘市场最受追捧的人<h2 id="1-用JSON来序列化与反序列化"><a href="#1-用JSON来序列化与反序列化" class="headerlink" title="1 用JSON来序列化与反序列化"></a>1 用JSON来序列化与反序列化</h2>var person = {name :’Saad’, age : 26, department : {ID : 15, name : “R&amp;D”} };<br>var stringFromPerson = JSON.stringify(person);<br>/<em> stringFromPerson 结果为 “{“name”:”Saad”,”age”:26,”department”:{“ID”:15,”name”:”R&amp;D”}}”   </em>/<br>var personFromString = JSON.parse(stringFromPerson);<br>/<em> personFromString 的值与 person 对象相同  </em>/</saad></li>
-</ul>
-<h2 id="2-避免使用with"><a href="#2-避免使用with" class="headerlink" title="2 避免使用with()"></a>2 避免使用with()</h2><p>使用with()可以把变量加入到全局作用域中，因此，如果有其它的同名变量，一来容易混淆，二来值也会被覆盖。</p>
-<h2 id="3-传给setInterval-和setTimeout-时使用函数而不是字符串"><a href="#3-传给setInterval-和setTimeout-时使用函数而不是字符串" class="headerlink" title="3 传给setInterval()和setTimeout()时使用函数而不是字符串"></a>3 传给setInterval()和setTimeout()时使用函数而不是字符串</h2><p>如果传给setTimeout()和setInterval()一个字符串，他们将会用类似于eval方式进行转换，这肯定会要慢些，因此不要使用：<br>1 setInterval(‘doSomethingPeriodically()’, 1000);<br>2 setTimeout(‘doSomethingAfterFiveSeconds()’, 5000);<br>而是用：<br>1 setInterval(doSomethingPeriodically, 1000);<br>2 setTimeout(doSomethingAfterFiveSeconds, 5000);</p>
-<h2 id="4-使用switch-case代替一大叠的if-else"><a href="#4-使用switch-case代替一大叠的if-else" class="headerlink" title="4 使用switch/case代替一大叠的if/else"></a>4 使用switch/case代替一大叠的if/else</h2><p>其实，switch/case中的case条件，还可以这样写：<br>function getCategory(age) {<br>    var category = “”;<br>    switch (true) {<br>        case isNaN(age):<br>            category = “not an age”;<br>            break;<br>        case (age &gt;= 50):<br>            category = “Old”;<br>            break;<br>        case (age &lt;= 20):<br>            category = “Baby”;<br>            break;<br>        default:<br>            category = “Young”;<br>            break;<br>    };<br>    return category;<br>}<br>getCategory(5);  // 将返回 “Baby”</p>
-<h2 id="5-HTML字段转换函数"><a href="#5-HTML字段转换函数" class="headerlink" title="5 HTML字段转换函数"></a>5 HTML字段转换函数</h2><pre><code>function escapeHTML(text) {  
-var replacements= {&quot;&lt;&quot;: &quot;&amp;lt;&quot;, &quot;&gt;&quot;: &quot;&amp;gt;&quot;,&quot;&amp;&quot;: &quot;&amp;amp;&quot;, &quot;\&quot;&quot;: &quot;&amp;quot;&quot;};                      
-return text.replace(/[&lt;&gt;&amp;&quot;]/g, function(character) {  
-    return replacements[character];  
-}); 
-</code></pre><p>}</p>
-<h2 id="6-开发时注意代码结构，上线前检查并压缩JavaScript代码"><a href="#6-开发时注意代码结构，上线前检查并压缩JavaScript代码" class="headerlink" title="6 开发时注意代码结构，上线前检查并压缩JavaScript代码"></a>6 开发时注意代码结构，上线前检查并压缩JavaScript代码</h2><p>可以使用JSLint或JSMin等工具来检查并压缩代码。</p>
-<h2 id="7-临时存储用于计算和查询的变量"><a href="#7-临时存储用于计算和查询的变量" class="headerlink" title="7 临时存储用于计算和查询的变量"></a>7 临时存储用于计算和查询的变量</h2><p>在jQuery选择器中，可以临时存储整个DOM元素。<br>var navright = document.querySelector(‘#right’);<br>var navleft = document.querySelector(‘#left’);<br>var navup = document.querySelector(‘#up’);<br>var navdown = document.querySelector(‘#down’);</p>
-<h2 id="8-通过for-in循环检查对象的属性"><a href="#8-通过for-in循环检查对象的属性" class="headerlink" title="8 通过for-in循环检查对象的属性"></a>8 通过for-in循环检查对象的属性</h2><p>下面这样的用法，可以防止迭代的时候进入到对象的原型属性中。<br>for (var name in object) {<br>    if (object.hasOwnProperty(name)) {<br>        // do something with name<br>    }<br>}</p>
-<h2 id="9-浮点计算的问题"><a href="#9-浮点计算的问题" class="headerlink" title="9 浮点计算的问题"></a>9 浮点计算的问题</h2><p>1 0.1 + 0.2 === 0.3 // is false<br>2 9007199254740992 + 1 // is equal to 9007199254740992<br>3 9007199254740992 + 2 // is equal to 9007199254740994</p>
-<p>为什么呢？因为0.1+0.2等于0.30000000000000004。JavaScript的数字都遵循IEEE 754标准构建，在内部都是64位浮点小数表示，具体可以参见JavaScript中的数字是如何编码的.</p>
-<p>可以通过使用toFixed()和toPrecision()来解决这个问题。</p>
-<h2 id="10-在条件中使用逻辑与或"><a href="#10-在条件中使用逻辑与或" class="headerlink" title="10 在条件中使用逻辑与或"></a>10 在条件中使用逻辑与或</h2><p>1 var foo = 10;<br>2 foo == 10 &amp;&amp; doSomething(); // is the same thing as if (foo == 10) doSomething();<br>3 foo == 5 || doSomething(); // is the same thing as if (foo != 5) doSomething();</p>
-<h2 id="11-使用length属性截断数组"><a href="#11-使用length属性截断数组" class="headerlink" title="11 使用length属性截断数组"></a>11 使用length属性截断数组</h2><p>前面的例子中用length属性清空数组，同样还可用它来截断数组：<br>1 var myArray = [12 , 222 , 1000 , 124 , 98 , 10 ];<br>2 myArray.length = 4; // myArray will be equal to [12 , 222 , 1000 , 124].<br>与此同时，如果把length属性变大，数组的长度值变会增加，会使用undefined来作为新的元素填充。length是一个可写的属性。<br>1 myArray.length = 10; // the new array length is 10<br>2 myArray[myArray.length - 1] ; // undefined</p>
-<h2 id="12-获取数组中的最大值和最小值"><a href="#12-获取数组中的最大值和最小值" class="headerlink" title="12 获取数组中的最大值和最小值"></a>12 获取数组中的最大值和最小值</h2><p>1 var  numbers = [5, 458 , 120 , -215 , 228 , 400 , 122205, -85411];<br>2 var maxInNumbers = Math.max.apply(Math, numbers);<br>3 var minInNumbers = Math.min.apply(Math, numbers);</p>
-<h2 id="13-清空数组"><a href="#13-清空数组" class="headerlink" title="13 清空数组"></a>13 清空数组</h2><p>var myArray = [12 , 222 , 1000 ];<br>myArray.length = 0; // myArray will be equal to [].</p>
-<h2 id="14-数组之间追加"><a href="#14-数组之间追加" class="headerlink" title="14 数组之间追加"></a>14 数组之间追加</h2><p>1 var array1 = [12 , “foo” , {name “Joe”} , -2458];<br>2 var array2 = [“Doe” , 555 , 100];<br>3 Array.prototype.push.apply(array1, array2);<br>4 /<em> array1 值为  [12 , “foo” , {name “Joe”} , -2458 , “Doe” , 555 , 100] </em>/</p>
-<h2 id="15-字符串去空格"><a href="#15-字符串去空格" class="headerlink" title="15 字符串去空格"></a>15 字符串去空格</h2><p>Java、C#和PHP等语言都实现了专门的字符串去空格函数，但JavaScript中是没有的，可以通过下面的代码来为String对象函数一个trim函数：<br>1 String.prototype.trim = function(){return this.replace(/^\s+|\s+$/g, “”);};</p>
-<h2 id="16-javascript-amp-amp-Jquery-获取各种高度"><a href="#16-javascript-amp-amp-Jquery-获取各种高度" class="headerlink" title="16 javascript &amp;&amp; Jquery 获取各种高度"></a>16 javascript &amp;&amp; Jquery 获取各种高度</h2><p>IE中：<br>document.body.clientWidth ==&gt; BODY对象宽度<br>document.body.clientHeight ==&gt; BODY对象高度<br>document.documentElement.clientWidth ==&gt; 可见区域宽度<br>document.documentElement.clientHeight ==&gt; 可见区域高度<br>FireFox中：<br>document.body.clientWidth ==&gt; BODY对象宽度<br>document.body.clientHeight ==&gt; BODY对象高度<br>document.documentElement.clientWidth ==&gt; 可见区域宽度<br>document.documentElement.clientHeight ==&gt; 可见区域高度<br>Opera中：<br>document.body.clientWidth ==&gt; 可见区域宽度<br>document.body.clientHeight ==&gt; 可见区域高度<br>document.documentElement.clientWidth ==&gt; 页面对象宽度（即BODY对象宽度加上Margin宽）<br>document.documentElement.clientHeight ==&gt; 页面对象高度（即BODY对象高度加上Margin高）</p>
-<p>alert(document.body.clientWidth);  //网页可见区域宽(body)<br>alert(document.body.clientHeight);  //网页可见区域高(body)<br>alert(document.body.offsetWidth);    //网页可见区域宽(body)，包括border、margin等<br>alert(document.body.offsetHeight);   //网页可见区域宽(body)，包括border、margin等<br>alert(document.body.scrollWidth);    //网页正文全文宽，包括有滚动条时的未见区域<br>alert(document.body.scrollHeight);  //网页正文全文高，包括有滚动条时的未见区域<br>alert(document.body.scrollTop);           //网页被卷去的Top(滚动条)<br>alert(document.body.scrollLeft);           //网页被卷去的Left(滚动条)<br>alert(window.screenTop);                     //浏览器距离Top<br>alert(window.screenLeft);                     //浏览器距离Left<br>alert(window.screen.height);                //屏幕分辨率的高<br>alert(window.screen.width);                 //屏幕分辨率的宽<br>alert(window.screen.availHeight);          //屏幕可用工作区的高<br>alert(window.screen.availWidth);           //屏幕可用工作区的宽</p>
-<p>Jquery<br>alert($(window).height());       //浏览器当前窗口可视区域高度<br>alert($(document).height());     //浏览器当前窗口文档的高度<br>alert($(document.body).height());//浏览器当前窗口文档body的高度<br>alert($(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin<br>alert($(window).width());      //浏览器当前窗口可视区域宽度<br>alert($(document).width());    //浏览器当前窗口文档对象宽度<br>alert($(document.body).width()); //浏览器当前窗口文档body的宽度<br>alert($(document.body).outerWidth(true));//浏览器当前窗口文档body的总宽度 包括border padding margin</p>
- 
       <!-- reward -->
       
     </div>

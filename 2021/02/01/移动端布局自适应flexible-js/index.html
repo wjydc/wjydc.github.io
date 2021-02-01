@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Archives |  薇娇
+    移动端布局自适应flexible.js |  薇娇
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -35,295 +35,316 @@
       
     <main class="content on">
       <section class="outer">
-  
-  <ul class="ads">
+  <article
+  id="post-移动端布局自适应flexible-js"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  移动端布局自适应flexible.js
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/01/移动端布局自适应flexible-js/" class="article-date">
+  <time datetime="2021-02-01T09:06:41.000Z" itemprop="datePublished">2021-02-01</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">481</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">2 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="移动端flexible-js，-自适应"><a href="#移动端flexible-js，-自适应" class="headerlink" title="移动端flexible.js， 自适应"></a>移动端flexible.js， 自适应</h1><pre><code>;(function(win, lib) {
+    var doc = win.document;
+    var docEl = doc.documentElement;
+    var metaEl = doc.querySelector(&apos;meta[name=&quot;viewport&quot;]&apos;);
+    var flexibleEl = doc.querySelector(&apos;meta[name=&quot;flexible&quot;]&apos;);
+    var dpr = 0;
+    var scale = 0;
+    var tid;
+    var flexible = lib.flexible || (lib.flexible = {});
+
+    if (metaEl) {
+        console.warn(&apos;将根据已有的meta标签来设置缩放比例&apos;);
+        var match = metaEl.getAttribute(&apos;content&apos;).match(/initial\-scale=([\d\.]+)/);
+        if (match) {
+            scale = parseFloat(match[1]);
+            dpr = parseInt(1 / scale);
+        }
+    } else if (flexibleEl) {
+        var content = flexibleEl.getAttribute(&apos;content&apos;);
+        if (content) {
+            var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+            var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+            if (initialDpr) {
+                dpr = parseFloat(initialDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));    
+            }
+            if (maximumDpr) {
+                dpr = parseFloat(maximumDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));    
+            }
+        }
+    }
+
+    if (!dpr &amp;&amp; !scale) {
+        var isAndroid = win.navigator.appVersion.match(/android/gi);
+        var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+        var devicePixelRatio = win.devicePixelRatio;
+        if (isIPhone) {
+            // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+            if (devicePixelRatio &gt;= 3 &amp;&amp; (!dpr || dpr &gt;= 3)) {                
+                dpr = 3;
+            } else if (devicePixelRatio &gt;= 2 &amp;&amp; (!dpr || dpr &gt;= 2)){
+                dpr = 2;
+            } else {
+                dpr = 1;
+            }
+        } else {
+            // 其他设备下，仍旧使用1倍的方案
+            dpr = 1;
+        }
+        scale = 1 / dpr;
+    }
+
+    docEl.setAttribute(&apos;data-dpr&apos;, dpr);
+    if (!metaEl) {
+        metaEl = doc.createElement(&apos;meta&apos;);
+        metaEl.setAttribute(&apos;name&apos;, &apos;viewport&apos;);
+        metaEl.setAttribute(&apos;content&apos;, &apos;initial-scale=&apos; + 1 + &apos;, maximum-scale=&apos; + 1 + &apos;, minimum-scale=&apos; + 1 + &apos;, user-scalable=no&apos;);
+        if (docEl.firstElementChild) {
+            docEl.firstElementChild.appendChild(metaEl);
+        } else {
+            var wrap = doc.createElement(&apos;div&apos;);
+            wrap.appendChild(metaEl);
+            doc.write(wrap.innerHTML);
+        }
+    }
+
+    function refreshRem(){
+        var width = docEl.getBoundingClientRect().width;
+        if (width / dpr &gt; 540) {
+            width = 540 * dpr;
+        }
+        var rem = width / 10;
+        docEl.style.fontSize = rem + &apos;px&apos;;
+        flexible.rem = win.rem = rem;
+    }
+
+    win.addEventListener(&apos;resize&apos;, function() {
+        clearTimeout(tid);
+        tid = setTimeout(refreshRem, 300);
+    }, false);
+    win.addEventListener(&apos;pageshow&apos;, function(e) {
+        if (e.persisted) {
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 300);
+        }
+    }, false);
+
+    if (doc.readyState === &apos;complete&apos;) {
+        doc.body.style.fontSize = 12 * dpr + &apos;px&apos;;
+    } else {
+        doc.addEventListener(&apos;DOMContentLoaded&apos;, function(e) {
+            doc.body.style.fontSize = 12 * dpr + &apos;px&apos;;
+        }, false);
+    }
+
+
+    refreshRem();
+
+    flexible.dpr = win.dpr = dpr;
+    flexible.refreshRem = refreshRem;
+    flexible.rem2px = function(d) {
+        var val = parseFloat(d) * this.rem;
+        if (typeof d === &apos;string&apos; &amp;&amp; d.match(/rem$/)) {
+            val += &apos;px&apos;;
+        }
+        return val;
+    }
+    flexible.px2rem = function(d) {
+        var val = parseFloat(d) / this.rem;
+        if (typeof d === &apos;string&apos; &amp;&amp; d.match(/px$/)) {
+            val += &apos;rem&apos;;
+        }
+        return val;
+    }
+
+})(window, window[&apos;lib&apos;] || (window[&apos;lib&apos;] = {}));
+</code></pre> 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
         <li>
-            <a href="https://curl.qcloud.com/ezctH6FU">
-                <img src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/ten_1.jpg" width="300" alt="腾讯云限时秒杀">
-            </a>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
         </li>
-    
-        <li>
-            <a href="https://curl.qcloud.com/kvO7hb43">
-                <img src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/ten_2.jpg" width="300" alt="云服务器全球购低至2折">
-            </a>
-        </li>
-    
-</ul>
-  
-  
-  <article class="articles">
-    
-    
-    <h1 class="page-type-title">Archives</h1>
-    
-    
-  
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2021" class="archive-year">2021</a>
+      </ul>
     </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/02/01/移动端布局自适应flexible-js/" class="archive-article-date">
-  <time datetime="2021-02-01T09:06:41.000Z" itemprop="datePublished">02/01</time>
-</a>
+    
+    <footer class="article-footer">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2021/02/01/移动端布局自适应flexible-js/"
-    >移动端布局自适应flexible.js</a> 
-</h2>
- 
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
 
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-  
-  </div>
-  </div>
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2018" class="archive-year">2018</a>
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2021/02/01/移动端布局自适应flexible-js/" alt="微信分享二维码">
     </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/11/JAVAScript中DOM与BOM的差异分析/" class="archive-article-date">
-  <time datetime="2018-04-11T08:37:39.000Z" itemprop="datePublished">04/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2018/04/11/JAVAScript中DOM与BOM的差异分析/"
-    >JAVAScript中DOM与BOM的差异分析</a> 
-</h2>
- 
+</div>
 
-    </header>
-    
-    
+<div id="share-mask"></div>  
+    </footer>
   </div>
-</article>
-      
-  
-  
-  
-  </div>
-  </div>
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2017" class="archive-year">2017</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/09/21/vue-js实战-基础篇/" class="archive-article-date">
-  <time datetime="2017-09-21T08:52:05.000Z" itemprop="datePublished">09/21</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2017/09/21/vue-js实战-基础篇/"
-    >vue.js实战-基础篇</a> 
-</h2>
- 
 
-    </header>
+   
+  <nav class="article-nav">
     
     
-  </div>
-</article>
-      
-  
-  
-  
-  </div>
-  </div>
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2016" class="archive-year">2016</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/11/28/React-Native学习指南/" class="archive-article-date">
-  <time datetime="2016-11-28T11:56:17.000Z" itemprop="datePublished">11/28</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2016/11/28/React-Native学习指南/"
-    >React-Native学习指南</a> 
-</h2>
- 
-
-    </header>
+      <a href="/2018/04/11/JAVAScript中DOM与BOM的差异分析/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">JAVAScript中DOM与BOM的差异分析</div>
+      </a>
     
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/11/18/Mongoose基础篇/" class="archive-article-date">
-  <time datetime="2016-11-18T01:34:07.000Z" itemprop="datePublished">11/18</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2016/11/18/Mongoose基础篇/"
-    >Mongoose基础篇</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/11/16/NodeJs常用核心模块简介/" class="archive-article-date">
-  <time datetime="2016-11-16T02:40:50.000Z" itemprop="datePublished">11/16</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2016/11/16/NodeJs常用核心模块简介/"
-    >NodeJs常用核心模块简介</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/11/13/MongoDB常用操作命令/" class="archive-article-date">
-  <time datetime="2016-11-13T11:35:25.000Z" itemprop="datePublished">11/13</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2016/11/13/MongoDB常用操作命令/"
-    >MongoDB常用操作命令</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/11/11/闲聊微信小程序/" class="archive-article-date">
-  <time datetime="2016-11-11T11:39:38.000Z" itemprop="datePublished">11/11</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2016/11/11/闲聊微信小程序/"
-    >闲聊微信小程序</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/10/25/Vue-js基础篇/" class="archive-article-date">
-  <time datetime="2016-10-25T13:27:13.000Z" itemprop="datePublished">10/25</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2016/10/25/Vue-js基础篇/"
-    >Vue.js基础篇</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-单页应用spa开发中的">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/06/框架/" class="archive-article-date">
-  <time datetime="2016-09-06T01:36:29.000Z" itemprop="datePublished">09/06</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2016/09/06/框架/"
-    >框架</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-      
-    </div>
-  </div>
-  
-  
-
-  
-  <nav class="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">下一页</a>
   </nav>
-  
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -465,6 +486,21 @@
     <script src="/js/jquery-2.0.3.min.js"></script>
 <script src="/js/lazyload.min.js"></script>
 <!-- Tocbot -->
+
+<script src="/js/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">

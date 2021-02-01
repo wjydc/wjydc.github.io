@@ -153,6 +153,169 @@
     
     
     <article
+  id="post-移动端布局自适应flexible-js"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/01/移动端布局自适应flexible-js/"
+    >移动端布局自适应flexible.js</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/01/移动端布局自适应flexible-js/" class="article-date">
+  <time datetime="2021-02-01T09:06:41.000Z" itemprop="datePublished">2021-02-01</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="移动端flexible-js，-自适应"><a href="#移动端flexible-js，-自适应" class="headerlink" title="移动端flexible.js， 自适应"></a>移动端flexible.js， 自适应</h1><pre><code>;(function(win, lib) {
+    var doc = win.document;
+    var docEl = doc.documentElement;
+    var metaEl = doc.querySelector(&apos;meta[name=&quot;viewport&quot;]&apos;);
+    var flexibleEl = doc.querySelector(&apos;meta[name=&quot;flexible&quot;]&apos;);
+    var dpr = 0;
+    var scale = 0;
+    var tid;
+    var flexible = lib.flexible || (lib.flexible = {});
+
+    if (metaEl) {
+        console.warn(&apos;将根据已有的meta标签来设置缩放比例&apos;);
+        var match = metaEl.getAttribute(&apos;content&apos;).match(/initial\-scale=([\d\.]+)/);
+        if (match) {
+            scale = parseFloat(match[1]);
+            dpr = parseInt(1 / scale);
+        }
+    } else if (flexibleEl) {
+        var content = flexibleEl.getAttribute(&apos;content&apos;);
+        if (content) {
+            var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+            var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+            if (initialDpr) {
+                dpr = parseFloat(initialDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));    
+            }
+            if (maximumDpr) {
+                dpr = parseFloat(maximumDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));    
+            }
+        }
+    }
+
+    if (!dpr &amp;&amp; !scale) {
+        var isAndroid = win.navigator.appVersion.match(/android/gi);
+        var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+        var devicePixelRatio = win.devicePixelRatio;
+        if (isIPhone) {
+            // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+            if (devicePixelRatio &gt;= 3 &amp;&amp; (!dpr || dpr &gt;= 3)) {                
+                dpr = 3;
+            } else if (devicePixelRatio &gt;= 2 &amp;&amp; (!dpr || dpr &gt;= 2)){
+                dpr = 2;
+            } else {
+                dpr = 1;
+            }
+        } else {
+            // 其他设备下，仍旧使用1倍的方案
+            dpr = 1;
+        }
+        scale = 1 / dpr;
+    }
+
+    docEl.setAttribute(&apos;data-dpr&apos;, dpr);
+    if (!metaEl) {
+        metaEl = doc.createElement(&apos;meta&apos;);
+        metaEl.setAttribute(&apos;name&apos;, &apos;viewport&apos;);
+        metaEl.setAttribute(&apos;content&apos;, &apos;initial-scale=&apos; + 1 + &apos;, maximum-scale=&apos; + 1 + &apos;, minimum-scale=&apos; + 1 + &apos;, user-scalable=no&apos;);
+        if (docEl.firstElementChild) {
+            docEl.firstElementChild.appendChild(metaEl);
+        } else {
+            var wrap = doc.createElement(&apos;div&apos;);
+            wrap.appendChild(metaEl);
+            doc.write(wrap.innerHTML);
+        }
+    }
+
+    function refreshRem(){
+        var width = docEl.getBoundingClientRect().width;
+        if (width / dpr &gt; 540) {
+            width = 540 * dpr;
+        }
+        var rem = width / 10;
+        docEl.style.fontSize = rem + &apos;px&apos;;
+        flexible.rem = win.rem = rem;
+    }
+
+    win.addEventListener(&apos;resize&apos;, function() {
+        clearTimeout(tid);
+        tid = setTimeout(refreshRem, 300);
+    }, false);
+    win.addEventListener(&apos;pageshow&apos;, function(e) {
+        if (e.persisted) {
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 300);
+        }
+    }, false);
+
+    if (doc.readyState === &apos;complete&apos;) {
+        doc.body.style.fontSize = 12 * dpr + &apos;px&apos;;
+    } else {
+        doc.addEventListener(&apos;DOMContentLoaded&apos;, function(e) {
+            doc.body.style.fontSize = 12 * dpr + &apos;px&apos;;
+        }, false);
+    }
+
+
+    refreshRem();
+
+    flexible.dpr = win.dpr = dpr;
+    flexible.refreshRem = refreshRem;
+    flexible.rem2px = function(d) {
+        var val = parseFloat(d) * this.rem;
+        if (typeof d === &apos;string&apos; &amp;&amp; d.match(/rem$/)) {
+            val += &apos;px&apos;;
+        }
+        return val;
+    }
+    flexible.px2rem = function(d) {
+        var val = parseFloat(d) / this.rem;
+        if (typeof d === &apos;string&apos; &amp;&amp; d.match(/px$/)) {
+            val += &apos;rem&apos;;
+        }
+        return val;
+    }
+
+})(window, window[&apos;lib&apos;] || (window[&apos;lib&apos;] = {}));
+</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-JAVAScript中DOM与BOM的差异分析"
   class="article article-type-post"
   itemscope
@@ -1581,257 +1744,6 @@ new Vue({
 <p>译者：CoolTiger  </p>
 <p>原文地址:<a href="http://noeticforce.com/best-Javascript-frameworks-for-single-page-modern-web-applications" target="_blank" rel="noopener">http://noeticforce.com/best-Javascript-frameworks-for-single-page-modern-web-applications
 </a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-PHP基础（三）"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2016/08/17/PHP基础（三）/"
-    >PHP基础（三）</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2016/08/17/PHP基础（三）/" class="article-date">
-  <time datetime="2016-08-17T05:40:36.000Z" itemprop="datePublished">2016-08-17</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="PHP基础（三）"><a href="#PHP基础（三）" class="headerlink" title="PHP基础（三）"></a>PHP基础（三）</h3><h6 id="PHP-表单和用户输入"><a href="#PHP-表单和用户输入" class="headerlink" title="PHP 表单和用户输入"></a>PHP 表单和用户输入</h6><p>PHP 中的 $_GET 和 $_POST 变量用于检索表单中的信息，比如用户输入。</p>
-<h6 id="PHP-表单处理"><a href="#PHP-表单处理" class="headerlink" title="PHP 表单处理"></a>PHP 表单处理</h6><p>有一点很重要的事情值得注意，当处理 HTML 表单时，PHP 能把来自 HTML 页面中的表单元素自动变成可供 PHP 脚本使用。</p>
-<p>实例<br>下面的实例包含了一个 HTML 表单，带有两个输入框和一个提交按钮。<br>form.html 文件代码如下：</p>
-<pre><code>&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;title&gt;php教程(runoob.com)&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;form action=&quot;welcome.php&quot; method=&quot;post&quot;&gt;
-名字: &lt;input type=&quot;text&quot; name=&quot;fname&quot;&gt;
-年龄: &lt;input type=&quot;text&quot; name=&quot;age&quot;&gt;
-&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
-&lt;/form&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>当用户填写完上面的表单并点击提交按钮时，表单的数据会被送往名为 “welcome.php” 的 PHP 文件：</p>
-<pre><code>欢迎 &lt;?php echo $_POST[&quot;fname&quot;]; ?&gt;!&lt;br&gt;
-你的年龄是 &lt;?php echo $_POST[&quot;age&quot;]; ?&gt;  岁。
-</code></pre><p><img src="http://www.runoob.com/wp-content/uploads/2013/08/form1.gif" alt="http://www.runoob.com/wp-content/uploads/2013/08/form1.gif"><br>图片来源：菜鸟教程</p>
-<h6 id="PHP-文件处理"><a href="#PHP-文件处理" class="headerlink" title="PHP 文件处理"></a>PHP 文件处理</h6><p>fopen() 函数用于在 PHP 中打开文件。</p>
-<p>打开文件<br>fopen() 函数用于在 PHP 中打开文件。<br>此函数的第一个参数含有要打开的文件的名称，第二个参数规定了使用哪种模式来打开文件：</p>
-<pre><code>&lt;html&gt;
-&lt;body&gt;
-
-&lt;?php
-$file=fopen(&quot;welcome.txt&quot;,&quot;r&quot;);
-?&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>模式    描述</p>
-<p>r    只读。在文件的开头开始。</p>
-<p>r+    读/写。在文件的开头开始。</p>
-<p>w    只写。打开并清空文件的内容；如果文件不存在，则创建新文件。</p>
-<p>w+    读/写。打开并清空文件的内容；如果文件不存在，则创建新文件。</p>
-<p>a    追加。打开并向文件末尾进行写操作，如果文件不存在，则创建新文件。</p>
-<p>a+    读/追加。通过向文件末尾写内容，来保持文件内容。</p>
-<p>x    只写。创建新文件。如果文件已存在，则返回 FALSE 和一个错误。</p>
-<p>x+    读/写。创建新文件。如果文件已存在，则返回 FALSE 和一个错误。</p>
-<p>注释：如果 fopen() 函数无法打开指定文件，则返回 0 (false)。</p>
-<p>关闭文件</p>
-<pre><code>&lt;?php
-$file = fopen(&quot;test.txt&quot;,&quot;r&quot;);
-
-//执行一些代码
-
-fclose($file);
-?&gt;
-fclose() 函数用于关闭打开的文件：
-</code></pre><p>检测文件末尾（EOF）</p>
-<p>feof() 函数检测是否已到达文件末尾（EOF）。</p>
-<p>在循环遍历未知长度的数据时，feof() 函数很有用。</p>
-<p>注释：在 w 、a 和 x 模式下，您无法读取打开的文件！</p>
-<p>if (feof($file)) echo “文件结尾”;</p>
-<pre><code>if (feof($file)) echo &quot;文件结尾&quot;;
-</code></pre><p>逐行读取文件</p>
-<p>fgets() 函数用于从文件中逐行读取文件。</p>
-<p>注释：在调用该函数之后，文件指针会移动到下一行。</p>
-<p>逐字符读取文件</p>
-<p>fgetc() 函数用于从文件中逐字符地读取文件。</p>
-<p>注释：在调用该函数之后，文件指针会移动到下一个字符。</p>
-<p>PHP 文件上传</p>
-<p>通过 PHP，可以把文件上传到服务器。</p>
-<p>创建一个文件上传表单</p>
-<p>允许用户从表单上传文件是非常有用的。</p>
-<p>请看下面这个供上传文件的 HTML 表单：</p>
-<pre><code>&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;title&gt;php教程(runoob.com)&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;form action=&quot;upload_file.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
-    &lt;label for=&quot;file&quot;&gt;文件名：&lt;/label&gt;
-    &lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;file&quot;&gt;&lt;br&gt;
-    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;提交&quot;&gt;
-&lt;/form&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>将以上代码保存到 form.html 文件中。</p>
-<p>有关上面的 HTML 表单的一些注意项列举如下：</p>
-<p><form> 标签的 enctype 属性规定了在提交表单时要使用哪种内容类型。在表单需要二进制数据时，比如文件内容，请使用 “multipart/form-data”。</form></p>
-<p><input> 标签的 type=”file” 属性规定了应该把输入作为文件来处理。举例来说，当在浏览器中预览时，会看到输入框旁边有一个浏览按钮。</p>
-<p>注释：允许用户上传文件是一个巨大的安全风险。请仅仅允许可信的用户执行文件上传操作。</p>
-<p>创建上传脚本</p>
-<pre><code>&quot;upload_file.php&quot; 文件含有供上传文件的代码：
-&lt;?php
-if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)
-{
-echo &quot;错误：&quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br&gt;&quot;;
-}
-else
-{
-    echo &quot;上传文件名: &quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot;&lt;br&gt;&quot;;
-    echo &quot;文件类型: &quot; . $_FILES[&quot;file&quot;][&quot;type&quot;] . &quot;&lt;br&gt;&quot;;
-    echo &quot;文件大小: &quot; . ($_FILES[&quot;file&quot;][&quot;size&quot;] / 1024) . &quot; kB&lt;br&gt;&quot;;
-    echo &quot;文件临时存储的位置: &quot; . $_FILES[&quot;file&quot;][&quot;tmp_name&quot;];
-}
-?&gt;
-</code></pre><p>通过使用 PHP 的全局数组 $_FILES，你可以从客户计算机向远程服务器上传文件。</p>
-<p>第一个参数是表单的 input name，第二个下标可以是 “name”、”type”、”size”、”tmp_name” 或 “error”。如下所示：</p>
-<ul>
-<li>$_FILES[“file”][“name”] - 上传文件的名称</li>
-</ul>
-<ul>
-<li><p>$_FILES[“file”][“type”] - 上传文件的类型</p>
-</li>
-<li><p>$_FILES[“file”][“size”] - 上传文件的大小，以字节计</p>
-</li>
-</ul>
-<ul>
-<li>$_FILES[“file”][“tmp_name”] - 存储在服务器的文件的临时副本的名称</li>
-</ul>
-<ul>
-<li>$_FILES[“file”][“error”] - 由文件上传导致的错误代码</li>
-</ul>
-<p>这是一种非常简单文件上传方式。基于安全方面的考虑，您应当增加有关允许哪些用户上传文件的限制。</p>
-<p>上传限制 </p>
-<p>在这个脚本中，我们增加了对文件上传的限制。用户只能上传 .gif、.jpeg、.jpg、.png 文件，文件大小必须小于 200 kB：</p>
-<pre><code>&lt;?php
-// 允许上传的图片后缀
-$allowedExts = array(&quot;gif&quot;, &quot;jpeg&quot;, &quot;jpg&quot;, &quot;png&quot;);
-$temp = explode(&quot;.&quot;, $_FILES[&quot;file&quot;][&quot;name&quot;]);
-$extension = end($temp);        // 获取文件后缀名
-if ((($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/gif&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpeg&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpg&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/pjpeg&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/x-png&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/png&quot;))
-&amp;&amp; ($_FILES[&quot;file&quot;][&quot;size&quot;] &lt; 204800)    // 小于 200 kb
-&amp;&amp; in_array($extension, $allowedExts))
-{
-if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)
-{
-    echo &quot;错误：: &quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br&gt;&quot;;
-}
-else
-{
-    echo &quot;上传文件名: &quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot;&lt;br&gt;&quot;;
-    echo &quot;文件类型: &quot; . $_FILES[&quot;file&quot;][&quot;type&quot;] . &quot;&lt;br&gt;&quot;;
-    echo &quot;文件大小: &quot; . ($_FILES[&quot;file&quot;][&quot;size&quot;] / 1024) . &quot; kB&lt;br&gt;&quot;;
-    echo &quot;文件临时存储的位置: &quot; . $_FILES[&quot;file&quot;][&quot;tmp_name&quot;];
-}
-}
-else
-{
-echo &quot;非法的文件格式&quot;;
-}
-?&gt;
-</code></pre><p>保存被上传的文件</p>
-<p>上面的实例在服务器的 PHP 临时文件夹中创建了一个被上传文件的临时副本。</p>
-<p>这个临时的副本文件会在脚本结束时消失。要保存被上传的文件，我们需要把它拷贝到另外的位置：</p>
-<pre><code>    &lt;?php
-// 允许上传的图片后缀
-$allowedExts = array(&quot;gif&quot;, &quot;jpeg&quot;, &quot;jpg&quot;, &quot;png&quot;);
-$temp = explode(&quot;.&quot;, $_FILES[&quot;file&quot;][&quot;name&quot;]);
-echo $_FILES[&quot;file&quot;][&quot;size&quot;];
-$extension = end($temp);     // 获取文件后缀名
-if ((($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/gif&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpeg&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/jpg&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/pjpeg&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/x-png&quot;)
-|| ($_FILES[&quot;file&quot;][&quot;type&quot;] == &quot;image/png&quot;))
-&amp;&amp; ($_FILES[&quot;file&quot;][&quot;size&quot;] &lt; 204800)   // 小于 200 kb
-&amp;&amp; in_array($extension, $allowedExts))
-{
-if ($_FILES[&quot;file&quot;][&quot;error&quot;] &gt; 0)
-{
-    echo &quot;错误：: &quot; . $_FILES[&quot;file&quot;][&quot;error&quot;] . &quot;&lt;br&gt;&quot;;
-}
-else
-{
-    echo &quot;上传文件名: &quot; . $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot;&lt;br&gt;&quot;;
-    echo &quot;文件类型: &quot; . $_FILES[&quot;file&quot;][&quot;type&quot;] . &quot;&lt;br&gt;&quot;;
-    echo &quot;文件大小: &quot; . ($_FILES[&quot;file&quot;][&quot;size&quot;] / 1024) . &quot; kB&lt;br&gt;&quot;;
-    echo &quot;文件临时存储的位置: &quot; . $_FILES[&quot;file&quot;][&quot;tmp_name&quot;] . &quot;&lt;br&gt;&quot;;
-
-    // 判断当期目录下的 upload 目录是否存在该文件
-    // 如果没有 upload 目录，你需要创建它，upload 目录权限为 777
-    if (file_exists(&quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]))
-    {
-        echo $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot; 文件已经存在。 &quot;;
-    }
-    else
-    {
-        // 如果 upload 目录不存在该文件则将文件上传到 upload 目录下
-        move_uploaded_file($_FILES[&quot;file&quot;][&quot;tmp_name&quot;], &quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]);
-        echo &quot;文件存储在: &quot; . &quot;upload/&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;];
-    }
-}
-}
-else
-{
-echo &quot;非法的文件格式&quot;;
-}
-?&gt;
-</code></pre><p>上面的脚本检测了文件是否已存在，如果不存在，则把文件拷贝到名为 “upload” 的目录下。<br>文件上传演示操作如下所示：<br><img src="http://www.runoob.com/wp-content/uploads/2013/08/upload-form.gif" alt="http://www.runoob.com/wp-content/uploads/2013/08/upload-form.gif"></p>
-<p>图片来源：菜鸟教程    </p>
  
       <!-- reward -->
       
