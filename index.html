@@ -179,8 +179,11 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h3 id="页面audio-html"><a href="#页面audio-html" class="headerlink" title="页面audio.html"></a>页面audio.html</h3><p>html:<br>    &lt;!DOCTYPE html&gt;<br>    <html lang="en"></html></p>
-<pre><code>&lt;head&gt;
+  <h3 id="页面audio-html"><a href="#页面audio-html" class="headerlink" title="页面audio.html"></a>页面audio.html</h3><p>  html:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
     &lt;script src=&quot;../js/jquery.js&quot;&gt;&lt;/script&gt;
     &lt;script src=&quot;../js/flexible.debug.js&quot;&gt;&lt;/script&gt;
@@ -302,8 +305,21 @@
 &lt;/script&gt;
 
 &lt;/html&gt;
-</code></pre><h3 id="audio-js"><a href="#audio-js" class="headerlink" title="audio.js"></a>audio.js</h3><p>js<br>    //播放器控制面板<br>    var Control = function (o) {<br>        let that = this<br>        var setting = {<br>            audio: $(“#myMusic”)[0], //播放器<br>            progressWrap: $(“#progressWrap”), //歌曲进度条容器<br>            progress: $(“#progress”),     //歌曲进度条<br>            playBtn: $(“#playButton”),   //主控按钮<br>            allTimeNode: $(“#totleTime”),    //总时间容器<br>            currentTimeNode: $(“#currentTime”),   //当前时间容器<br>        }<br>        this._opation = $.extend({}, setting, o);</p>
-<pre><code>    this.audio = this._opation.audio;
+</code></pre><h3 id="audio-js"><a href="#audio-js" class="headerlink" title="audio.js"></a>audio.js</h3><p>  js</p>
+<pre><code>//播放器控制面板    
+var Control = function (o) {
+    let that = this
+    var setting = {
+        audio: $(&quot;#myMusic&quot;)[0], //播放器
+        progressWrap: $(&quot;#progressWrap&quot;), //歌曲进度条容器
+        progress: $(&quot;#progress&quot;),     //歌曲进度条
+        playBtn: $(&quot;#playButton&quot;),   //主控按钮
+        allTimeNode: $(&quot;#totleTime&quot;),    //总时间容器
+        currentTimeNode: $(&quot;#currentTime&quot;),   //当前时间容器
+    }
+    this._opation = $.extend({}, setting, o);
+
+    this.audio = this._opation.audio;
     this.progressWrap = this._opation.progressWrap;
     this.progress = this._opation.progress;
     this.playBtn = this._opation.playBtn;
@@ -520,8 +536,16 @@ Control.prototype = {
     },
 
 }
-</code></pre><h3 id="页面样式-style-css"><a href="#页面样式-style-css" class="headerlink" title="页面样式 style.css"></a>页面样式 style.css</h3><p>css<br>    /<em> 页面样式 </em>/<br>    html,<br>    body {<br>        height: auto;<br>        min-height: 100vh;<br>        position: relative;<br>    }</p>
-<pre><code>/* 头部样式 */
+</code></pre><h3 id="页面样式-style-css"><a href="#页面样式-style-css" class="headerlink" title="页面样式 style.css"></a>页面样式 style.css</h3><p>  css</p>
+<pre><code>/* 页面样式 */
+html,
+body {
+    height: auto;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 头部样式 */
 .header {
     width: 100%;
     height: 1.2rem;
@@ -789,7 +813,7 @@ Control.prototype = {
     -webkit-box-shadow: #807D7D 0 0.03rem 0.16rem;
     -moz-box-shadow: #807D7D 0px 0.03rem 0.16rem;
 }
-</code></pre><h3 id="页面样式-audio-css"><a href="#页面样式-audio-css" class="headerlink" title="页面样式 audio.css"></a>页面样式 audio.css</h3><p>css</p>
+</code></pre><h3 id="页面样式-audio-css"><a href="#页面样式-audio-css" class="headerlink" title="页面样式 audio.css"></a>页面样式 audio.css</h3><p>  css</p>
 <pre><code>/* 播放器样式 */
 *{
     font-family:&apos;PingFang-SC-Bold&apos; ;
