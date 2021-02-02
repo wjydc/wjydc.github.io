@@ -153,6 +153,69 @@
     
     
     <article
+  id="swiper-Animation使用"
+  class="article article-type-swiper"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/05/12/Animation使用/"
+    >Animation使用</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/05/12/Animation使用/" class="article-date">
+  <time datetime="2016-05-12T07:12:11.000Z" itemprop="datePublished">2016-05-12</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="Swiper-Animate使用方法"><a href="#Swiper-Animate使用方法" class="headerlink" title="Swiper Animate使用方法"></a>Swiper Animate使用方法</h3><p><strong> Swiper Animate</strong>，是Swiper中文网提供的用于在Swiper内快速制作CSS3动画效果的小插件，适用于Swiper2.x和Swiper3.x 。<br><strong> 此插件不适用于loop模式</strong></p>
+<ol>
+<li>使用Swiper Animate需要先加载swiper.animate.min.js和animate.min.css。code:<br> &lt;!DOCTYPE html&gt;<pre><code>&lt;html&gt;
+&lt;head&gt;
+...
+&lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/swiper.min.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/animate.min.css&quot;&gt;
+</code></pre> <br> <body><pre><code>...
+&lt;script src=&quot;path/to/swiper.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;path/to/swiper.animate.min.js&quot;&gt;&lt;/script&gt;
+</code></pre> </body><br> </li>
+<li>初始化时隐藏元素并在需要的时刻开始动画。<br>code:<br> <script><br>   var mySwiper = new Swiper (‘.swiper-container’, {<br>   onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit<pre><code>swiperAnimateCache(swiper); //隐藏动画元素 
+swiperAnimate(swiper); //初始化完成开始动画
+</code></pre>   },<br>   onSlideChangeEnd: function(swiper){ <pre><code>swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+</code></pre>   }<br>   })<br>   </script><br> </li>
+<li>在需要运动的元素上面增加类名  ani   ，和其他的类似插件相同，Swiper         Animate需要指定几个参数：<br>swiper-animate-effect：切换效果，例如 fadeInUp<br>swiper-animate-duration：可选，动画持续时间（单位秒），例如 0.5s<br>swiper-animate-delay：可选，动画延迟时间（单位秒），例如 0.3s code:<br>div class=”swiper-slide”&gt;<br><p class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">内容</p><br><br>如果以上这些效果不能满足你的需求，你可以仿照animate.css的格式制作一些其他效果，加到你自己的css文件。其他参数：transition-timing-function </li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-常见兼容性问题（一）"
   class="article article-type-post"
   itemscope
@@ -1265,88 +1328,6 @@ height: 60px;
 <p>第二个参数设置后其实和step-start，step-end同义，在分成的小间隔动画中判断显示效果。可以看出：steps(1, start) 等于step-start，steps(1,end)等于step-end</p>
 <p>最核心的一点就是：timing-function 作用于每两个关键帧之间，而不是整个动画</p>
  
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-三张图搞懂JavaScript的原型对象与原型链"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2016/02/29/三张图搞懂JavaScript的原型对象与原型链/"
-    >三张图搞懂JavaScript的原型对象与原型链</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2016/02/29/三张图搞懂JavaScript的原型对象与原型链/" class="article-date">
-  <time datetime="2016-02-29T12:46:35.000Z" itemprop="datePublished">2016-02-29</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="三张图搞懂JavaScript的原型对象与原型链"><a href="#三张图搞懂JavaScript的原型对象与原型链" class="headerlink" title="三张图搞懂JavaScript的原型对象与原型链"></a>三张图搞懂JavaScript的原型对象与原型链</h3><p>原文地址：<a href="三张图搞懂JavaScript的原型对象与原型链">三张图搞懂JavaScript的原型对象与原型链</a></p>
-<p>对于新人来说，JavaScript的原型是一个很让人头疼的事情，一来prototype容易与<strong>proto</strong>混淆，二来它们之间的各种指向实在有些复杂，其实市面上已经有非常多的文章在尝试说清楚，有一张所谓很经典的图，上面画了各种线条，一会连接这个一会连接那个，说实话我自己看得就非常头晕，更谈不上完全理解了。所以我自己也想尝试一下，看看能不能把原型中的重要知识点拆分出来，用最简单的图表形式说清楚。</p>
-<p>我们知道原型是一个对象，其他对象可以通过它实现属性继承。但是尼玛除了prototype，又有一个<strong>proto</strong>是用来干嘛的？长那么像，让人怎么区分呢？它们都指向谁，那么混乱怎么记啊？原型链又是什么鬼？相信不少初学者甚至有一定经验的老鸟都不一定能完全说清楚，下面用三张简单的图，配合一些示例代码来理解一下。</p>
-<p>1、prototype和<strong>proto</strong>的区别</p>
-<p><img src="http://ac-myg6wstv.clouddn.com/2e7817d676e605e54e62.png" alt="http://ac-myg6wstv.clouddn.com/2e7817d676e605e54e62.png"></p>
-<pre><code>var a = {};
-console.log(a.prototype); //undefined
-console.log(a.__proto__);  //Object {}
-
-var b = function(){}
-console.log(b.prototype); //b {}
-console.log(b.__proto__);  //function() {}
-</code></pre><p>2、<strong>proto</strong>属性指向谁</p>
-<p><img src="http://ac-myg6wstv.clouddn.com/414693e5821245adeb86.png" alt="http://ac-myg6wstv.clouddn.com/414693e5821245adeb86.png"></p>
-<pre><code>/*1、字面量方式*/
-var a = {};
-console.log(a.constructor); //function Object() { [native code] } (即构造器Object）
-console.log(a.__proto__ === a.constructor.prototype); //true
-
-/*2、构造器方式*/
-var A = function (){}; var a = new A();
-console.log(a.constructor); // function(){}（即构造器function A）
-console.log(a.__proto__ === a.constructor.prototype); //true
-
-/*3、Object.create()方式*/
-var a1 = {a:1} 
-var a2 = Object.create(a1);
-console.log(a2.constructor); //function Object() { [native code] } (即构造器Object)
-console.log(a2.__proto__ === a1);// true 
-console.log(a2.__proto__ === a2.constructor.prototype); //false（此处即为图1中的例外情况）
-</code></pre><h3 id="三、什么是原型链"><a href="#三、什么是原型链" class="headerlink" title="三、什么是原型链"></a>三、什么是原型链</h3><p><img src="http://ac-myg6wstv.clouddn.com/e8f4cc45af11650de1f8.png" alt="http://ac-myg6wstv.clouddn.com/e8f4cc45af11650de1f8.png">    </p>
-<pre><code>var A = function(){};
-var a = new A();
-console.log(a.__proto__); //Object {}（即构造器function A 的原型对象）
-console.log(a.__proto__.__proto__); //Object {}（即构造器function Object 的原型对象）
-console.log(a.__proto__.__proto__.__proto__); //null
-</code></pre> 
       <!-- reward -->
       
     </div>

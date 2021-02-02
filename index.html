@@ -153,6 +153,103 @@
     
     
     <article
+  id="post-无缝滚动"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/02/无缝滚动/"
+    >无缝滚动</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/02/无缝滚动/" class="article-date">
+  <time datetime="2021-02-02T06:14:11.000Z" itemprop="datePublished">2021-02-02</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="文字无缝滚动"><a href="#文字无缝滚动" class="headerlink" title="文字无缝滚动"></a>文字无缝滚动</h1><h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><pre><code> &lt;div id=&quot;scrollContent&quot;&gt;
+    &lt;div class=&quot;scrollContentTranslate&quot;&gt;
+        &lt;p id=&quot;scroll1&quot;&gt;内容纯属娱乐，暂不向未满18岁青少年提供服务。严格按照法律法规和用户协议对您的信息进行全方位的保护，请放心使用。&lt;span&gt;&lt;/span&gt; &lt;/p&gt;
+        &lt;p id=&quot;scroll2&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+ &lt;/div&gt;
+&lt;script&gt; 
+  indexScroll.init() 
+&lt;/script&gt;
+</code></pre><h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><pre><code>#scrollContent {
+    width: 93%;
+    margin: 0 auto 2.5rem;
+    padding-left: .4rem;
+    overflow: hidden;
+
+    .scrollContentTranslate {
+        float: left;
+        width: auto;
+        min-width: 8000%;
+    }
+
+    #scroll1,
+    #scroll2 {
+        float: left;
+        font-size: .32rem;
+        color: #fff;
+        white-space: nowrap;
+
+        span {
+            display: inline-block;
+            width: 3.67rem;
+        }
+    }
+}
+</code></pre><h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><pre><code>var indexScroll = {
+    init: function () {
+        var speed = 50; //数字越大速度越慢
+        var tab = document.getElementById(&quot;scrollContent&quot;);
+        var tab1 = document.getElementById(&quot;scroll1&quot;);
+        var tab2 = document.getElementById(&quot;scroll2&quot;);
+        tab2.innerHTML = tab1.innerHTML;
+        function Marquee() {
+            if (tab2.offsetWidth - tab.scrollLeft &lt;= 0)
+                tab.scrollLeft -= tab1.offsetWidth
+            else {
+                tab.scrollLeft++;
+            }
+        }
+        setInterval(Marquee, speed);
+    }
+}
+</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-音频播放控件"
   class="article article-type-post"
   itemscope
@@ -2282,219 +2379,6 @@ remove: true
 <p>本文部分转自 <a href="http://mp.weixin.qq.com/s?__biz=MzA3MDk4NzMzNg==&amp;mid=2651706736&amp;idx=1&amp;sn=6a3aba161a5cc720d1feeae773556de7&amp;chksm=84cd0e57b3ba874196e909d81d98f5c3e5279a0ec851ae6399e0e732464a6234f0682bd406ae&amp;mpshare=1&amp;scene=1&amp;srcid=1115VFPaauhuHzzn4L9NorT8#rd]" target="_blank" rel="noopener"> http://mp.weixin.qq.com/s?__biz=MzA3MDk4NzMzNg==&amp;mid=2651706736&amp;idx=1&amp;sn=6a3aba161a5cc720d1feeae773556de7&amp;chksm=84cd0e57b3ba874196e909d81d98f5c3e5279a0ec851ae6399e0e732464a6234f0682bd406ae&amp;mpshare=1&amp;scene=1&amp;srcid=1115VFPaauhuHzzn4L9NorT8#rd]
 </a></p>
  
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-Vue-js基础篇"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2016/10/25/Vue-js基础篇/"
-    >Vue.js基础篇</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2016/10/25/Vue-js基础篇/" class="article-date">
-  <time datetime="2016-10-25T13:27:13.000Z" itemprop="datePublished">2016-10-25</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>学习Vue.js需要读者有一定的前端基础，否则，可能不太适合你了！</p>
-<p>鉴于是基础篇，这里就直接通过在html中引入Vue来说了（适合新手）</p>
-<p>首先你需要在本地新建一个html文档，然后引入vue,如下：</p>
-<pre><code>&lt;script src=&quot;https://unpkg.com/vue/dist/vue.js&quot;&gt;
-</code></pre><p>Vue.js 的核心是一个允许你采用简洁的模板语法来声明式的将数据渲染进 DOM 的系统：</p>
-<p>HTML：</p>
-<pre><code>&lt;div id=&quot;app&quot;&gt;
-  {{ message }}
-&lt;/div&gt;
-</code></pre><p>JS：</p>
-<pre><code>var app = new Vue({
-  el: &apos;#app&apos;,
-  data: {
-message: &apos;Hello word!&apos;
-  }
-})
-</code></pre><p>在浏览器中你会看到</p>
-<pre><code>Hello word!
-</code></pre><p>打开你的浏览器的控制台，并修改 app.message，你将看到上例相应地更新。</p>
-<h3 id="绑定-DOM-元素属性："><a href="#绑定-DOM-元素属性：" class="headerlink" title="绑定 DOM 元素属性："></a>绑定 DOM 元素属性：</h3><p>HTML：</p>
-<pre><code>&lt;div id=&quot;app-2&quot;&gt;
-  &lt;span v-bind:title=&quot;message&quot;&gt;
-Hover your mouse over me for a few seconds to see my     dynamically bound title!
-  &lt;/span&gt;
-&lt;/div&gt;
-</code></pre><p>JS：</p>
-<pre><code>var app2 = new Vue({
-  el: &apos;#app-2&apos;,
-  data: {
-message: &apos;You loaded this page on &apos; + new Date()
-  }
-})
-</code></pre><p>在浏览器中你会看到</p>
-<pre><code>Hover your mouse over me for a few seconds to see my     dynamically bound title!
-</code></pre><p>元素的显示与隐藏，可通过属性seen来控制：<br>    app3.seen = false/true<br>    例子：</p>
-<p>html:</p>
-<pre><code>&lt;div id=&quot;app-3&quot;&gt;
-      &lt;p v-if=&quot;seen&quot;&gt;Now you see me ! &lt;/p&gt;
-&lt;/div&gt;
-</code></pre><p>js:</p>
-<pre><code>var app3 = new Vue({
-  el: &apos;#app-3&apos;,
-  data: {
-    seen: true
-  }
-})    
-</code></pre><p>当将data下的seen:true 改为 false 后，Now you see me !会消失</p>
-<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>比较常用的v-for, 最常见的列表：</p>
-<p>html:</p>
-<pre><code>&lt;div id=&quot;app-4&quot;&gt;
-      &lt;ol&gt;
-        &lt;li v-for=&quot;x in xin&quot;&gt;
-              {{ x.text }}
-           &lt;/li&gt;
-      &lt;/ol&gt;
-&lt;/div&gt;
-</code></pre><p>js:</p>
-<pre><code>var app4 = new Vue({
-      el: &apos;#app-4&apos;,
-      data: {
-    xin: [
-      { text: &apos;Learn JavaScript&apos; },
-      { text: &apos;Learn Vue&apos; },
-      { text: &apos;Build something awesome&apos; }
-    ]
-      }
-    })
-</code></pre><p>数据渲染：</p>
-<pre><code>1 .Learn JavaScript
-2 .Learn Vue
-3 .Build something awesome
-</code></pre><p>同样，在控制台输入新的内容，列表内容会实时更新</p>
-<h3 id="事件监听-v-on"><a href="#事件监听-v-on" class="headerlink" title="事件监听 v-on"></a>事件监听 v-on</h3><p>html:</p>
-<pre><code>&lt;div id=&quot;app-5&quot;&gt;
-      &lt;p&gt;{{ message }}&lt;/p&gt;
-      &lt;button v-on:click=&quot;reverseMessage&quot;&gt;Reverse Message&lt;button&gt;
-&lt;/div&gt;
-</code></pre><p>js:</p>
-<pre><code>var app5 = new Vue({
-  el: &apos;#app-5&apos;,
-  data: {
-    message: &apos;Hello Vue.js!&apos;
-  },
-  methods: {
-    reverseMessage: function () {
-  this.message = this.message.split(&apos;&apos;).reverse().join(&apos;&apos;)
-    }
-  }
-})
-</code></pre><h3 id="Vue-实例"><a href="#Vue-实例" class="headerlink" title="Vue 实例"></a>Vue 实例</h3><p>Vue 实例，实则也就是 ViewModel（数据 + 函数），都是通过构造函数 Vue 创建的：</p>
-<pre><code>var data = { a: 1 }
-var vm = new Vue({
-  el: &apos;#example&apos;,
-  data: data,
-  created: function () {
-// `this` 指向 vm 实例
-console.log(&apos;a is: &apos; + this.a)
-  }
-})
-vm.$data === data // -&gt; true
-vm.$el === document.getElementById(&apos;example&apos;) // -&gt; true
-// $watch 是一个实例方法
-vm.$watch(&apos;a&apos;, function (newVal, oldVal) {
-  // 这个回调会在 `vm.a` 改变的时候触发
-})
-</code></pre><p>链接：<a href="https://zhuanlan.zhihu.com/p/23078117" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/23078117</a></p>
-<p>Vue 实例都有自己的生命周期，比如 created, mounted, updated 以及 destroyed。所有方法被 called 的时候，this 都指向所在的 Vue 实例。<br><img src="https://pic2.zhimg.com/v2-aaa1b52d4c397d884d73775189440dcd_r.png" alt=""></p>
-<h4 id="Class-和-Style-绑定"><a href="#Class-和-Style-绑定" class="headerlink" title="Class 和 Style 绑定"></a>Class 和 Style 绑定</h4><p> v-bind:class 来动态切换 :</p>
-<pre><code> &lt;div class=&quot;static&quot;
-     v-bind:class=&quot;{ active: isActive, &apos;text-danger&apos;: hasError }&quot;&gt;
-&lt;/div&gt;
-
-&lt;div v-bind:class=&quot;classObject&quot;&gt;&lt;/div&gt;
-</code></pre><p>js:</p>
-<pre><code>data: {
-  classObject: {
-active: true,
-&apos;text-danger&apos;: false
-  }
-}
-</code></pre><h4 id="绑定内联样式"><a href="#绑定内联样式" class="headerlink" title="绑定内联样式"></a>绑定内联样式</h4><pre><code>&lt;div v-bind:style=&quot;{ color: activeColor, fontSize: fontSize +     &apos;px&apos; }&quot;&gt;&lt;/div&gt;
-或者直接绑定到 style：
-
-&lt;div v-bind:style=&quot;styleObject&quot;&gt;&lt;/div&gt;
-
-data: {
-  styleObject: {
-color: &apos;red&apos;,
-fontSize: &apos;13px&apos;
-  }
-}
-</code></pre><h4 id="key"><a href="#key" class="headerlink" title="key"></a>key</h4><p>当 vue 在更新被 v-for 渲染的列表时候，会使用就地 patch 的策略，而不是根据元素改变的顺序。我们可以提供 key 来做这个排序：</p>
-<pre><code>&lt;div v-for=&quot;item in items&quot; :key=&quot;item.id&quot;&gt;
-  &lt;!-- content --&gt;
-&lt;/div&gt;
-item 会根据 id 来做排序。
-</code></pre><h6 id="Key-修饰符"><a href="#Key-修饰符" class="headerlink" title="Key 修饰符"></a>Key 修饰符</h6><pre><code>通用的有使用 keyCode 的:
-&lt;input v-on:keyup.13=&quot;submit&quot;&gt;
-</code></pre><h4 id="局部注册"><a href="#局部注册" class="headerlink" title="局部注册"></a>局部注册</h4><pre><code>var Child = {
-  template: &apos;&lt;div&gt;A custom component!&lt;/div&gt;&apos;
-}
-new Vue({
-
-  components: {
-    &lt;my-component&gt; 
-&apos;my-component&apos;: Child
-  }
-})
-</code></pre><p>使用则像:</p>
-<pre><code>&lt;div id=&quot;example&quot;&gt;
-      &lt;my-component&gt;&lt;/my-component&gt;
-&lt;/div&gt;
-</code></pre><h4 id="props传递数据"><a href="#props传递数据" class="headerlink" title="props传递数据"></a>props传递数据</h4><p>注册子组件</p>
-<pre><code>Vue.component(&apos;child&apos;, {
-  // 申明 props
-  props: [&apos;message&apos;],
-  // 跟 data 一样，可以在 vm (this.message) 和 template 中直接使用
-  template: &apos;&lt;span&gt;{{ message }}&lt;/span&gt;&apos;
-})
-</code></pre><p>传递 props:</p>
-<pre><code>&lt;child message=&quot;hello!&quot;&gt;&lt;/child&gt;
-</code></pre><p>动态 props</p>
-<pre><code>&lt;div&gt;
-      &lt;input v-model=&quot;parentMsg&quot;&gt;
-      &lt;br&gt;
-      &lt;child v-bind:my-message=&quot;parentMsg&quot;&gt;&lt;/child&gt;
-&lt;/div&gt;
-</code></pre> 
       <!-- reward -->
       
     </div>
