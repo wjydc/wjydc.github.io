@@ -137,6 +137,52 @@
     
     
     <article
+  id="post-nginx解决跨域"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/03/nginx解决跨域/"
+    >nginx解决跨域</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/03/nginx解决跨域/" class="article-date">
+  <time datetime="2021-02-03T03:05:33.000Z" itemprop="datePublished">2021-02-03</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+   
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-静态购物车"
   class="article article-type-post"
   itemscope
@@ -2219,145 +2265,6 @@ test.SayName(&apos;XueYou&apos;);
     test = new test();    //注意因为是对象,所以要new
     test.SayName();
 </code></pre> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-MongoDB常用操作命令"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2016/11/13/MongoDB常用操作命令/"
-    >MongoDB常用操作命令</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2016/11/13/MongoDB常用操作命令/" class="article-date">
-  <time datetime="2016-11-13T11:35:25.000Z" itemprop="datePublished">2016-11-13</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="MongoDB操作命令"><a href="#MongoDB操作命令" class="headerlink" title="MongoDB操作命令"></a>MongoDB操作命令</h2><p>1、 创建新的数据库并进入    </p>
-<pre><code>use mydata
-</code></pre><p>2、 Help查看命令提示</p>
-<pre><code>db.help();
-db.yourColl.help();
-db.youColl.find().help();
-rs.help();
-</code></pre><p>3 、查询所有数据库</p>
-<pre><code>show dbs;
-</code></pre><p>4、 删除当前使用数据库</p>
-<pre><code>db.dropDatabase();
-</code></pre><p>5、从指定主机上克隆数据库</p>
-<pre><code>db.cloneDatabase(“127.0.0.1”); 将指定机器上的数据库的数据克隆到当前数据库
-</code></pre><p>6、从指定的机器上复制指定数据库数据到某个数据库</p>
-<pre><code>db.copyDatabase(&quot;mydb&quot;, &quot;temp&quot;, &quot;127.0.0.1&quot;);将本机的mydb的数据复制到temp数据库中
-</code></pre><p>7、修复当前数据</p>
-<pre><code>db.repairDatabase();
-</code></pre><p>8、查看当前使用的数据库</p>
-<pre><code>b.getName();
-db; db和getName方法是一样的效果，都可以查询当前使用的数据库
-</code></pre><p>9、显示当前db状态</p>
-<pre><code>db.stats();
-</code></pre><p>10、当前db版本</p>
-<pre><code>db.version();
-</code></pre><p>11、查看当前db的链接机器地址</p>
-<pre><code>db.getMongo();
-</code></pre><p><strong>用户</strong></p>
-<p>1、添加一个用户</p>
-<pre><code>db.addUser(&quot;name&quot;);
-db.addUser(&quot;userName&quot;, &quot;pwd123&quot;, true); 添加用户、设置密码、是否只读
-</code></pre><p>2、数据库认证、安全模式</p>
-<pre><code>db.auth(&quot;userName&quot;, &quot;123456&quot;);
-</code></pre><p>3、显示当前所有用户</p>
-<pre><code>show users;
-</code></pre><p>4、删除用户</p>
-<pre><code>db.removeUser(&quot;userName&quot;);
-</code></pre><p><strong>查询</strong></p>
-<p>1、查询所有记录</p>
-<pre><code>db.userInfo.find();
-默认每页显示20条记录，当显示不下的情况下，可以用it迭代命令查询下一页数    据。注意：键入it命令不能带“；”
-但是你可以设置每页显示数据的大小，用DBQuery.shellBatchSize= 50;这样    每页就显示50条记录了。
-</code></pre><p>2、查询去掉后的当前聚集集合中的某列的重复数据</p>
-<pre><code>db.userInfo.distinct(&quot;name&quot;);
-会过滤掉name中的相同数据
-相当于：select distict name from userInfo;
-</code></pre><p>3、查询age = 100的记录</p>
-<pre><code>db.userInfo.find({&quot;age&quot;: 100});
-</code></pre><p>4、查询age &gt; 100的记录</p>
-<pre><code>db.userInfo.find({age: {$gt: 100}});
-</code></pre><p>5、查询age &lt; 100的记录</p>
-<pre><code>db.userInfo.find({age: {$lt: 100}});
-</code></pre><p>6、查询age &gt;= 100的记录</p>
-<pre><code>db.userInfo.find({age: {$gte: 100}});
-</code></pre><p>7、查询age &lt;= 100的记录</p>
-<pre><code>db.userInfo.find({age: {$lte: 100}});
-</code></pre><p>8、查询age &gt;= 20 并且 age &lt;= 30</p>
-<pre><code>db.userInfo.find({age: {$gte: 20, $lte: 30}});
-</code></pre><p>9、查询name中包含 mongo的数据</p>
-<pre><code>db.userInfo.find({name: /mongo/});
-</code></pre><p>10、查询name中以mongo开头的</p>
-<pre><code>db.userInfo.find({name: /^mongo/});
-</code></pre><p>11、查询指定列name、age数据</p>
-<pre><code>db.userInfo.find({}, {name: 10, age: 10});
-</code></pre><p><strong>修改、添加、删除集合数据</strong></p>
-<p>1、添加</p>
-<pre><code>db.users.save({name: ‘zhangsan&apos;, age: 25, sex: true});
-</code></pre><p>2、修改</p>
-<pre><code>db.users.update({age: 25}, {$set: {name: &apos;changeName&apos;}}, false, true);
-</code></pre><p>3、删除</p>
-<pre><code>db.users.remove({age: 321});
-</code></pre><p>4、查询修改删除</p>
-<pre><code>b.users.findAndModify({
-query: {age: {$gte: 25}}, 
-sort: {age: -1}, 
-update: {$set: {name: &apos;a2&apos;}, $inc: {age: 2}},
-remove: true
-});
-db.runCommand({ findandmodify : &quot;users&quot;, 
-query: {age: {$gte: 25}}, 
-sort: {age: -1}, 
-update: {$set: {name: &apos;a2&apos;}, $inc: {age: 2}},
-remove: true
-});
-</code></pre><p><strong>其他</strong></p>
-<p>1、循环添加数据</p>
-<pre><code>&gt; for (var i = 0; i &lt; 30; i++) {
-... db.users.save({name: &quot;u_&quot; + i, age: 22 + i, sex: i % 2});
-... };
-</code></pre><p>或</p>
-<pre><code>&gt; for (var i = 0; i &lt; 30; i++) db.users.save({name: &quot;u_&quot; + i, age: 22 + i, sex: i % 2});
-</code></pre><p>2、forEach迭代循环</p>
-<pre><code>db.users.find().forEach(printjson);
-</code></pre><p>想了解更多可以参考:mongodb官网 <a href="https://www.mongodb.com/" target="_blank" rel="noopener">https://www.mongodb.com/</a></p>
- 
       <!-- reward -->
       
     </div>

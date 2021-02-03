@@ -137,6 +137,105 @@
     
     
     <article
+  id="post-三分钟学会css3中的flexbox布局"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/03/17/三分钟学会css3中的flexbox布局/"
+    >三分钟学会css3中的flexbox布局</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/03/17/三分钟学会css3中的flexbox布局/" class="article-date">
+  <time datetime="2016-03-17T10:44:24.000Z" itemprop="datePublished">2016-03-17</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="三分钟学会css3中的flexbox布局"><a href="#三分钟学会css3中的flexbox布局" class="headerlink" title="三分钟学会css3中的flexbox布局"></a>三分钟学会css3中的flexbox布局</h3><p>这篇文章里我们将学习CSS里flexbox布局的几个最重要的概念，通过学习flexbox布局，你会发现以往遇到的所有的关于布局的问题，现在都可以轻松解决了。<br>我们将只关注几个核心概念，等这些核心知识掌握之后，你可以再慢慢的学习那些不重要的相关知识。</p>
+<ol>
+<li><p>容器和容器里的元素<br>flexbox布局的两个最重要的概念是容器(蓝色)和容器里的子元素(红色)。在本文的例子中，容器和它的子元素都是div。<br>横向布局<br>为了实现flex布局，我们需要在容器的CSS里添加如下代码：</p>
+<pre><code>.container {
+    display: flex;
+}
+</code></pre></li>
+</ol>
+<p>对于容器里面的子元素，我们什么都不需要做。它们会自动的按横坐标一字排开。<br>纵向布局<br>在上面的演示中，缺省排列是沿着横坐标方向的，还有一个方向是纵坐标，这个坐标轴的概念在理解flex布局中非常重要。<br>当我们在容器的CSS里添加 flex-direction: column.后，子元素的排列方向就会发生变化。</p>
+<pre><code>.container {
+display: flex;
+flex-direction: column;
+}
+</code></pre><p>现在，子元素的排列方向是沿着纵坐标的方向了。</p>
+<ol start="2">
+<li><p>调整子元素的对齐方式<br>现在我们让子元素重新横向布局，这需要将flex-direction属性的值从 column改成 row, 子元素就会重新回到横向布局。<br>调整子元素的对齐方式，我需要使用justify-content 和 align-items 这两个属性，它们控制着子元素的在横向和纵向两方面的定位和对齐方式。<br>下面我们将要使用justify-content属性让所有子元素都居中对齐：</p>
+<pre><code>.container {
+display: flex;
+flex-direction: row;
+justify-content: center;
+}
+</code></pre><p>使用 align-items 属性来控制子元素的竖向对齐方式：</p>
+<pre><code>.container {
+    display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+}
+</code></pre></li>
+</ol>
+<p>下面的列表中显示了justify-content 和 align-items属性可以使用的属性值：</p>
+<pre><code>justify-content:
+* flex-start (default)
+* flex-end
+* center
+* space-between
+* space-around
+
+align-items:
+* flex-start (default)
+ * flex-end
+* center
+* baseline
+* stretch
+</code></pre><p>建议大家将justify-content 、align-items和flex-direction几个属性混合使用，相互配合，看看都会达到什么样的布局效果。这样你才能正确的理解flexbox布局的布局方式。</p>
+<ol start="3">
+<li>子元素<br>最后，我们将学习针对子元素的一些应对flexbox布局的CSS属性。<br>比如我们想调整第一个子元素的位置，我们可以给他添加CSS属性 align-self，这个属性的属性值是和align-items是一样的用法:</li>
+</ol>
+<pre><code>.item1 {
+  align-self: flex-end;
+}
+</code></pre><p>关于flexbox布局的知识远比本文介绍的这些要丰富，这总重要的几个知识点就是这些，掌握了它们，再学些其他的用法就容易多了。</p>
+<p>本文转自 <a href="http://mp.weixin.qq.com/s?__biz=MjM5MDA2MTI1MA==&amp;mid=2649084363&amp;idx=1&amp;sn=bf9c5f2440caad7a8b5746894d16f3be&amp;chksm=be5bf666892c7f709a6effe503bceaf82e1fae250f9a34d1ce168c48674f539fbdd077aa2d4d&amp;mpshare=1&amp;scene=23&amp;srcid=1120l3DfEjLOj10JXjmtwnkf#rd" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MjM5MDA2MTI1MA==&amp;mid=2649084363&amp;idx=1&amp;sn=bf9c5f2440caad7a8b5746894d16f3be&amp;chksm=be5bf666892c7f709a6effe503bceaf82e1fae250f9a34d1ce168c48674f539fbdd077aa2d4d&amp;mpshare=1&amp;scene=23&amp;srcid=1120l3DfEjLOj10JXjmtwnkf#rd</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="深入理解css3-帧动画"
   class="article article-type-深入理解css3"
   itemscope
