@@ -179,7 +179,66 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <h1 id="静态购物车"><a href="#静态购物车" class="headerlink" title="静态购物车"></a>静态购物车</h1><p>// 购物车 数量增减<br>// numEle-存放数量的元素 input可手动输入，此处判断了 存放元素的标签类型 ##</p>
+<h2 id="js封装"><a href="#js封装" class="headerlink" title="js封装"></a>js封装</h2><pre><code>var ShoppingCart = function (opt) {
+    var _default = {
+        addEle: null,  // 数量加按钮
+        reduceEle: null,   // 数量减按钮,
+        numEle: null,      // 存放数量的元素
+        maxNum: null        //  最大值
+    }
+    this._opation = $.extend({}, _default, opt)
+    this.initnum = 1;
+    this.init()
+}
+ShoppingCart.prototype = {
+    init: function () {
+        let $this = this
+        var tagType = this._opation.numEle[0].tagName.toLowerCase();
+        vals($this.initnum)  // 默认 1
+        var currentNum;
+        this._opation.addEle.click(function () {
+
+            currentNum = tagType == &apos;input&apos; ? $this._opation.numEle.val() - 0 : $this._opation.numEle.html() - 0;
+            currentNum += 1;
+            if ($this._opation.maxNum != null &amp;&amp; currentNum &gt; Number($this._opation.maxNum)) {
+                currentNum = Number($this._opation.maxNum);
+            }
+            vals(currentNum)
+        })
+        this._opation.reduceEle.click(function () {
+            currentNum = tagType == &apos;input&apos; ? $this._opation.numEle.val() - 0 : $this._opation.numEle.html() - 0;
+            currentNum -= 1;
+            if (currentNum &lt;= 0) {
+                currentNum = 1;
+            }
+            vals(currentNum)
+        })
+        // 手动输入数值判断 是否合法 不合法则让其等于最大值
+        this._opation.numEle.keyup(function () {
+            currentNum = $this._opation.numEle.val() - 0;
+            if ($this._opation.maxNum != null &amp;&amp; currentNum &gt; Number($this._opation.maxNum)) {
+                currentNum = Number($this._opation.maxNum);
+            }
+            vals(currentNum)
+        })
+        function vals(num) {
+            if (tagType == &apos;input&apos;) {
+                $this._opation.numEle.val(num);
+            } else {
+                $this._opation.numEle.html(num);
+            }
+        }
+
+    }
+}
+</code></pre><h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><pre><code>var g = new ShoppingCart({
+    addEle: $(&apos;.add&apos;), // 数量加按钮
+    reduceEle: $(&apos;.reduce&apos;), // 数量减按钮,
+    numEle: $(&apos;.inputCard&apos;), // 存放数量的元素
+    maxNum: 20 //  最大值
+})
+</code></pre> 
       <!-- reward -->
       
     </div>
