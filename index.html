@@ -163,7 +163,49 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <h1 id="nginx解决跨域"><a href="#nginx解决跨域" class="headerlink" title="nginx解决跨域"></a>nginx解决跨域</h1><p>前端开发，经常会遇到请求接口跨域的问题，要解决这个问题，经常会用到jsonp方式，今天就学习一个新的方式： <strong>nginx 代理方式</strong></p>
+<h2 id="1-下载并安装-nginx"><a href="#1-下载并安装-nginx" class="headerlink" title="1 下载并安装 nginx"></a>1 下载并安装 nginx</h2><p>   下载地址：<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a></p>
+<h2 id="2-配置nginx"><a href="#2-配置nginx" class="headerlink" title="2  配置nginx"></a>2  配置nginx</h2><p>   找到nginx里面的 nginx.conf文件 配置要代理的域名和端口</p>
+<pre><code>在 http{ ...  } 里面配置新的 server  。 例如： 
+
+server {
+    listen       83;
+    server_name  localhost;
+
+    #charset koi8-r;
+
+    #access_log  logs/host.access.log  main;
+
+    location / {
+        root   F:/nginxTest/html;
+        try_files $uri $uri/ /index.html last;
+    }
+    location /api{
+          rewrite  /api/(.*)$ /$1 break;
+          proxy_pass http://221.12.19.157:8013;
+    }
+    location ~ .*\.(js|css|jpg|jpeg|gif|png|ico|pdf|txt)$ {
+          root F:/nginxTest/;
+    }  
+
+ }
+</code></pre><p>说明： </p>
+<p>  配置1：  （注意避开当前已被占用的端口）</p>
+<pre><code>端口号 listen xx  
+</code></pre><p> 配置2：location /  </p>
+<pre><code>root 入口页面的文件存放地址
+</code></pre><p> 配置3：location /api</p>
+<pre><code>proxy_pass 代理服务器域名
+</code></pre><h2 id="aiax-中请求"><a href="#aiax-中请求" class="headerlink" title="aiax 中请求"></a>aiax 中请求</h2><pre><code> &lt;script&gt;
+    $.ajax({
+        type: &quot;get&quot;,
+        url: &quot;/api/get_home.aspx&quot;,
+        success: function (msg) {
+            console.log(JSON.stringify(msg));
+        }
+    });
+&lt;/script&gt;
+</code></pre><h3 id="启动-nginx-后-，-用-localhost-配置的端口-打开页面-即可"><a href="#启动-nginx-后-，-用-localhost-配置的端口-打开页面-即可" class="headerlink" title="启动 nginx 后 ， 用 localhost:  + 配置的端口  打开页面 即可"></a>启动 nginx 后 ， 用 localhost:  + 配置的端口  打开页面 即可</h3> 
       <!-- reward -->
       
     </div>
