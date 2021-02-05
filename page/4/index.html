@@ -137,6 +137,165 @@
     
     
     <article
+  id="post-预加载-懒加载-demo展示"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/03/26/预加载-懒加载-demo展示/"
+    >预加载+懒加载-demo展示</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/03/26/预加载-懒加载-demo展示/" class="article-date">
+  <time datetime="2016-03-26T02:33:25.000Z" itemprop="datePublished">2016-03-26</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="预加载-amp-amp-懒加载-demo展示"><a href="#预加载-amp-amp-懒加载-demo展示" class="headerlink" title="预加载&amp;&amp;懒加载-demo展示"></a>预加载&amp;&amp;懒加载-demo展示</h3><p>一  预加载</p>
+<p>html </p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;预加载&lt;/title&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        #box{
+            width: 800px;
+            }
+
+    &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;div id=&quot;box&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre><p>步骤：</p>
+<p>// 步骤：1 存一组图片到数组中</p>
+<p>// 2 因为需要先将图片一张张加载，所以需要利用for循环。</p>
+<p>// 3 图片加载前，需要先新建一个图片对象，和图片路径</p>
+<p>// 4 每次新建一张图片对象，获取一个图片路径，进行加载（在此，利用index++实现每次加载下一张)</p>
+<p>// 5 加载后，将图片存到一盒新的空数组中。</p>
+<p>// 6 将数组添加到HTML文档的元素中</p>
+<p>js:</p>
+<pre><code>//图片
+var imgarr=[&quot;http://d.hiphotos.baidu.com/image/h%3D200/    sign=2a5a59df74094b36c4921ced93cd7c00/18d8bc3eb13533fa997c342eaad3fd1f40345be3.jpg&quot;,&quot;http://g.hiphotos.baidu.com/image/pic/item/5882b2b7d0a20cf4c7e9bd9973094b36acaf997f.jpg&quot;,&quot;http://e.hiphotos.baidu.com/image/h%3D200/sign=c6fd3ae21d178a82d13c78a0c602737f/4e4a20a4462309f7d4896d3c710e0cf3d7cad63e.jpg&quot;,&quot;http://g.hiphotos.baidu.com/image/pic/item/0eb30f2442a7d9338e2370bcaf4bd11372f00171.jpg&quot;,&quot;http://f.hiphotos.baidu.com/image/pic/item/f11f3a292df5e0fe8429ca47596034a85edf7246.jpg&quot;,&quot;http://g.hiphotos.baidu.com/image/pic/item/08f790529822720e62e61b4e7ecb0a46f21fab5e.jpg&quot;,&quot;http://g.hiphotos.baidu.com/zhidao/pic/item/267f9e2f07082838e161fffabd99a9014d08f1f4.jpg&quot;];
+
+
+
+var index=0;
+var arr=[];
+for (var i = 0; i &lt; imgarr.length; i++) {
+var newobj=new Image();
+newobj.src=imgarr[i];
+newobj.onload=function(){
+index++;
+arr.push(this); // this指代的是事件的主体，也就是newobj, 而事件的主体我们一般可以用this来指代
+// 当index++ 大于我们的imgarr.length时候，也就是加载完成的时候，加载条应该显示100%；
+if (index&gt;=imgarr.length) {
+box.innerHTML=Math.ceil(index/imgarr.length*100)+&quot;%&quot;;
+loadingover(); }  }  }
+
+function loadingover(){
+    box.innerHTML=&quot;&quot;;
+
+    for (var i = 0; i &lt; arr.length; i++){
+    box.appendChild(arr[i]);   }  }
+</code></pre><p>二 懒加载</p>
+<p>html </p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;延时加载&lt;/title&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+    #div1{border:1px red solid;
+               width: 80%;
+               position: absolute;
+               top: 500px;
+               }
+    #div2{border:1px red solid;
+    width: 80%;
+    position: absolute;
+    top: 2000px;
+    }
+    #div3{
+    border:1px red solid;
+    width: 80%;
+    position: absolute;
+    top: 3000px;
+    }
+    img{
+    /*img需要给定宽*/
+    width: 600px;    
+    height: 400px;
+    }
+    &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;div class=&quot;big&quot; id=&quot;div1&quot;&gt;&lt;img c=&quot;../img/18.jpg&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;big&quot; id=&quot;div2&quot;&gt;&lt;img c=&quot;../img/19.jpg&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;big&quot; id=&quot;div3&quot;&gt;&lt;img c=&quot;../img/20.jpg&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>js</p>
+<pre><code>var img=document.getElementsByTagName(&apos;img&apos;);
+
+// 图片在定位时，要找到元素最外层定位的父元素，并获取这两个元素之间的高度，一个网页会有很多个延时加载的元素，所以，可以用函数传参来封装函数。
+function offset(element){
+var t=element.offsetTop;
+// 因为不知道子元素外有多少父级，利用while循环来获取子元素到最外层元素间的高度
+ while(element){
+ t+=element.offsetTop;
+ element=element.offsetParent; //让参数element一级一级往上，直到element没有定位的父级为止，此时，while里的element条    件为假，循环停止，得到最后的t值
+ }
+ return {top:t} // 返回t值 这里的top 是一个对象，我们可以随便定义对象名
+ }
+// 寻找执行条件 并执行要达到的效果
+window.onscroll=function(){
+var scrolltop=document.body.scrollTop||document.documentElement.scrollTop;
+var ch=document.documentElement.clientHeight;
+// 循环每一张图片
+for (var i = 0; i &lt; img.length; i++) {
+//通过传参获取img的offsetHeight
+var oh=offset(img[i]).top;
+// if 判断条件 来判断图片在什么时候加载
+if (oh&lt;scrolltop+ch-200) {
+img[i].src=img[i].getAttribute(&quot;c&quot;);
+}
+}
+}
+&lt;/script&gt;
+</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-三分钟学会css3中的flexbox布局"
   class="article article-type-post"
   itemscope

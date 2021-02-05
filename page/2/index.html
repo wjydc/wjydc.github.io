@@ -137,6 +137,249 @@
     
     
     <article
+  id="post-NodeJs常用核心模块简介"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2016/11/16/NodeJs常用核心模块简介/"
+    >NodeJs常用核心模块简介</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2016/11/16/NodeJs常用核心模块简介/" class="article-date">
+  <time datetime="2016-11-16T02:40:50.000Z" itemprop="datePublished">2016-11-16</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="NodeJs常用核心模块简介"><a href="#NodeJs常用核心模块简介" class="headerlink" title="NodeJs常用核心模块简介"></a>NodeJs常用核心模块简介</h3><h4 id="fs-文件管理"><a href="#fs-文件管理" class="headerlink" title="fs 文件管理"></a>fs 文件管理</h4><p>fs 模块提供了异步和同步2个版本     fs.readFile()    fs.readFileSync()<br>1.写入文件内容</p>
+<pre><code>fs.writeFile(‘test.txt’, ‘Hello Node’ , [encoding], [callback]);
+</code></pre><p>2.追加写入</p>
+<pre><code>fs.appendFile(‘test.txt’,‘Hello Node’,[encoding],[callback]);
+</code></pre><p>3.文件是否存在</p>
+<pre><code>fs.exists(‘test.txt’,[callback]);
+</code></pre><p>4.读取文件内容</p>
+<pre><code>fs.readFile(‘test.txt’, [encoding], [callback]);
+</code></pre><p>5.修改文件名</p>
+<pre><code>fs.rename(旧文件,新文件,[callback]);
+</code></pre><p>6.移动文件. 没有专门函数,通过修改文件名可以达到目的</p>
+<pre><code>fs.rename(oldPath,newPath,[callback]);
+</code></pre><p>7.删除文件</p>
+<pre><code>fs.unlink(‘test.txt’, [callback]);
+</code></pre><p>8.创建目录</p>
+<pre><code>fs.mkdir(路径, 权限, [callback]);
+路径：新创建的目录。
+权限：可选参数，只在linux下有效，表示目录的权限，默认为0777，表示文件所有    者、文件所有者所在的组的*用户、*所有用户，都有权限进行读、写、执行的操作。
+</code></pre><p>9.删除目录</p>
+<pre><code>fs.rmdir(path, [callback]);
+</code></pre><p>10.读取目录. 读取到指定目录下所有的文件</p>
+<pre><code>fs.readdir(path, [callback]);
+</code></pre><p>11.打开文件</p>
+<pre><code>fs.open(path,flags, [mode], [callback(err,fd)])
+</code></pre><p>12.关闭文件</p>
+<pre><code>fs.close(fd, [callback(err)])
+</code></pre><p>13.读取文件</p>
+<pre><code>fs.read(fd,buffer,offset,length,position,[callback(err,     bytesRead, buffer)])
+</code></pre><p>14.写入文件</p>
+<pre><code>fs.writeFile(filename, data,[encoding],[callback(err)])
+</code></pre><p>15.修改文件时间戳</p>
+<pre><code>fs.utimes(path, atime, mtime, [callback(err)])
+</code></pre><h3 id="url-文件管理"><a href="#url-文件管理" class="headerlink" title="url 文件管理"></a>url 文件管理</h3><p>1 .解析url - 条件解析</p>
+<pre><code>url.parse(‘http://www.baidu.com?page=1’,true);
+结果如: { protocol: ‘http:’,
+slashes: true,
+auth: null,
+host: ‘www.baidu.com’,
+port: null,
+hostname: ‘www.baidu.com’,
+hash: null,
+search: ‘?page=1’,
+query: { page: ‘1’ },
+pathname: ‘/’,
+path: ‘/?page=1’,
+href: ‘http://www.baidu.com/?page=1’ }
+</code></pre><p>2.解析url，返回一个json格式的数组</p>
+<pre><code>url.parse(‘http://www.baidu.com’);
+结果如: { protocol: ‘http:’,
+slashes: null,
+auth: null,
+host: null,
+port: null,
+hostname: null,
+hash: null,
+search: null,
+query: null,
+pathname: ‘www.baidu.com’,
+path: ‘www.baidu.com’,
+href: ‘http://www.baidu.com’ }
+</code></pre><p>3.格式化为url. 将json数组逆向成url</p>
+<pre><code>url.format({
+protocol: ‘http:’,
+hostname:‘www.baidu.com’,
+port:‘80’,
+pathname :’/news’,
+query:{page:1}
+});
+结果如: http://www.baidu.com/news?page=1
+</code></pre><p>4.封装路径</p>
+<pre><code>url.resolve(‘http://example.com/’, ‘/one’)  // &apos;http://example.com/one’
+url.resolve(‘http://example.com/one’, ‘/two’) // ‘http://example.com/two’
+</code></pre><h3 id="path-路径管理"><a href="#path-路径管理" class="headerlink" title="path 路径管理"></a>path 路径管理</h3><p>1.格式化路径. 将不符合规范的路径经过格式化转换为标准路径,解析路径中的.与…外，还能去掉多余的斜杠</p>
+<pre><code>path.normalize(’/path///normalize/hi/…’);
+结果如: ‘/path/normalize/’ 标准化之后的路径里的斜杠在Windows系统下    是，而在Linux系统下是/
+</code></pre><p>2.组合路径</p>
+<pre><code>path.join(’///you’, ‘/are’, ‘//beautiful’);
+结果如:  ‘/you/are/beautiful’
+</code></pre><p>3.返回路径中的目录名</p>
+<pre><code>path.dirname(’/foo/strong/cool/nice’);
+结果如: ‘/foo/strong/cool’
+</code></pre><p>4.返回路径最后一部分,还可以排除指定字符串</p>
+<pre><code>path.basename(’/foo/strong/basename/index.html’);
+path.basename(’/foo/strong/basename/index.html’,’.html’);
+结果如: index.html 和 index
+</code></pre><p>5.返回路径后缀</p>
+<pre><code>path.extname(‘index.html’);
+结果如: .html
+</code></pre><h3 id="Query-String-字符串转换"><a href="#Query-String-字符串转换" class="headerlink" title="Query String 字符串转换"></a>Query String 字符串转换</h3><p>1.序列化对象.将对象类型转换成一个字符串类型（默认的分割符（“&amp;”）和分配符（“=”））</p>
+<pre><code>querystring.stringify({foo:‘bar’,cool:[‘xux’, ‘yys’]});
+结果如: foo=bar&amp;cool=xux&amp;cool=yys
+
+ 重载1: querystring.stringify({foo:‘bar’,cool:[‘xux’,     ‘yys’]},’*’,’$’);
+结果如: foo$bar*cool$xux*cool$yys
+</code></pre><p>2.反序列化</p>
+<pre><code>querystring.parse(‘foo@bar$cool@xux$cool@yys’,’@’,’$’);
+结果如: { foo: ‘bar’ ,  cool: [‘xux’, ‘yys’] }
+</code></pre><h3 id="http-HTTP"><a href="#http-HTTP" class="headerlink" title="http HTTP"></a>http HTTP</h3><p>2个方法</p>
+<pre><code>http.createServer([requestListener])  创建HTTP服务器
+http.createClient([port], [host])     创建HTTP客户端
+</code></pre><h5 id="http-Server"><a href="#http-Server" class="headerlink" title="http.Server"></a>http.Server</h5><p>由 http.createServer 创建所返回的实例</p>
+<h5 id="http-Server-事件"><a href="#http-Server-事件" class="headerlink" title="http.Server 事件"></a>http.Server 事件</h5><p>request 客户端请求到来<br>提供2个参数: req, res  分别是http.ServerRequest 和  http.ServerResponse  的实例.表示请求和响应消息</p>
+<p>connection TCP建立连接时触发<br>提供1个 socket 参数 net.Socket 实例</p>
+<p>close 服务器关闭时触发<br>无参数</p>
+<p>还有checkContinue 、 upgrade 、 clientError 等事件. request 经常使用,所以包含在了 createServer函数中</p>
+<h5 id="http-ServerRequest-对象"><a href="#http-ServerRequest-对象" class="headerlink" title="http.ServerRequest 对象"></a>http.ServerRequest 对象</h5><p>HTTP请求的消息, 一般由 http.Server的 request 事件发送</p>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性:"></a>属性:</h5><pre><code>complete          客户端请求是否已经发送完成
+httpVersion      HTTP 协议版本，通常是 1.0 或 1.1
+method          HTTP 请求方法，如 GET、POST、PUT、DELETE 等
+url              原始的请求路径，例如 /static/image/x.jpg 或 /    user?name=byvoid
+headers          HTTP 请求头
+trailers          HTTP 请求尾（不常见）
+connection      当前 HTTP 连接套接字，为 net.Socket 的实例
+socket          connection 属性的别名
+client          client 属性的别名
+</code></pre><p><strong>GET :</strong> 的请求是直接嵌入路径中的. 解析?后面的路径就行了.  url 模块中  parse 函数提供了这个功能</p>
+<p><strong>POST : </strong></p>
+<pre><code>**HTTP 请求分: 请求头.  请求体**
+http.ServerRequest 提供3个事件控制请求体传输
+data:    请求体数据来到时. 参数 chunk 表示接收到的数据
+end:    请求体数据传输完成时
+close    用户当前请求结束时
+
+
+    var post = &apos;&apos;;
+    req.on(&apos;data&apos;, function(chunk) {    post += chunk;        });
+    req.on(&apos;end&apos;, function() {    post =     querystring.parse(post);
+    res.end(util.inspect(post));});
+</code></pre><h5 id="http-ServerResponse-对象"><a href="#http-ServerResponse-对象" class="headerlink" title="http.ServerResponse 对象"></a>http.ServerResponse 对象</h5><p>http.ServerResponse是返回给客户端的信息,决定了用户最终看到的结果. 有3个重要的成员函数. 用于响应头,响应内容以及结束请求</p>
+<p>1.向客户端发送响应头</p>
+<pre><code>res.writeHead(statusCode, [headers])
+statusCode, 是HTTP状态码. 如200,404.
+
+headers 类似数组的对象,表示响应头的每个属性
+{
+“Content-Type”: “text/html”,
+“Connection”: “keep-alive”
+}
+</code></pre><p>2.发送响应内容, 如果是字符串,需要制定编码方式, 默认 utf-8</p>
+<pre><code>res.write(data, [encoding])
+</code></pre><p>3.结束响应,告知客户端所有响应完成. 此函数必须调用一次</p>
+<pre><code>res.end([data] , [encoding] )
+</code></pre><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>挂接模块</p>
+<pre><code>var EventEmitter = require(‘events’).EventEmitter;
+</code></pre><p>1.实例化一个EventEmitter对象</p>
+<pre><code>var event = new EventEmitter();
+</code></pre><p>2.注册事件</p>
+<pre><code>emitter.on( ‘Event_Name’ , callBack_Fun )
+emitter.once( ‘Event_Name’ , callBack_Fun )    //注册一个单次监听器,触发一次后立刻解除
+</code></pre><p>3.发射事件</p>
+<pre><code>event.emit(‘Event_Name’ , 参数1,参数2);
+</code></pre><p>4.移除事件</p>
+<pre><code>emitter…removeListener(‘Event_Name’ , callBack_Fun)
+emitter.removeAllListeners(  [‘Event_Name’] )    //如果指定了事件名,就移除指定的,否则移除所有事件
+</code></pre><h3 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h3><p>Node.js 的模块和包机制的实现参照了 CommonJS 的标准，但并未完全遵循。</p>
+<pre><code>#### 包
+包是在模块基础上更深一步的抽象, 类似于 c/c++ 的函数库.
+Node.js 包是一个目录. 其中包含一个JSON格式的说明文件 package.json
+CommonJS 规范特征:
+-&gt;   package.json 必须在包的顶层目录下
+-&gt;   二进制文件在bin目录下
+-&gt;   JavaScript代码在lib目录下
+-&gt;   文档应该在doc目录下
+-&gt;   单元测试在test目录下
+
+
+
+#### require(&apos;Modile_Name&apos;)     
+功能:    加载其他模块
+说明:    不会重复加载以加载的模块
+
+
+#### exports.setName
+功能:    公开一个模块中的函数或对象
+说明:    exports 本身仅仅是一个普通的空对象，即 {}. 所以 exports.函数      就是给它加了函数
+module.exports  则是用一个对象取代 exports  对象. (不可以对     exports 直接赋值替代此功能)
+
+
+方式1:
+//使用
+exports.SayName = function(thyName) {console.log(thyName)}; 
+//调用
+var test = require(&apos;./fileName&apos;);
+test.SayName(&apos;XueYou&apos;);
+
+方式2:
+    //使用
+    function hello(){
+     var name;
+    this.setNam(){};
+    this.SayName(){};
+    }
+    module.exports = hello;
+    //调用
+    var test = require(&apos;./fileName&apos;);
+    test = new test();    //注意因为是对象,所以要new
+    test.SayName();
+</code></pre> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-MongoDB常用操作命令"
   class="article article-type-post"
   itemscope
@@ -1884,243 +2127,6 @@ Stock ID    Description             Price         Quantity in Stock
 &lt;/xmp&gt;
 </code></pre><p>目前浏览器支持该标签，但不限制80列<br>不推荐使用，建议采用samp代替</p>
 <p>本文转自 <a href="http://mp.weixin.qq.com/s?__biz=MjM5MDA2MTI1MA==&amp;mid=2649084269&amp;idx=2&amp;sn=5245980904cec7883e80496c323d6c88&amp;chksm=be5bf6c0892c7fd6ee472365f77e128c916488cf615376632bd623e8fee8fb0103752615e427&amp;mpshare=1&amp;scene=23&amp;srcid=1121hr1dAV1IrDMndF3jgFCy#rd" target="_blank" rel="noopener">http://mp.weixin.qq.com/s?__biz=MjM5MDA2MTI1MA==&amp;mid=2649084269&amp;idx=2&amp;sn=5245980904cec7883e80496c323d6c88&amp;chksm=be5bf6c0892c7fd6ee472365f77e128c916488cf615376632bd623e8fee8fb0103752615e427&amp;mpshare=1&amp;scene=23&amp;srcid=1121hr1dAV1IrDMndF3jgFCy#rd</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="易懂的webpack-使用教程"
-  class="article article-type-易懂的webpack"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2016/07/15/使用教程/"
-    >使用教程</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2016/07/15/使用教程/" class="article-date">
-  <time datetime="2016-07-15T13:34:46.000Z" itemprop="datePublished">2016-07-15</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="易懂的-webpack-使用教程"><a href="#易懂的-webpack-使用教程" class="headerlink" title="易懂的 webpack 使用教程"></a>易懂的 webpack 使用教程</h3><p>原文链接：<a href="https://www.zfanw.com/blog/webpack-tutorial.html" target="_blank" rel="noopener">https://www.zfanw.com/blog/webpack-tutorial.html</a></p>
-<ul>
-<li><p>1安装 webpack</p>
-</li>
-<li><p>2初始化项目</p>
-</li>
-<li><p>3webpack 配置</p>
-</li>
-<li><p>4实时刷新</p>
-</li>
-<li><p>5第三方库</p>
-</li>
-<li><p>6模块化</p>
-</li>
-<li><p>7打包、构建</p>
-</li>
-</ul>
-<p>我还记得我刚接触 webpack 时的感受：一头雾水。</p>
-<p>我是说，我真的不太关心 js 文件要配哪些加载器。我只想快一点把开发环境搭起来干活。总之，几经折腾，我嫌麻烦放弃了 webpack 这个方案。</p>
-<p>但今天回头去看，其实它并没那么复杂。</p>
-<p>那么，webpack 是什么？</p>
-<p><code>MODULE BUNDLER</code><br>它是这么自称的，模块打包器。</p>
-<p>在 webpack 里，所有类型的文件都可以是模块，包括我们最常见的 JavaScript，及 CSS 文件、图片、json 文件等等。通过 webpack 的各种加载器，我们可以更高效地管理这些文件。</p>
-<h4 id="安装-webpack"><a href="#安装-webpack" class="headerlink" title="安装 webpack"></a>安装 webpack</h4><p>我们通过<code>npm</code>在全局环境下安装 webpack：</p>
-<pre><code>npm install webpack -g
-</code></pre><p>安装完成后，我们可以使用 <code>webpack 命令</code>，执行</p>
-<pre><code>webpack --help
-</code></pre><p>能够查看 webpack 提供的所有命令。</p>
-<p>不过，建议在项目下安装一份局域的 webpack：</p>
-<pre><code>npm install webpack --save-dev
-</code></pre><p>如果觉得 npm 安装太慢，可以尝试 npm 的替代工具 ied – 我的使用经历，它的速度比 npm 快太多了。</p>
-<h4 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h4><p>安装好 webpack 后，我们要怎么开始一个项目？</p>
-<p>如果你用过 grunt.js、gulpjs 一类工具，它们可以借助 yeoman 来初始化项目。webpack 的情况不太一样，我们可以把它当作 node.js 项目来初始化。当然，借用一些模板会更省事，比如 react transform boilerplate。</p>
-<p>但这里还是聊聊如何手动初始化一个 webpack 项目。</p>
-<p>1 创建一个 package.json 文件，用于保存项目版本、依赖关系等</p>
-<pre><code>npm init -y
-</code></pre><p>2 在当前目录下安装 webpack</p>
-<pre><code>npm install webpack --save-dev
-</code></pre><p>这时，我们的项目下有两个内容：</p>
-<pre><code>package.json 文件
-node_modules 文件夹
-</code></pre><p>我们还需要一个 <code>index.html</code> 文件，示例如下：</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-  &lt;html lang=&quot;en&quot;&gt;
-  &lt;head&gt;
-  &lt;meta charset=&quot;UTF-8&quot;&gt;
-  &lt;title&gt;webpack 教程&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-  &lt;/body&gt;
-  &lt;/html&gt;
-</code></pre><p>现在，我们可以通过 <code>live-server</code> 等访问到 <code>index.html</code> 页面。</p>
-<p>目前页面上还是一片空白，除了一个标题。</p>
-<h4 id="webpack-配置"><a href="#webpack-配置" class="headerlink" title="webpack 配置"></a>webpack 配置</h4><pre><code>单页面应用里，项目通常会有一个入口（entry）文件，假设是 main.js，我们通过配置 webpack 来指明它的位置。
-</code></pre><p>首先，在项目根目录新建一个<code>webpack.config.js</code>，这是 webpack 默认的配置文件名称，添加以下内容：</p>
-<pre><code>module.exports = {
-entry: &apos;./main.js&apos;
-  };
-</code></pre><p>  尝试在项目根目录执行<code>webpack</code>，会提示我们，</p>
-<pre><code>Output filename not configured.
-</code></pre><p> 因为我们只是设定了入口（entry），还没有指定一个输出文件的路径与名称。</p>
-<p> 在 <code>webpack.config.js</code> 中添加一个 <code>output</code>：</p>
-<pre><code>module.exports = {
-entry: &apos;./main.js&apos;,
-output: {
-    path: __dirname, // 输出文件的保存路径
-    filename: &apos;bundle.js&apos; // 输出文件的名称
-}
-}
-</code></pre><p>现在在项目里执行 <code>webpack</code> 命令，我们的根目录下会多出一个<code>bundle.js</code> 文件：</p>
-<p><a href="https://www.zfanw.com/blog/wp-content/uploads/2015/06/Screen-Shot-2015-06-05-at-20.53.08.png" target="_blank" rel="noopener">https://www.zfanw.com/blog/wp-content/uploads/2015/06/Screen-Shot-2015-06-05-at-20.53.08.png</a></p>
-<p>接下来，在 index.html 中引用 bundle.js 文件：</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;webpack 教程&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;script src=&quot;./bundle.js&quot;&gt;&lt;/script&gt; &lt;!-- 在 index.html 文件中添加这一行代码 --&gt;
-&lt;/body&gt;
-&lt;/html&gt; 
-</code></pre><p> 大功告成。</p>
-<p> 这是 webpack 一类工具的特点，它们在 HTML 文件直接引用构建后的 js 文件，而不是源文件。</p>
-<p>当然，这可能会引发性能问题，毕竟，如果每一点文件修改都会导致整个 bundle.js 文件重新构建的话，碰上大一点的项目，有几千个源文件要编译，编译速度可能很慢。webpack 有它的解决办法，具体参见它的文档。</p>
-<h4 id="实时刷新"><a href="#实时刷新" class="headerlink" title="实时刷新"></a>实时刷新</h4><p>在 html 文件中引用 bundle.js 文件后，我们有几个问题需要解决。</p>
-<ol>
-<li><code>main.js</code> 或它所引用的模块的变化如何通知 <code>webpack</code>，重新生成 <code>bundle.js</code>？</li>
-</ol>
-<p>非常简单，在根目录下执行 webpack –watch 就可以监控目录下的文件变化并实时重新构建。</p>
-<ol start="2">
-<li>上面只是实时构建，我们该如何把结果通知给浏览器页面，让 HTML 页面上的 bundle.js 内容保持最新</li>
-</ol>
-<p>webpack 提供了 <code>webpack-dev-server</code> 解决实时刷新页面的问题，同时解决实时构建的问题。</p>
-<p>​</p>
-<h4 id="安装-webpack-dev-server"><a href="#安装-webpack-dev-server" class="headerlink" title="安装 webpack-dev-server"></a>安装 webpack-dev-server</h4><ol>
-<li><p>在全局环境中安装 webpack-dev-server：</p>
-<p>  npm install webpack-dev-server -g</p>
-</li>
-<li><p>在项目根目录下执行命令：</p>
-<p> $ webpack-dev-server</p>
-</li>
-</ol>
-<p>这样，我们就可以在默认的 <code>http://localhost:8080</code> 网址上打开我们的 index.html。</p>
-<p>此时，我们可能认为事情是按以下顺序发生的，</p>
-<ol>
-<li>js 文件修改</li>
-<li>webpack-dev-server 监控到变化</li>
-<li>webpack 在内存中重新构建 bundle.js</li>
-<li>webpack-dev-server 保证页面引用的 bundle.js 文件与内存中一致</li>
-</ol>
-<p>但不幸的是，我们「自以为是」了。<code>http://localhost:8080/index.html</code> 对 js 文件的变化无动于衷。</p>
-<p><strong>webpack-dev-server 提供了两种模式用于自动刷新页面：</strong></p>
-<ol>
-<li><p>iframe 模式</p>
-<blockquote>
-<p>我们不访问 <code>http://localhost:8080</code>，而是访问 <code>http://localhost:8080/webpack-dev-server/    index.html</code></p>
-</blockquote>
-</li>
-<li><p>inline 模式</p>
-<blockquote>
-<p>在命令行中指定该模式，<code>webpack-dev-server --inline</code>。这样<code>http://localhost:8080/index.html</code>页面就会在 js 文件变化后自动刷新了。</p>
-</blockquote>
-</li>
-</ol>
-<p>以上说的两个页面自动刷新的模式都是指刷新整个页面，相当于点击了浏览器的刷新按钮。</p>
-<p>webpack-dev-server 还提供了一种 –hot 模式，属于较高阶的应用。</p>
-<h4 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h4><p>webpack 并不是包管理器，所以如果我们要使用第三方库，需要借助 npm。比如，在项目里安装 <code>jQuery</code>：</p>
-<pre><code>npm install jquery --save
-</code></pre><p>这样我们在当前项目目录下安装了 jQuery，并将它写入 package.json 里的依赖里。</p>
-<h4 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h4><h5 id="模块化-JavaScript"><a href="#模块化-JavaScript" class="headerlink" title="模块化 JavaScript"></a>模块化 JavaScript</h5><p>如果我想用 ES6 的方式引入 jQuery 模块，比如：</p>
-<pre><code>import $ from &apos;jquery&apos;
-</code></pre><p>怎么办？浏览器目前还不提供原生支持，webpack 原生也仅支持 CommonJS 的那种写法，但借助 babel-loader ，我们可以加载 es6 模块：</p>
-<p>1.安装 babel-loader</p>
-<pre><code>npm install babel-loader babel-core babel-preset-es2015 --save-dev 
-</code></pre><p>2.配置 webpack.config.js</p>
-<p>在 <code>module.exports</code> 值中添加 <code>module</code>：    </p>
-<pre><code>module.exports = {
-  entry: {
-      app: [&apos;./main.js&apos;]
-  },
-  output: {
-      filename: &apos;bundle.js&apos;
-  },
-  module: {
-      loaders: [{
-      test: /\.js$/,
-      loaders: [&apos;babel?presets[]=es2015&apos;],
-      exclude: /node_modules/
-      }]
-  }
-}
-</code></pre><p>这样我们就可以在我们的 js 文件中使用 ES6 语法，babel-loader 会负责编译成浏览器可以识别的格式。</p>
-<h4 id="CSS-加载器"><a href="#CSS-加载器" class="headerlink" title="CSS 加载器"></a>CSS 加载器</h4><p>我们可以按传统方法使用 CSS，即在 HTML 文件中添加：</p>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;style/app.css&quot;&gt;
-</code></pre><p>但 webpack 里，CSS 同样可以模块化，使用 <code>import</code> 导入。</p>
-<p>因此我们不再使用 link 标签来引用 CSS，而是通过 webpack 的 style-loader 及 css-loader。前者将 css 文件以 <style></style> 标签插入 <head> 头部，后者负责解读、加载 CSS 文件。</head></p>
-<p> 1.安装 CSS 相关的加载器</p>
-<pre><code>npm install style-loader css-loader --save-dev
-</code></pre><p>2.配置 webpack.config.js 文件</p>
-<pre><code> {
-module: {
-    loaders: [
-        { test: /\.css$/, loaders: [&apos;style&apos;, &apos;css&apos;] }
-    ]
-}
-  } 
-</code></pre><p>3.在 main.js 文件中引入 css</p>
-<pre><code>import&apos;./style/app.css&apos;;
-</code></pre><p>这样，在执行 webpack 后，我们的 CSS 文件就会被打包进 bundle.js 文件中，如果不想它们被打包进去，可以使用 extract text 扩展。</p>
-<h4 id="模块化-CSS"><a href="#模块化-CSS" class="headerlink" title="模块化 CSS"></a>模块化 CSS</h4><p>上一步里，我们 import 到 JavaScript 文件中的 CSS 文件中的 CSS 在打包后是仍然是全局的，也就是说，我们只是换了种加载 CSS 的方式，在书写 CSS 的时候，还是需要注意使用命名规范，比如使用 BEM，否则全局环境 CSS 类的冲突等问题不会消失。</p>
-<p>这里，webpack 做了一个模块化 CSS 的尝试，真正意思上的「模块化」，即 CSS 类不会泄露到全局环境中，而只会定义在 UI 模块内 – 类似 react.js 这类模块，或者 web components。</p>
-<p><strong>autoprefixer</strong></p>
-<p>我们在写 CSS 时，按 CSS 规范写，构建时利用 autoprefixer 可以输出 -webkit、-moz 这样的浏览器前缀，webpack 同样是通过 loader 提供该功能。</p>
-<p>1.安装 autoprefixer-loader</p>
-<pre><code>npm install autoprefixer-loader --save-dev
-</code></pre><p>2.配置 webpack.config.js</p>
-<pre><code> loaders: [{
-test: /\.css$/,
-loader: &apos;style!css!autoprefixer?{browsers:[&quot;last 2 version&quot;, &quot;&gt; 1%&quot;]}&apos;,
-  }]
-</code></pre><p>3.重启 webpack-dev-server</p>
-<p>假如我们在 CSS 中写了 body { display: flex; } 规则，再查看 bundle.js 文件的话，我们能看到类似如下的代码：</p>
-<pre><code>body {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: -ms-flexbox;    \n\tdisplay: flex;\n}
-</code></pre><h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p>图片同样可以是模块，但使用的是 file loader 或者 url loader，后者会根据定义的大小范围来判断是否使用 data url。</p>
-<pre><code>import loadingIMG from &apos;file!../img/loading.gif&apos;
-
- React.render(&lt;img src={loadingIMG} /&gt;, document.getElementById(&apos;app&apos;));
-</code></pre><h4 id="打包、构建"><a href="#打包、构建" class="headerlink" title="打包、构建"></a>打包、构建</h4><p>项目结束后，代码要压缩、混淆、合并等，只需要在命令行执行：</p>
-<pre><code>$ webpack
-</code></pre><p> 即可，webpack 根据 webpack.config.js 文件中的配置路径、构建文件名生成相应的文件。通常，我们会额外定义一个专门用于生产环境的配置文件，比如 webpack.production.config.js，其中可以做许多代码优化。</p>
  
       <!-- reward -->
       
